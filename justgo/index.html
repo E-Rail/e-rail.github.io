@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="JustGo — know whether your subway trip will actually work." />
+    <meta name="theme-color" content="#eef2e8" />
+    <title>JustGo — Subway confidence for China</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/justgo/justgo.css" />
+  </head>
+  <body>
+    <header class="jg-nav">
+      <a class="jg-brand" href="/justgo">
+        <span class="logo-mark"><i></i><i></i><i></i></span>
+        <span>JustGo</span>
+      </a>
+      <nav aria-label="JustGo navigation">
+        <a href="#why">Why JustGo</a>
+        <a href="#features">Features</a>
+        <a href="#cities">Cities</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="back-link" href="/">Ethan’s site</a>
+        <a class="github-button" href="https://github.com/E-Rail/JustGo" target="_blank" rel="noreferrer">
+          View on GitHub <span>↗</span>
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="jg-hero">
+        <div class="hero-copy">
+          <div class="availability"><i></i> OPEN SOURCE · iOS 17+</div>
+          <h1>Maps find a route.<br /><em>JustGo finds confidence.</em></h1>
+          <p>
+            Know whether your subway trip will be smooth, understandable, and
+            reliable—before you enter the station.
+          </p>
+          <div class="hero-actions">
+            <a class="big-button" href="https://github.com/E-Rail/JustGo" target="_blank" rel="noreferrer">
+              Explore the project <span>↗</span>
+            </a>
+            <a class="watch-link" href="#features"><span class="play-icon">↓</span> See how it helps</a>
+          </div>
+          <div class="built-for">
+            <span>BUILT FOR</span>
+            <div>Daily commuters</div><i></i><div>First-time riders</div><i></i><div>Everyone who needs clarity</div>
+          </div>
+        </div>
+
+        <div class="phone-stage" aria-label="JustGo route confidence interface preview">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="city-label city-beijing">BEIJING <span>北京</span></div>
+          <div class="city-label city-shanghai">SHANGHAI <span>上海</span></div>
+          <div class="phone">
+            <div class="dynamic-island"></div>
+            <div class="phone-screen">
+              <div class="phone-status"><span>9:41</span><span>● ◒ ▰</span></div>
+              <div class="app-head">
+                <div>
+                  <small>GOOD MORNING</small>
+                  <strong>Where to?</strong>
+                </div>
+                <div class="avatar-dot">E</div>
+              </div>
+              <div class="route-input">
+                <div class="input-row"><span class="route-dot origin"></span><div><small>FROM</small><strong>Wangfujing · 王府井</strong></div></div>
+                <div class="input-line"></div>
+                <div class="input-row"><span class="route-dot destination"></span><div><small>TO</small><strong>Xidan · 西单</strong></div></div>
+              </div>
+              <div class="mode-row">
+                <span class="selected">Balanced</span><span>Less walking</span><span>Step-free</span>
+              </div>
+              <div class="confidence-card">
+                <div class="confidence-top">
+                  <div class="score-ring"><strong>92</strong><small>/100</small></div>
+                  <div><small>TRIP CONFIDENCE</small><strong>Smooth journey</strong><p>Direct ride · Clear exits</p></div>
+                </div>
+                <div class="route-summary">
+                  <span class="line-badge">1</span>
+                  <div><strong>Line 1 · 3 stops</strong><small>8 min · ¥3 · 1.8 km</small></div>
+                  <span class="chevron">›</span>
+                </div>
+                <div class="timeline">
+                  <span class="time">09:46</span><i></i><span class="stop-node"></span><i></i><span class="stop-node"></span><i></i><span class="stop-node end"></span><span class="time">09:54</span>
+                </div>
+              </div>
+              <div class="insight-card">
+                <span class="insight-icon">✓</span>
+                <div><strong>Good to know</strong><p>Exit A is closest to your destination. Elevators are available.</p></div>
+              </div>
+              <div class="app-tabs"><span class="active">⌁<small>Plan</small></span><span>◇<small>Map</small></span><span>♡<small>Saved</small></span><span>○<small>Me</small></span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="statement" id="why">
+        <p class="section-code">01 / THE IDEA</p>
+        <blockquote>
+          “A route can be technically possible<br />
+          and still be <em>practically impossible.</em>”
+        </blockquote>
+        <div class="statement-copy">
+          <p>
+            Traditional map apps optimize for time. JustGo looks at the trip as a
+            human will experience it: transfers, walking, confusing stations,
+            accessibility, and how trustworthy the available data actually is.
+          </p>
+          <div class="confidence-legend">
+            <div><i class="high"></i><span><strong>High confidence</strong>Clear route, reliable data</span></div>
+            <div><i class="medium"></i><span><strong>Worth checking</strong>Some details need attention</span></div>
+            <div><i class="low"></i><span><strong>Plan carefully</strong>Complex or limited information</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="features" id="features">
+        <div class="section-head">
+          <p class="section-code">02 / WHAT IT KNOWS</p>
+          <h2>More than<br />A to B.</h2>
+          <p>JustGo turns scattered transit details into one understandable journey.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card route-feature">
+            <span class="feature-number">01</span>
+            <div class="mini-map" aria-hidden="true">
+              <i class="yellow-line"></i><i class="blue-line"></i>
+              <span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span>
+            </div>
+            <h3>Human-centered routes</h3>
+            <p>Choose fastest, least walking, fewest transfers, least confusing, luggage friendly, or step-free.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-number">02</span>
+            <div class="feature-icon station-icon"><span></span><i></i><span></span></div>
+            <h3>Station intelligence</h3>
+            <p>Entrances, exits, schedules, station maps, facilities, and accessibility details in one place.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-number">03</span>
+            <div class="feature-icon source-icon">◎<small>OFFICIAL</small></div>
+            <h3>Transparent sources</h3>
+            <p>See what comes from official data, Apple Maps, estimates, or fields that still need verification.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-number">04</span>
+            <div class="feature-icon universal-icon">✣</div>
+            <h3>Universal by design</h3>
+            <p>VoiceOver, step-free guidance, readable layouts, and useful context help every kind of rider.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="cities" id="cities">
+        <div class="city-copy">
+          <p class="section-code">03 / COVERAGE</p>
+          <h2>Built for<br />China’s metros.</h2>
+          <p>
+            Place-to-place transit planning works wherever Apple Maps provides
+            directions. Richer official city packs currently add more station facts
+            for six major networks.
+          </p>
+          <a href="https://github.com/E-Rail/JustGo/tree/main/DataPacks" target="_blank" rel="noreferrer">Explore the open data packs <span>↗</span></a>
+        </div>
+        <div class="city-list">
+          <div><span>01</span><strong>北京</strong><p>Beijing</p><i></i></div>
+          <div><span>02</span><strong>上海</strong><p>Shanghai</p><i></i></div>
+          <div><span>03</span><strong>广州</strong><p>Guangzhou</p><i></i></div>
+          <div><span>04</span><strong>深圳</strong><p>Shenzhen</p><i></i></div>
+          <div><span>05</span><strong>成都</strong><p>Chengdu</p><i></i></div>
+          <div><span>06</span><strong>杭州</strong><p>Hangzhou</p><i></i></div>
+        </div>
+      </section>
+
+      <section class="cta">
+        <div class="cta-line" aria-hidden="true"><span></span><i></i><span></span><i></i><span></span></div>
+        <p class="section-code">READY WHEN YOU ARE</p>
+        <h2>Your journey should<br />feel possible.</h2>
+        <p>JustGo is open source and actively being built in SwiftUI.</p>
+        <a class="big-button light" href="https://github.com/E-Rail/JustGo" target="_blank" rel="noreferrer">View JustGo on GitHub <span>↗</span></a>
+      </section>
+    </main>
+
+    <footer class="jg-footer">
+      <a class="jg-brand" href="/justgo"><span class="logo-mark"><i></i><i></i><i></i></span><span>JustGo</span></a>
+      <p>Designed and built by <a href="/">Ethan Song</a>.</p>
+      <p class="mono">SWIFTUI · MAPKIT · OPEN SOURCE</p>
+    </footer>
+  </body>
+</html>
