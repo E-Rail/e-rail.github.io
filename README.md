@@ -1,4 +1,4 @@
-# E-Rail.github.io
+# e-rail.github.io
 
 Personal website for Ethan Song, hosted with GitHub Pages.
 
