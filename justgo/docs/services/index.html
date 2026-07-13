@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="JustGo service catalog: exact responsibilities, data flow, caching, failure behavior, and runtime boundaries." />
+    <meta name="theme-color" content="#f8faf4" />
+    <title>JustGo Services — Runtime architecture</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/justgo/justgo.css" />
+    <link rel="stylesheet" href="/justgo/docs/docs.css" />
+  </head>
+  <body class="docs-body">
+    <header class="jg-nav docs-nav">
+      <a class="jg-brand" href="/justgo"><span class="logo-mark"><i></i><i></i><i></i></span><span>JustGo</span></a>
+      <nav aria-label="Documentation navigation">
+        <a href="/justgo/">Product</a>
+        <a href="/justgo/docs/">Docs</a>
+        <a href="/justgo/docs/services/" aria-current="page">Services</a>
+        <a href="/justgo/docs/privacy/">Privacy</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="back-link" href="/">Ethan’s site</a>
+        <a class="github-button" href="https://github.com/E-Rail/JustGo" target="_blank" rel="noreferrer">Source <span>↗</span></a>
+      </div>
+    </header>
+
+    <main>
+      <section class="docs-hero">
+        <div class="docs-hero-copy">
+          <p class="docs-breadcrumb"><a href="/justgo/docs/">Docs</a> / Services</p>
+          <h1>The services behind<br /><em>one route.</em></h1>
+          <p>Responsibilities, inputs, outputs, network calls, retained state, timeouts, and failure behavior—mapped to the current Swift source.</p>
+        </div>
+        <aside class="docs-status" aria-label="Service snapshot">
+          <span class="status-label">RUNTIME SNAPSHOT</span>
+          <div class="status-row"><span>Service source files</span><strong>18</strong></div>
+          <div class="status-row"><span>MapKit deadline</span><strong>12 seconds</strong></div>
+          <div class="status-row"><span>Pack request timeout</span><strong>15 seconds</strong></div>
+          <div class="status-row"><span>Pack failure cooldown</span><strong>45 seconds</strong></div>
+        </aside>
+      </section>
+
+      <nav class="docs-tabs" aria-label="JustGo documentation pages">
+        <div class="docs-tabs-inner">
+          <a href="/justgo/docs/">Overview</a>
+          <a href="/justgo/docs/services/" aria-current="page">Service catalog</a>
+          <a href="/justgo/docs/privacy/">Privacy</a>
+          <a href="/justgo/docs/terms/">Service terms</a>
+          <a href="https://github.com/E-Rail/JustGo/tree/main/JustGo/Services" target="_blank" rel="noreferrer">Service source ↗</a>
+        </div>
+      </nav>
+
+      <div class="docs-shell">
+        <aside class="docs-sidebar" aria-label="On this page">
+          <span>ON THIS PAGE</span>
+          <a href="#catalog">Catalog</a>
+          <a href="#boundaries">Runtime boundaries</a>
+          <a href="#location">Location &amp; places</a>
+          <a href="#metro">Metro graph</a>
+          <a href="#packs">City packs</a>
+          <a href="#route">Route planning</a>
+          <a href="#trust">Confidence services</a>
+          <a href="#stations">Station services</a>
+          <a href="#personal">Personal data services</a>
+          <a href="#notifications">Notifications</a>
+          <a href="#lifecycle">Caching &amp; failures</a>
+        </aside>
+
+        <article class="docs-content">
+          <section class="doc-section" id="catalog">
+            <p class="doc-label">01 / CATALOG</p>
+            <h2>Small services, explicit jobs.</h2>
+            <p class="doc-lead">At launch, <code>DIContainer.configure()</code> constructs the production graph and injects it into SwiftUI. Services are concrete objects behind narrow protocols where substitution matters.</p>
+
+            <div class="service-grid">
+              <a class="service-card" href="#location"><span class="mini-label">DEVICE + APPLE</span><strong>Location &amp; place search</strong><p>Permission-scoped coordinates, local-search results, reverse geocoding, and walking directions.</p></a>
+              <a class="service-card" href="#metro"><span class="mini-label">BUNDLED</span><strong>Metro network &amp; routing</strong><p>46 network files, viewport rendering, graph construction, and three path-cost strategies.</p></a>
+              <a class="service-card" href="#packs"><span class="mini-label">STATIC HOSTS</span><strong>Official city packs</strong><p>Manifest discovery, per-city download, validation, station enrichment, and source confidence.</p></a>
+              <a class="service-card" href="#route"><span class="mini-label">ORCHESTRATION</span><strong>Route planning</strong><p>Combines graph paths, walking legs, schedules, accessibility, exits, comfort, and ordering.</p></a>
+              <a class="service-card" href="#trust"><span class="mini-label">PURE RULES</span><strong>Trust calculations</strong><p>Feasibility, confidence, service hours, crowd-control parsing, and comfort forecasting.</p></a>
+              <a class="service-card" href="#personal"><span class="mini-label">ON DEVICE</span><strong>Memory &amp; reports</strong><p>Saved trips, activity, favorite stations, local reports, and resumable Go trips.</p></a>
+            </div>
+
+            <h3>Composition root</h3>
+            <div class="table-wrap">
+              <table class="doc-table">
+                <thead><tr><th>Object</th><th>Production implementation</th><th>Lifetime</th></tr></thead>
+                <tbody>
+                  <tr><td>Location</td><td><code>LocationService</code></td><td>App session</td></tr>
+                  <tr><td>Place search</td><td><code>MapKitPlaceSearchProvider</code></td><td>App session</td></tr>
+                  <tr><td>Metro network</td><td><code>BundledMetroNetworkService</code> actor</td><td>App session; in-memory caches releasable</td></tr>
+                  <tr><td>Subway routes</td><td><code>BundledMetroRouteProvider</code> actor</td><td>App session; graph caches releasable</td></tr>
+                  <tr><td>City packs</td><td><code>OfficialCityPackService</code> actor</td><td>App session; decoded packs retained in memory</td></tr>
+                  <tr><td>Route orchestration</td><td><code>RoutePlanningService</code></td><td>App session</td></tr>
+                  <tr><td>Personal records</td><td><code>TripMemoryService</code>, <code>AccessibilityReportService</code></td><td>App session + UserDefaults persistence</td></tr>
+                  <tr><td>Notifications</td><td><code>TripReminderService</code></td><td>App session + iOS pending local requests</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="doc-section" id="boundaries">
+            <p class="doc-label">02 / RUNTIME BOUNDARIES</p>
+            <h2>What leaves the app.</h2>
+            <p class="doc-lead">JustGo has no custom account or route backend in the reviewed source. Runtime network traffic is limited to Apple mapping services and static city-pack hosts.</p>
+
+            <div class="table-wrap">
+              <table class="doc-table">
+                <thead><tr><th>Boundary</th><th>Sent or requested</th><th>Purpose</th><th>Notes</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Apple Maps / Core Location</strong></td><td>Search query, search region, selected coordinates, walking endpoints, and reverse-geocode coordinates as required by Apple frameworks.</td><td>Place search, POI resolution, walking route, address text, device location.</td><td>Governed by Apple and the device’s location settings. No paid API key is embedded.</td></tr>
+                  <tr><td><strong>jsDelivr</strong></td><td>HTTP GET for <code>DataPacks/manifest.json</code>, a selected city-pack JSON file, or a pack asset.</td><td>Primary public fallback for enrichment data.</td><td>Request URLs identify the pack/city; normal server metadata such as IP address may be visible to the host.</td></tr>
+                  <tr><td><strong>raw.githubusercontent.com</strong></td><td>The same static files if earlier configured or jsDelivr locations fail.</td><td>Final public fallback.</td><td>No explicit search query or device location is placed into the pack URL by JustGo.</td></tr>
+                  <tr><td><strong>OpenStreetMap</strong></td><td>No runtime geometry request.</td><td>Metro geometry attribution.</td><td>Prepared network geometry is bundled in the app. The attribution link opens only if the rider taps it.</td></tr>
+                  <tr><td><strong>iOS notification center</strong></td><td>Notification title, body, local fire time, sound preference.</td><td>Departure and estimated get-off reminders.</td><td>Local notifications; no push token or remote notification server is used.</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="doc-callout">
+              <strong>Source sites versus runtime hosts</strong>
+              <p>City-pack manifests list the public pages from which facts were prepared. The app normally downloads the prepared pack from its configured static host; it does not scrape every listed transit-operator page during a rider’s trip.</p>
+            </div>
+          </section>
+
+          <section class="doc-section" id="location">
+            <p class="doc-label">03 / LOCATION &amp; PLACES</p>
+            <h2>Location is requested for a reason, then stopped.</h2>
+
+            <div class="service-detail">
+              <div class="service-detail-head">
+                <h3>LocationService</h3>
+                <div>
+                  <p>Wraps <code>CLLocationManager</code> and exposes the current fix, authorization state, and a single asynchronous location request.</p>
+                  <div class="detail-list">
+                    <div><strong>ACCURACY TARGET</strong><span><code>kCLLocationAccuracyBest</code>, 10 m distance filter.</span></div>
+                    <div><strong>CACHE FAST PATH</strong><span>Authorized fix, at most 30 seconds old and at most 100 m horizontal uncertainty.</span></div>
+                    <div><strong>REQUEST TIMEOUT</strong><span>15 seconds before pending callers receive “current location unavailable.”</span></div>
+                    <div><strong>BATTERY BEHAVIOR</strong><span>Continuous updates run only while a request is pending and stop on success, failure, timeout, or cancellation.</span></div>
+                    <div><strong>PREWARM</strong><span>One-shot <code>requestLocation()</code>; does nothing and shows no prompt unless already authorized.</span></div>
+                    <div><strong>PERMISSION</strong><span>When-in-use is requested lazily. Denied or restricted state clears the in-memory fix.</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="service-detail">
+              <div class="service-detail-head">
+                <h3>MapKitPlaceSearchProvider</h3>
+                <div>
+                  <p>Uses <code>MKLocalSearch</code> for addresses and POIs and creates a fresh <code>CLGeocoder</code> for each reverse-geocode call so overlapping requests do not cancel one another.</p>
+                  <div class="detail-list">
+                    <div><strong>RESULT TYPES</strong><span>Address and point-of-interest.</span></div>
+                    <div><strong>SEARCH BIAS</strong><span>Visible map region when available; otherwise an 80 km × 80 km region around the selected city.</span></div>
+                    <div><strong>RESULT LIMITS</strong><span>12 for map place search, 20 for combined station search, 6 for suggestions.</span></div>
+                    <div><strong>DEADLINE</strong><span>12-second race around MapKit calls so UI spinners can recover from a stalled framework request.</span></div>
+                    <div><strong>CANCELLATION</strong><span>Callers guard against stale results because MapKit requests may continue after Swift task cancellation.</span></div>
+                    <div><strong>FAILURE</strong><span>Surfaces a user-facing “place search requires a network connection” result.</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="doc-section" id="metro">
+            <p class="doc-label">04 / METRO GRAPH</p>
+            <h2>The subway path is local.</h2>
+
+            <div class="service-detail">
+              <div class="service-detail-head">
+                <h3>BundledMetroNetworkService</h3>
+                <div>
+                  <p>Loads one of 46 bundled JSON files containing city bounds, stations, lines, service patterns, and physical-track polylines.</p>
+                  <div class="detail-list">
+                    <div><strong>VALIDATION</strong><span>City ID must match the requested ID and <code>geometryKind</code> must equal <code>physicalTrack</code>.</span></div>
+                    <div><strong>CHEAP CITY MATCH</strong><span>Decodes bounds-only summaries for all cities before loading full network objects.</span></div>
+                    <div><strong>DECODE THREAD</strong><span>File reads and JSON decoding run in a detached utility task.</span></div>
+                    <div><strong>CACHES</strong><span>Full networks, display stations, summaries, and normalized station-name indexes.</span></div>
+                    <div><strong>MAP RULES</strong><span>Normal station markers appear only at closer zoom; transfer stations remain visible farther out.</span></div>
+                    <div><strong>RELEASE</strong><span>Memory warning clears full networks, display stations, and normalized indexes.</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="service-detail">
+              <div class="service-detail-head">
+                <h3>BundledMetroRouteProvider</h3>
+                <div>
+                  <p>Builds an adjacency graph from service-pattern station pairs, searches it with a minimum-cost heap, and assembles the winning edges into ride and transfer segments.</p>
+                  <div class="detail-list">
+                    <div><strong>COVERAGE GATE</strong><span>Both endpoints within 25 km of network bounds.</span></div>
+                    <div><strong>ACCESS CANDIDATES</strong><span>Four nearest stations for each endpoint.</span></div>
+                    <div><strong>GENERATED PATHS</strong><span>Fastest, fewest transfers, least walking; duplicate edge sequences are removed.</span></div>
+                    <div><strong>TRANSFER COST</strong><span>300 seconds normally; 1,200 seconds for fewest-transfer search.</span></div>
+                    <div><strong>WALK COST</strong><span>Distance ÷ 1.25 m/s; multiplied by three in least-walking search.</span></div>
+                    <div><strong>TRAIN COST</strong><span><code>max(60, edgeDistance ÷ 9.7 + 30)</code> seconds.</span></div>
+                    <div><strong>WALKING LEGS</strong><span><code>MKDirections</code> when available; straight-line + 1.25 m/s fallback.</span></div>
+                    <div><strong>GEOMETRY GUARDS</strong><span>Handles ring-line seams and rejects implausibly long polyline matches.</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="doc-section" id="packs">
+            <p class="doc-label">05 / CITY PACKS</p>
+            <h2>Enrichment is downloaded per city.</h2>
+            <p class="doc-lead"><code>OfficialCityPackService</code> owns manifest lookup, pack downloads, validation, in-memory indexing, and station enrichment.</p>
+
+            <div class="pipeline">
+              <div class="pipeline-step"><span>01</span><strong>Find a manifest</strong><p>Try configured manifest/base/fallback values, then jsDelivr, then raw GitHub. Duplicate URLs are removed.</p></div>
+              <div class="pipeline-step"><span>02</span><strong>Find the city</strong><p>The manifest entry decides whether a pack is available, source-pending, unavailable, or not configured.</p></div>
+              <div class="pipeline-step"><span>03</span><strong>Coalesce work</strong><p>Concurrent callers for the same city share one in-flight task. A delete increments the load generation and cancels stale completion.</p></div>
+              <div class="pipeline-step"><span>04</span><strong>Download &amp; validate</strong><p>Each request has a 15-second timeout. Decoded city ID and version must exactly match the manifest entry.</p></div>
+              <div class="pipeline-step"><span>05</span><strong>Index in memory</strong><p>Station records are keyed by normalized name. The service does not write an app-managed persistent pack file.</p></div>
+              <div class="pipeline-step"><span>06</span><strong>Enrich on demand</strong><p>Stations receive lines, accessibility, facilities, schedules, maps, timetable assets, service status, exits, platform hints, and interchange hints when fields exist.</p></div>
+            </div>
+
+            <h3>Important operational details</h3>
+            <ul>
+              <li>A failed load is cached for 45 seconds, preventing every station lookup from restarting the full fallback chain while the rider is underground.</li>
+              <li>Manifests are cached by URL for the app session. Loaded packs remain decoded in memory until deletion or memory-pressure release.</li>
+              <li>Exit guidance prefers structured pack entries. If none exist, a short exit token may be extracted from accessibility text and labeled estimated.</li>
+              <li>“Train times” are represented as official schedule rows. Their remaining-minutes field is <code>nil</code> unless a future live provider supplies it.</li>
+            </ul>
+          </section>
+
+          <section class="doc-section" id="route">
+            <p class="doc-label">06 / ROUTE PLANNING</p>
+            <h2>One coordinator, several independent lookups.</h2>
+            <p class="doc-lead"><code>RoutePlanningService</code> asks the route provider for alternatives, enriches each alternative concurrently, and exposes ranking functions for all user-facing modes.</p>
+
+            <div class="table-wrap">
+              <table class="doc-table">
+                <thead><tr><th>Stage</th><th>Work</th><th>Output attached to Route</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Critical stops</strong></td><td>Deduplicate boarding, transfer, and arrival endpoints.</td><td>Stable list used by all enrichment calls.</td></tr>
+                  <tr><td><strong>Parallel enrichment</strong></td><td>Fetch coverage counts, enriched accessibility records, and crowd-control windows concurrently.</td><td><code>dataCoverage</code>, <code>stepFreeAssessment</code>, <code>crowdControl</code>.</td></tr>
+                  <tr><td><strong>Service hours</strong></td><td>Match boarding line to official first/last windows at the departure moment.</td><td>Running, last-train-soon, ended, not-yet-started, or unknown.</td></tr>
+                  <tr><td><strong>Station guidance</strong></td><td>Choose official or estimated access points and matching transfer-corridor hints.</td><td>Boarding/transfer/arrival guidance with confidence.</td></tr>
+                  <tr><td><strong>Accessibility</strong></td><td>Assess all critical stops and walking warnings.</td><td>Confirmed, likely, unknown, or barrier detected.</td></tr>
+                  <tr><td><strong>Ranking</strong></td><td>Apply chosen preference; use comfort only after all stronger keys tie.</td><td>Ordered alternatives; none are silently removed.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="doc-section" id="trust">
+            <p class="doc-label">07 / CONFIDENCE SERVICES</p>
+            <h2>Pure calculations are kept separate.</h2>
+
+            <div class="service-detail">
+              <div class="service-detail-head"><h3>RouteFeasibilityService</h3><div><p>Combines step-free state, route warnings, walking instruction keywords, local reports, and comfort. It produces good, caution, risky, or unknown; explanations; a bottleneck; and estimated extra minutes.</p></div></div>
+            </div>
+            <div class="service-detail">
+              <div class="service-detail-head"><h3>RouteConfidenceService</h3><div><p>Applies the documented 0–100 rule set after feasibility is known. It returns a level, one mode-aware explanation, positive reasons, and warnings. It performs no network calls and uses no machine-learning model.</p></div></div>
+            </div>
+            <div class="service-detail">
+              <div class="service-detail-head"><h3>ServiceHoursResolver</h3><div><p>Parses first/last schedule strings, including multiple times separated by slash and last trains after midnight. “Last train soon” means within 20 minutes of the latest matched last-train time.</p></div></div>
+            </div>
+            <div class="service-detail">
+              <div class="service-detail-head"><h3>ComfortForecastService</h3><div><p>Only runs when source-backed crowd-control windows exist for the route. An active official window produces busy; otherwise weekday 07:30–09:30 or 17:00–19:30 can produce moderate; outside those periods the route is labeled likely comfortable.</p></div></div>
+            </div>
+            <div class="service-detail">
+              <div class="service-detail-head"><h3>LiveGoTripBuilder</h3><div><p>Turns route segments into ordered walking, transfer, ride, and arrival steps. It uses only the selected route snapshot and carries arrival-exit hints into ride steps.</p></div></div>
+            </div>
+          </section>
+
+          <section class="doc-section" id="stations">
+            <p class="doc-label">08 / STATION SERVICES</p>
+            <h2>Search local first, then broaden.</h2>
+            <p class="doc-lead"><code>StationSearchService</code> combines the selected city’s bundled station list with Apple place search and city-pack enrichment.</p>
+            <ul>
+              <li>An empty keyword returns the bundled city station list.</li>
+              <li>A keyword first filters station name, English name, and pinyin locally.</li>
+              <li>Apple place results are resolved concurrently; a result matching a known station is replaced by the station model.</li>
+              <li>Results are deduplicated by city plus normalized station name.</li>
+              <li>Filters can require known full accessibility, a known elevator, transfer status, or a facility type.</li>
+              <li>When location exists, filtered station results are sorted by calculated distance; otherwise they are sorted by localized name.</li>
+            </ul>
+          </section>
+
+          <section class="doc-section" id="personal">
+            <p class="doc-label">09 / PERSONAL DATA SERVICES</p>
+            <h2>Useful memory without an account.</h2>
+
+            <div class="table-wrap">
+              <table class="doc-table">
+                <thead><tr><th>Service</th><th>Responsibility</th><th>Persistence</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>TripMemoryService</strong></td><td>Saved trips (50), trip records (300), favorite stations (50), Home/Work/custom tags, use counts, and notes.</td><td>Codable values in UserDefaults.</td></tr>
+                  <tr><td><strong>AccessibilityReportService</strong></td><td>Up to 100 station or route reports with status, severity, item type, note, and timestamps.</td><td>Codable values in UserDefaults; never uploaded by this service.</td></tr>
+                  <tr><td><strong>ActiveTripStore</strong></td><td>One selected route while Go is active, allowing recovery after iOS terminates the app.</td><td>UserDefaults; cleared after normal Go dismissal or explicit discard.</td></tr>
+                  <tr><td><strong>AppState</strong></td><td>Selected tab/city in memory and the rider’s accessibility profile on disk.</td><td>Accessibility preference in UserDefaults.</td></tr>
+                  <tr><td><strong>View models</strong></td><td>Ten recent routes, ten recent station searches, selected sort strategy.</td><td>UserDefaults.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>For field-level detail and third-party processing, read the <a href="/justgo/docs/privacy/">privacy page</a>.</p>
+          </section>
+
+          <section class="doc-section" id="notifications">
+            <p class="doc-label">10 / NOTIFICATIONS</p>
+            <h2>Local reminders, requested lazily.</h2>
+            <p class="doc-lead"><code>TripReminderService</code> is the only notification layer in the current source.</p>
+            <ul>
+              <li>Authorization is requested when the rider first tries to schedule a reminder, never automatically at launch.</li>
+              <li>Departure reminders use a nonrepeating calendar trigger at the calculated leave-by time minus the selected lead minutes.</li>
+              <li>Get-off reminders use a nonrepeating time-interval trigger based on estimated route-segment duration.</li>
+              <li>Past-dated reminders are not scheduled. Replacing a reminder cancels the previous request with the same route or step identifier.</li>
+              <li>Foreground reminders are explicitly shown as a banner with sound.</li>
+              <li>No remote push provider, device token, or notification analytics appears in the service.</li>
+            </ul>
+          </section>
+
+          <section class="doc-section" id="lifecycle">
+            <p class="doc-label">11 / CACHING &amp; FAILURE</p>
+            <h2>Fail fast enough to remain usable underground.</h2>
+            <div class="table-wrap">
+              <table class="doc-table">
+                <thead><tr><th>Condition</th><th>Behavior</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Stalled MapKit call</strong></td><td>The app-side 12-second race releases the caller and loading UI. The Apple framework request may continue in the background, so stale-result guards remain necessary.</td></tr>
+                  <tr><td><strong>Stalled pack host</strong></td><td>The URL request has a 15-second timeout before the next fallback host is tried.</td></tr>
+                  <tr><td><strong>Repeated pack failure</strong></td><td>The city returns the cached failed status for 45 seconds instead of restarting every enrichment request.</td></tr>
+                  <tr><td><strong>Concurrent pack requests</strong></td><td>One in-flight task is shared per city. A later deletion invalidates its generation.</td></tr>
+                  <tr><td><strong>Malformed network</strong></td><td>The city is marked missing for the session rather than crashing the route or map flow.</td></tr>
+                  <tr><td><strong>Missing walking route</strong></td><td>Use straight-line distance and estimated time; attach an explicit estimate note.</td></tr>
+                  <tr><td><strong>Memory warning</strong></td><td>Release decoded city packs, full metro networks, station projections, graph caches, and normalized-name indexes.</td></tr>
+                  <tr><td><strong>App termination during Go</strong></td><td>Retain the active route in UserDefaults and offer a resume banner on the next planner appearance.</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="doc-actions">
+              <a class="doc-button" href="https://github.com/E-Rail/JustGo/tree/main/JustGo/Services" target="_blank" rel="noreferrer">Read the service source ↗</a>
+              <a class="doc-button secondary" href="/justgo/docs/#limits">Review known limits →</a>
+            </div>
+          </section>
+        </article>
+      </div>
+    </main>
+
+    <footer class="jg-footer">
+      <a class="jg-brand" href="/justgo"><span class="logo-mark"><i></i><i></i><i></i></span><span>JustGo</span></a>
+      <p class="footer-links"><a href="/justgo/docs/">Docs</a><a href="/justgo/docs/services/">Services</a><a href="/justgo/docs/privacy/">Privacy</a><a href="/justgo/docs/terms/">Terms</a></p>
+      <p class="mono">SERVICES · 2026-07-13</p>
+    </footer>
+  </body>
+</html>

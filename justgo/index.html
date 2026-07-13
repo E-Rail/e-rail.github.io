@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="JustGo — know whether your subway trip will actually work." />
+    <meta name="description" content="JustGo — accessibility-first metro confidence across 46 Chinese city networks." />
     <meta name="theme-color" content="#eef2e8" />
     <title>JustGo — Subway confidence for China</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/justgo/justgo.css" />
@@ -22,8 +22,9 @@
       </a>
       <nav aria-label="JustGo navigation">
         <a href="#why">Why JustGo</a>
-        <a href="#features">Features</a>
-        <a href="#cities">Cities</a>
+        <a href="#features">What’s new</a>
+        <a href="#coverage">Coverage</a>
+        <a href="/justgo/docs/">Docs</a>
       </nav>
       <div class="nav-actions">
         <a class="back-link" href="/">Ethan’s site</a>
@@ -36,25 +37,26 @@
     <main>
       <section class="jg-hero">
         <div class="hero-copy">
-          <div class="availability"><i></i> OPEN SOURCE · iOS 17+</div>
+          <div class="availability"><i></i> OPEN SOURCE · iOS &amp; iPadOS 18+</div>
           <h1>Maps find a route.<br /><em>JustGo finds confidence.</em></h1>
           <p>
-            Know whether your subway trip will be smooth, understandable, and
-            reliable—before you enter the station.
+            Plan door-to-door journeys across 46 metro networks with explainable
+            confidence, source-backed station facts, and guidance that says exactly
+            what is known—and what is not.
           </p>
           <div class="hero-actions">
-            <a class="big-button" href="https://github.com/E-Rail/JustGo" target="_blank" rel="noreferrer">
-              Explore the project <span>↗</span>
+            <a class="big-button" href="/justgo/docs/">
+              Read the documentation <span>→</span>
             </a>
-            <a class="watch-link" href="#features"><span class="play-icon">↓</span> See how it helps</a>
+            <a class="watch-link" href="https://github.com/E-Rail/JustGo" target="_blank" rel="noreferrer"><span class="play-icon">↗</span> View the source</a>
           </div>
           <div class="built-for">
-            <span>BUILT FOR</span>
-            <div>Daily commuters</div><i></i><div>First-time riders</div><i></i><div>Everyone who needs clarity</div>
+            <span>CURRENT BUILD</span>
+            <div>46 city networks</div><i></i><div>13 city packs</div><i></i><div>3 app languages</div>
           </div>
         </div>
 
-        <div class="phone-stage" aria-label="JustGo route confidence interface preview">
+        <div class="phone-stage" aria-label="Illustrative JustGo route-confidence interface">
           <div class="orbit orbit-one"></div>
           <div class="orbit orbit-two"></div>
           <div class="city-label city-beijing">BEIJING <span>北京</span></div>
@@ -65,8 +67,8 @@
               <div class="phone-status"><span>9:41</span><span>● ◒ ▰</span></div>
               <div class="app-head">
                 <div>
-                  <small>GOOD MORNING</small>
-                  <strong>Where to?</strong>
+                  <small>ROUTE PLANNER</small>
+                  <strong>Where are you going?</strong>
                 </div>
                 <div class="avatar-dot">E</div>
               </div>
@@ -76,12 +78,12 @@
                 <div class="input-row"><span class="route-dot destination"></span><div><small>TO</small><strong>Xidan · 西单</strong></div></div>
               </div>
               <div class="mode-row">
-                <span class="selected">Balanced</span><span>Less walking</span><span>Step-free</span>
+                <span class="selected">Transit first</span><span>Least walking</span><span>Fewest transfers</span>
               </div>
               <div class="confidence-card">
                 <div class="confidence-top">
-                  <div class="score-ring"><strong>92</strong><small>/100</small></div>
-                  <div><small>TRIP CONFIDENCE</small><strong>Smooth journey</strong><p>Direct ride · Clear exits</p></div>
+                  <div class="score-ring"><strong>84</strong><small>/100</small></div>
+                  <div><small>TRIP CONFIDENCE</small><strong>High confidence</strong><p>Direct ride · Official schedule</p></div>
                 </div>
                 <div class="route-summary">
                   <span class="line-badge">1</span>
@@ -93,10 +95,10 @@
                 </div>
               </div>
               <div class="insight-card">
-                <span class="insight-icon">✓</span>
-                <div><strong>Good to know</strong><p>Exit A is closest to your destination. Elevators are available.</p></div>
+                <span class="insight-icon">!</span>
+                <div><strong>Check before you go</strong><p>Step-free arrival access is not confirmed in the current city pack.</p></div>
               </div>
-              <div class="app-tabs"><span class="active">⌁<small>Plan</small></span><span>◇<small>Map</small></span><span>♡<small>Saved</small></span><span>○<small>Me</small></span></div>
+              <div class="app-tabs"><span>◇<small>Map</small></span><span class="active">⌁<small>Route</small></span><span>⌕<small>Search</small></span><span>○<small>Profile</small></span></div>
             </div>
           </div>
         </div>
@@ -110,23 +112,24 @@
         </blockquote>
         <div class="statement-copy">
           <p>
-            Traditional map apps optimize for time. JustGo looks at the trip as a
-            human will experience it: transfers, walking, confusing stations,
-            accessibility, and how trustworthy the available data actually is.
+            JustGo builds subway paths from locally bundled network graphs, asks
+            Apple Maps for place search and walking legs, then checks critical
+            stations against source-backed city packs. The result is a route with
+            reasons, caveats, and data confidence—not a mysterious green score.
           </p>
           <div class="confidence-legend">
-            <div><i class="high"></i><span><strong>High confidence</strong>Clear route, reliable data</span></div>
-            <div><i class="medium"></i><span><strong>Worth checking</strong>Some details need attention</span></div>
-            <div><i class="low"></i><span><strong>Plan carefully</strong>Complex or limited information</span></div>
+            <div><i class="high"></i><span><strong>High confidence · 80–100</strong>Fewer concerns in the available data</span></div>
+            <div><i class="medium"></i><span><strong>Worth checking · 60–79</strong>One or more details need attention</span></div>
+            <div><i class="low"></i><span><strong>Plan carefully · 0–59</strong>Complex, risky, or data-limited</span></div>
           </div>
         </div>
       </section>
 
       <section class="features" id="features">
         <div class="section-head">
-          <p class="section-code">02 / WHAT IT KNOWS</p>
+          <p class="section-code">02 / JULY 2026 BUILD</p>
           <h2>More than<br />A to B.</h2>
-          <p>JustGo turns scattered transit details into one understandable journey.</p>
+          <p>The current app has grown far beyond the original six-city concept.</p>
         </div>
         <div class="feature-grid">
           <article class="feature-card route-feature">
@@ -135,63 +138,85 @@
               <i class="yellow-line"></i><i class="blue-line"></i>
               <span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span>
             </div>
-            <h3>Human-centered routes</h3>
-            <p>Choose fastest, least walking, fewest transfers, least confusing, luggage friendly, or step-free.</p>
+            <h3>46 local network graphs</h3>
+            <p>Physical-track geometry and station topology are bundled for 46 cities, so subway paths follow the actual network—not a generic straight line.</p>
           </article>
           <article class="feature-card">
             <span class="feature-number">02</span>
             <div class="feature-icon station-icon"><span></span><i></i><span></span></div>
-            <h3>Station intelligence</h3>
-            <p>Entrances, exits, schedules, station maps, facilities, and accessibility details in one place.</p>
+            <h3>Door-to-door planning</h3>
+            <p>Apple Maps resolves places and walking approaches; JustGo connects them to stations and generates fastest, least-walking, and fewest-transfer alternatives.</p>
           </article>
           <article class="feature-card">
             <span class="feature-number">03</span>
-            <div class="feature-icon source-icon">◎<small>OFFICIAL</small></div>
-            <h3>Transparent sources</h3>
-            <p>See what comes from official data, Apple Maps, estimates, or fields that still need verification.</p>
+            <div class="feature-icon source-icon">◎<small>EXPLAINED</small></div>
+            <h3>Explainable confidence</h3>
+            <p>The 0–100 score accounts for transfers, walking, source coverage, service hours, feasibility, crowd-control windows, and your own local reports.</p>
           </article>
           <article class="feature-card">
             <span class="feature-number">04</span>
             <div class="feature-icon universal-icon">✣</div>
-            <h3>Universal by design</h3>
-            <p>VoiceOver, step-free guidance, readable layouts, and useful context help every kind of rider.</p>
+            <h3>13 richer city packs</h3>
+            <p>Downloadable packs add the facts each source can support: schedules, accessibility, facilities, maps, exits, and crowd-control windows.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-number">05</span>
+            <div class="feature-icon go-icon"><span>GO</span><i></i></div>
+            <h3>A hands-on Go companion</h3>
+            <p>Manual step progression, route-map previews, speech, haptics, visual announcements, and clearly labeled time-estimated get-off reminders.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-number">06</span>
+            <div class="feature-icon local-icon"><span>LOCAL</span><i>⌂</i></div>
+            <h3>Personal, on your device</h3>
+            <p>Favorites, Home and Work tags, saved trips, history, active trips, preferences, and accessibility reports stay in the app’s local storage.</p>
           </article>
         </div>
       </section>
 
-      <section class="cities" id="cities">
+      <section class="cities" id="coverage">
         <div class="city-copy">
-          <p class="section-code">03 / COVERAGE</p>
-          <h2>Built for<br />China’s metros.</h2>
+          <p class="section-code">03 / COVERAGE · MANIFEST 2026-07-02</p>
+          <h2>46 networks.<br />13 richer packs.</h2>
           <p>
-            Place-to-place transit planning works wherever Apple Maps provides
-            directions. Richer official city packs currently add more station facts
-            for six major networks.
+            Every supported city includes a bundled, drawable metro network. The
+            current manifest adds downloadable station data for 13 cities. Coverage
+            is field-by-field: “available” never silently means “live.”
           </p>
-          <a href="https://github.com/E-Rail/JustGo/tree/main/DataPacks" target="_blank" rel="noreferrer">Explore the open data packs <span>↗</span></a>
+          <a href="/justgo/docs/#coverage">See the full coverage matrix <span>→</span></a>
         </div>
         <div class="city-list">
-          <div><span>01</span><strong>北京</strong><p>Beijing</p><i></i></div>
-          <div><span>02</span><strong>上海</strong><p>Shanghai</p><i></i></div>
-          <div><span>03</span><strong>广州</strong><p>Guangzhou</p><i></i></div>
-          <div><span>04</span><strong>深圳</strong><p>Shenzhen</p><i></i></div>
-          <div><span>05</span><strong>成都</strong><p>Chengdu</p><i></i></div>
-          <div><span>06</span><strong>杭州</strong><p>Hangzhou</p><i></i></div>
+          <div class="new-pack"><span>NEW</span><strong>南京</strong><p>Nanjing<small>Partial schedules · 2026-07-02</small></p><i></i></div>
+          <div class="new-pack"><span>NEW</span><strong>武汉</strong><p>Wuhan<small>Partial schedules · 2026-07-02</small></p><i></i></div>
+          <div class="new-pack"><span>NEW</span><strong>郑州</strong><p>Zhengzhou<small>Partial schedules · 2026-07-02</small></p><i></i></div>
+          <div class="new-pack"><span>NEW</span><strong>青岛</strong><p>Qingdao<small>Official accessibility · 2026-07-02</small></p><i></i></div>
+          <div><span>05</span><strong>北京</strong><p>Beijing<small>Access · schedules · station maps</small></p><i></i></div>
+          <div><span>06</span><strong>上海</strong><p>Shanghai<small>Access · schedules</small></p><i></i></div>
+          <div><span>07</span><strong>广州</strong><p>Guangzhou<small>Access · schedules</small></p><i></i></div>
+          <div><span>08</span><strong>杭州</strong><p>Hangzhou<small>Access · schedules</small></p><i></i></div>
+          <div><span>09</span><strong>深圳</strong><p>Shenzhen<small>Official schedules</small></p><i></i></div>
+          <div><span>10</span><strong>成都</strong><p>Chengdu<small>Official schedules</small></p><i></i></div>
+          <div><span>11</span><strong>重庆</strong><p>Chongqing<small>Official schedules</small></p><i></i></div>
+          <div><span>12</span><strong>西安</strong><p>Xi’an<small>Official schedules</small></p><i></i></div>
+          <div><span>13</span><strong>苏州</strong><p>Suzhou<small>Official schedules</small></p><i></i></div>
         </div>
       </section>
 
       <section class="cta">
         <div class="cta-line" aria-hidden="true"><span></span><i></i><span></span><i></i><span></span></div>
-        <p class="section-code">READY WHEN YOU ARE</p>
-        <h2>Your journey should<br />feel possible.</h2>
-        <p>JustGo is open source and actively being built in SwiftUI.</p>
-        <a class="big-button light" href="https://github.com/E-Rail/JustGo" target="_blank" rel="noreferrer">View JustGo on GitHub <span>↗</span></a>
+        <p class="section-code">READ THE DETAILS</p>
+        <h2>Confidence should<br />be inspectable.</h2>
+        <p>Read the route math, service boundaries, data labels, and known limitations.</p>
+        <div class="cta-actions">
+          <a class="big-button light" href="/justgo/docs/">Open the docs <span>→</span></a>
+          <a class="cta-source" href="https://github.com/E-Rail/JustGo" target="_blank" rel="noreferrer">View source on GitHub ↗</a>
+        </div>
       </section>
     </main>
 
     <footer class="jg-footer">
       <a class="jg-brand" href="/justgo"><span class="logo-mark"><i></i><i></i><i></i></span><span>JustGo</span></a>
-      <p>Designed and built by <a href="/">Ethan Song</a>.</p>
+      <p class="footer-links"><a href="/justgo/docs/">Docs</a><a href="/justgo/docs/services/">Services</a><a href="/justgo/docs/privacy/">Privacy</a></p>
       <p class="mono">SWIFTUI · MAPKIT · OPEN SOURCE</p>
     </footer>
   </body>

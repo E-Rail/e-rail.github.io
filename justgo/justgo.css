@@ -330,7 +330,7 @@ body::before {
   letter-spacing: .08em;
 }
 
-.app-head strong { font-size: 20px; letter-spacing: -.05em; }
+.app-head strong { display: block; max-width: 190px; font-size: 17px; line-height: 1.05; letter-spacing: -.05em; }
 .avatar-dot {
   width: 29px;
   height: 29px;
@@ -583,13 +583,13 @@ body::before {
 
 .feature-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   border-top: 1px solid var(--line);
   border-left: 1px solid var(--line);
 }
 
 .feature-card {
-  min-height: 440px;
+  min-height: 420px;
   padding: 25px;
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
@@ -658,6 +658,51 @@ body::before {
   font-size: 78px;
 }
 
+.go-icon span {
+  width: 82px;
+  height: 82px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--cream);
+  background: var(--ink);
+  font: 700 19px var(--mono);
+  box-shadow: 8px 8px 0 var(--lime);
+}
+
+.go-icon i {
+  position: absolute;
+  width: 146px;
+  height: 2px;
+  z-index: -1;
+  background: var(--line);
+  transform: rotate(-22deg);
+}
+
+.local-icon {
+  align-content: center;
+  gap: 10px;
+}
+
+.local-icon span {
+  color: #3b9b7b;
+  font: 500 9px var(--mono);
+  letter-spacing: .14em;
+}
+
+.local-icon i {
+  width: 76px;
+  height: 76px;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--ink);
+  color: var(--ink);
+  background: var(--lime);
+  font-size: 31px;
+  font-style: normal;
+  transform: rotate(3deg);
+}
+
 .feature-card h3 {
   margin: auto 0 12px;
   font-size: 19px;
@@ -702,27 +747,35 @@ body::before {
 .city-copy a span { margin-left: 10px; color: var(--lime); }
 
 .city-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   border-top: 1px solid rgba(255,255,255,.17);
+  border-left: 1px solid rgba(255,255,255,.17);
 }
 
 .city-list > div {
-  height: 88px;
+  min-height: 104px;
+  padding: 0 16px;
   display: grid;
-  grid-template-columns: 50px 110px 1fr 12px;
+  grid-template-columns: 42px 82px 1fr 12px;
   align-items: center;
+  border-right: 1px solid rgba(255,255,255,.17);
   border-bottom: 1px solid rgba(255,255,255,.17);
-  transition: padding .2s ease, background .2s ease;
+  transition: background .2s ease, transform .2s ease;
 }
 
 .city-list > div:hover {
-  padding: 0 16px;
   background: rgba(255,255,255,.05);
+  transform: translateY(-2px);
 }
 
 .city-list span { color: #769a8e; font: 500 8px var(--mono); }
 .city-list strong { font-size: 22px; }
 .city-list p { margin: 0; color: #9db7ae; font-size: 12px; }
+.city-list p small { display: block; margin-top: 5px; color: #6f998b; font: 500 7px var(--mono); line-height: 1.45; letter-spacing: .02em; }
 .city-list i { width: 8px; height: 8px; border-radius: 50%; background: var(--lime); }
+.city-list .new-pack span { color: var(--lime); }
+.city-list .new-pack { background: rgba(201,243,74,.035); }
 
 .cta {
   padding: 125px 32px;
@@ -753,6 +806,24 @@ body::before {
 .big-button.light { margin-top: 22px; color: var(--ink); background: var(--lime); }
 .big-button.light:hover { background: var(--cream); }
 
+.cta-actions {
+  margin-top: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+}
+
+.cta-actions .big-button.light { margin-top: 0; }
+
+.cta-source {
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(255,255,255,.35);
+  color: #b7c8c2;
+  font-size: 11px;
+  font-weight: 700;
+}
+
 .jg-footer {
   width: min(1380px, calc(100% - 64px));
   min-height: 130px;
@@ -767,6 +838,7 @@ body::before {
 .jg-footer p { margin: 0; }
 .jg-footer p a { color: var(--ink); border-bottom: 1px solid var(--line); }
 .jg-footer .mono { font-size: 8px; letter-spacing: .1em; }
+.jg-footer .footer-links { display: flex; gap: 18px; }
 
 @media (max-width: 1020px) {
   .jg-nav,
@@ -802,8 +874,10 @@ body::before {
   .feature-grid { grid-template-columns: 1fr; }
   .feature-card { min-height: 390px; }
   .cities { padding-top: 85px; padding-bottom: 85px; }
-  .city-list > div { grid-template-columns: 36px 90px 1fr 10px; }
+  .city-list { grid-template-columns: 1fr; }
+  .city-list > div { grid-template-columns: 42px 82px 1fr 10px; }
   .cta { padding: 90px 20px; }
+  .cta-actions { flex-direction: column; gap: 20px; }
   .jg-footer { min-height: 170px; align-items: flex-start; justify-content: center; flex-direction: column; gap: 15px; }
 }
 

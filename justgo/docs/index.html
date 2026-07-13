@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Detailed JustGo documentation: routing, confidence scoring, data sources, coverage, accessibility, and limitations." />
+    <meta name="theme-color" content="#f8faf4" />
+    <title>JustGo Documentation — How the app works</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/justgo/justgo.css" />
+    <link rel="stylesheet" href="/justgo/docs/docs.css" />
+  </head>
+  <body class="docs-body">
+    <header class="jg-nav docs-nav">
+      <a class="jg-brand" href="/justgo">
+        <span class="logo-mark"><i></i><i></i><i></i></span><span>JustGo</span>
+      </a>
+      <nav aria-label="Documentation navigation">
+        <a href="/justgo/">Product</a>
+        <a href="/justgo/docs/" aria-current="page">Docs</a>
+        <a href="/justgo/docs/services/">Services</a>
+        <a href="/justgo/docs/privacy/">Privacy</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="back-link" href="/">Ethan’s site</a>
+        <a class="github-button" href="https://github.com/E-Rail/JustGo" target="_blank" rel="noreferrer">Source <span>↗</span></a>
+      </div>
+    </header>
+
+    <main>
+      <section class="docs-hero">
+        <div class="docs-hero-copy">
+          <p class="docs-breadcrumb"><a href="/justgo/">JustGo</a> / Documentation</p>
+          <h1>Confidence,<br /><em>fully explained.</em></h1>
+          <p>
+            This is the implementation-level guide to what JustGo calculates, where
+            each fact comes from, what stays on the device, and which labels are
+            estimates rather than live transit information.
+          </p>
+        </div>
+        <aside class="docs-status" aria-label="Documentation snapshot">
+          <span class="status-label">SOURCE SNAPSHOT</span>
+          <div class="status-row"><span>App source</span><strong>7e516fb · 2026-07-08</strong></div>
+          <div class="status-row"><span>Pack manifest</span><strong>2026-07-02</strong></div>
+          <div class="status-row"><span>Minimum OS</span><strong>iOS / iPadOS 18</strong></div>
+          <div class="status-row"><span>Documentation reviewed</span><strong>2026-07-13</strong></div>
+        </aside>
+      </section>
+
+      <nav class="docs-tabs" aria-label="JustGo documentation pages">
+        <div class="docs-tabs-inner">
+          <a href="/justgo/docs/" aria-current="page">Overview</a>
+          <a href="/justgo/docs/services/">Service catalog</a>
+          <a href="/justgo/docs/privacy/">Privacy</a>
+          <a href="/justgo/docs/terms/">Service terms</a>
+          <a href="https://github.com/E-Rail/JustGo" target="_blank" rel="noreferrer">GitHub ↗</a>
+        </div>
+      </nav>
+
+      <div class="docs-shell">
+        <aside class="docs-sidebar" aria-label="On this page">
+          <span>ON THIS PAGE</span>
+          <a href="#start">Start here</a>
+          <a href="#pipeline">Route pipeline</a>
+          <a href="#modes">Route modes</a>
+          <a href="#confidence">Confidence score</a>
+          <a href="#data-labels">Data labels</a>
+          <a href="#coverage">Coverage</a>
+          <a href="#accessibility">Accessibility</a>
+          <a href="#live-go">Live Go</a>
+          <a href="#storage">On-device data</a>
+          <a href="#limits">Known limits</a>
+          <a href="#development">Development</a>
+        </aside>
+
+        <article class="docs-content">
+          <section class="doc-section" id="start">
+            <p class="doc-label">01 / START HERE</p>
+            <h2>What JustGo actually is.</h2>
+            <p class="doc-lead">
+              JustGo is an open-source SwiftUI app for planning metro journeys in
+              China. It combines a bundled metro graph, Apple place and walking
+              services, downloadable city data, deterministic confidence rules, and
+              local rider preferences. It is not a transit operator, a live signaling
+              system, or a guarantee that a station facility will be working.
+            </p>
+
+            <div class="fact-grid">
+              <div class="fact"><strong>46</strong><span>Bundled city networks with stations, lines, service patterns, and physical-track geometry.</span></div>
+              <div class="fact"><strong>13</strong><span>Downloadable city packs in the current manifest; each field has its own capability status.</span></div>
+              <div class="fact"><strong>3</strong><span>Graph-generated route strategies: fastest, fewest transfers, and least walking.</span></div>
+              <div class="fact"><strong>9</strong><span>User-facing route modes. Six of them rerank the generated alternatives using human-centered criteria.</span></div>
+              <div class="fact"><strong>0–100</strong><span>A deterministic explanation score. It is a heuristic, not a statistical probability.</span></div>
+              <div class="fact"><strong>Local</strong><span>No account, analytics SDK, ad SDK, or developer-operated user database appears in the reviewed source.</span></div>
+            </div>
+
+            <div class="doc-callout">
+              <strong>The short version</strong>
+              <p>Search and walking use Apple Maps. Subway routing uses bundled network graphs. City packs enrich critical stations. Confidence then explains the combined result.</p>
+            </div>
+
+            <div class="doc-actions">
+              <a class="doc-button" href="/justgo/docs/services/">Inspect every service →</a>
+              <a class="doc-button secondary" href="https://github.com/E-Rail/JustGo/tree/main/JustGo" target="_blank" rel="noreferrer">Browse the Swift source ↗</a>
+            </div>
+          </section>
+
+          <section class="doc-section" id="pipeline">
+            <p class="doc-label">02 / ROUTE PIPELINE</p>
+            <h2>From two places to one explained route.</h2>
+            <p class="doc-lead">A route is assembled in layers. The source of each layer stays visible so a missing schedule cannot be mistaken for a routing failure, and an estimated exit cannot be mistaken for an official instruction.</p>
+
+            <div class="pipeline">
+              <div class="pipeline-step"><span>01</span><strong>Resolve places</strong><p>Typed POIs and addresses are searched with <code>MKLocalSearch</code>. “Current Location” asks Core Location only when the rider invokes it. Saved and favorite places may already contain coordinates.</p></div>
+              <div class="pipeline-step"><span>02</span><strong>Choose a network</strong><p>Both endpoints must lie within 25 km of a bundled network’s bounds. If more than one network qualifies, JustGo chooses the one with the smallest combined endpoint-to-network access distance.</p></div>
+              <div class="pipeline-step"><span>03</span><strong>Choose access stations</strong><p>For each endpoint, the four nearest stations become graph candidates. Their walking distance is included in the path cost rather than forcing the single nearest station.</p></div>
+              <div class="pipeline-step"><span>04</span><strong>Search the metro graph</strong><p>A minimum-cost graph search runs three times. Fastest uses normal costs; fewest transfers raises the transfer penalty from 300 to 1,200 seconds; least walking triples the access-walking weight.</p></div>
+              <div class="pipeline-step"><span>05</span><strong>Build the legs</strong><p>Train time is estimated as <code>max(60 s, distance ÷ 9.7 m/s + 30 s)</code> per graph edge. Transfers add five minutes. Apple walking directions are requested for the first and last leg.</p></div>
+              <div class="pipeline-step"><span>06</span><strong>Fall back honestly</strong><p>If walking directions fail, distance becomes straight-line distance and duration uses 1.25 m/s. The route receives a “walking distance is estimated” note instead of silently presenting the fallback as mapped walking.</p></div>
+              <div class="pipeline-step"><span>07</span><strong>Enrich critical stops</strong><p>Boarding, transfer, and arrival stations are checked for city-pack schedules, accessibility, facilities, station maps, crowd-control windows, and entrance or exit guidance.</p></div>
+              <div class="pipeline-step"><span>08</span><strong>Rank and explain</strong><p>The selected route mode reranks the unique alternatives. Feasibility, service-hours status, comfort, source coverage, and personal reports are then folded into the confidence explanation.</p></div>
+            </div>
+
+            <div class="doc-callout warning">
+              <strong>Network requirement</strong>
+              <p>The metro graph itself is bundled, but fresh place search and Apple walking routes require connectivity. Existing saved coordinates can reduce that dependency; they do not turn the entire planning flow into a guaranteed offline service.</p>
+            </div>
+          </section>
+
+          <section class="doc-section" id="modes">
+            <p class="doc-label">03 / ROUTE MODES</p>
+            <h2>Generation and ranking are different.</h2>
+            <p class="doc-lead">JustGo generates at most three unique graph paths, then applies one of nine user-facing ranking modes. A mode can change which option is shown first without creating a physically different path.</p>
+
+            <div class="table-wrap">
+              <table class="doc-table">
+                <thead><tr><th>Mode</th><th>What it does now</th><th>New graph path?</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Transit First</strong></td><td>Prefers a route tagged metro-first; with the current bundled provider, duration is the practical tie-break because generated paths are tagged fastest, fewest-transfer, or least-walking.</td><td><span class="status-pill pending">RERANK</span></td></tr>
+                  <tr><td><strong>Fastest</strong></td><td>Uses normal walking, train, and 300-second transfer costs; then orders matching alternatives by total duration.</td><td><span class="status-pill">GENERATED</span></td></tr>
+                  <tr><td><strong>Least Walking</strong></td><td>Multiplies access-walking cost by three and later orders by measured walking distance.</td><td><span class="status-pill">GENERATED</span></td></tr>
+                  <tr><td><strong>Fewest Transfers</strong></td><td>Raises the transfer penalty to 1,200 seconds; final order uses transfer count, duration, then walking.</td><td><span class="status-pill">GENERATED</span></td></tr>
+                  <tr><td><strong>Least Confusing</strong></td><td>Rewards official data, then subtracts 20 points per transfer and one point per 100 m of walking.</td><td><span class="status-pill pending">RERANK</span></td></tr>
+                  <tr><td><strong>Luggage Friendly</strong></td><td>Rewards accessibility and step-free evidence; penalizes transfers, walking, and warnings.</td><td><span class="status-pill pending">RERANK</span></td></tr>
+                  <tr><td><strong>Elderly Friendly</strong></td><td>Uses the same evidence with stronger penalties for transfers, walking, and warnings.</td><td><span class="status-pill pending">RERANK</span></td></tr>
+                  <tr><td><strong>Official Data Only</strong></td><td>Ranks by the number of critical stops with official accessibility, schedule, map, and facility records.</td><td><span class="status-pill pending">RERANK</span></td></tr>
+                  <tr><td><strong>Step-Free Support</strong></td><td>Ranks accessibility assessment first. A detected barrier is demoted but not hidden, because the graph does not yet encode barrier-free edges.</td><td><span class="status-pill pending">RERANK</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="doc-section" id="confidence">
+            <p class="doc-label">04 / CONFIDENCE SCORE</p>
+            <h2>A score with receipts.</h2>
+            <p class="doc-lead">Every route starts at 100. The current service applies fixed additions and deductions, clamps the result to 0–100, then labels 80–100 high, 60–79 medium, and 0–59 low.</p>
+
+            <div class="score-formula"><strong>100</strong>
+− 8 × transfers
+− min(20, floor(walking metres ÷ 100))
+− 10 if schedules are not official
+− 10 if station maps are not official
+− 10 if accessibility is not official
+− min(15, 5 × missing core data categories)
++ feasibility adjustment
++ service-hours adjustment
++ comfort adjustment
++ alternative / full-coverage bonuses
+= clamp(0…100)</div>
+
+            <div class="table-wrap">
+              <table class="doc-table">
+                <thead><tr><th>Signal</th><th>Adjustment</th><th>Meaning</th></tr></thead>
+                <tbody>
+                  <tr><td>Feasibility: caution / risky / unknown</td><td>−8 / −20 / −10</td><td>Based on stairs, step-free uncertainty, long walks, service state, crowding, and personal reports.</td></tr>
+                  <tr><td>Personal issue affects route</td><td>−15</td><td>A local report matches the route or one of its station IDs.</td></tr>
+                  <tr><td>Service ended / not started / last train soon</td><td>−40 / −25 / −12</td><td>Derived from static first/last schedule windows for the boarding line.</td></tr>
+                  <tr><td>Comfort: busy / moderate</td><td>−8 / −3</td><td>Busy requires an active source-backed crowd-control window. A weekday rush-hour heuristic alone is capped at moderate.</td></tr>
+                  <tr><td>Fewest transfers among alternatives</td><td>+5</td><td>Rewards the route if its transfer count equals the current minimum.</td></tr>
+                  <tr><td>All core official fields covered</td><td>+5</td><td>Applied when core coverage has official data and no unknown category.</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="doc-callout warning">
+              <strong>Not a probability</strong>
+              <p>An 84 does not mean an 84% chance of success. The score is a readable comparison heuristic over the data currently available to the app. Station conditions and operations can change after the data was captured.</p>
+            </div>
+          </section>
+
+          <section class="doc-section" id="data-labels">
+            <p class="doc-label">05 / DATA LABELS</p>
+            <h2>“Unknown” is a valid answer.</h2>
+            <p class="doc-lead">JustGo carries provenance labels through the model instead of treating every non-empty field as equivalent.</p>
+
+            <div class="table-wrap">
+              <table class="doc-table">
+                <thead><tr><th>Label</th><th>Interpretation</th></tr></thead>
+                <tbody>
+                  <tr><td><span class="status-pill">Official</span></td><td>The required critical stations are covered by records marked official in the current city pack.</td></tr>
+                  <tr><td><span class="status-pill">Estimated from maps</span></td><td>Produced from Apple Maps or map-derived walking context, not a transit-operator facility statement.</td></tr>
+                  <tr><td><span class="status-pill partial">Estimated</span></td><td>Inferred from available text or geometry. For example, an exit token may be extracted from station accessibility text.</td></tr>
+                  <tr><td><span class="status-pill partial">Source pending</span></td><td>Some but not all required stops are covered, or the manifest says the field’s source is still incomplete.</td></tr>
+                  <tr><td><span class="status-pill pending">Not available</span></td><td>The pack has no usable record for this route or field.</td></tr>
+                  <tr><td><span class="status-pill pending">No data</span></td><td>No critical-station denominator exists yet, so coverage cannot be assessed.</td></tr>
+                  <tr><td><span class="status-pill">Personal report</span></td><td>A note the rider created locally. It is not uploaded or community-verified in the current source.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="doc-section" id="coverage">
+            <p class="doc-label">06 / COVERAGE</p>
+            <h2>46 maps; 13 enrichment packs.</h2>
+            <p class="doc-lead">The two coverage layers solve different problems. Bundled networks make the map and graph routable. Downloadable city packs add station facts where sources have been prepared.</p>
+
+            <h3>Bundled metro networks</h3>
+            <p>Each of these 46 cities has a bundled <code>physicalTrack</code> network file in the reviewed source:</p>
+            <div class="city-cloud" aria-label="Cities with bundled metro networks">
+              <span>Beijing 北京</span><span>Shanghai 上海</span><span>Guangzhou 广州</span><span>Shenzhen 深圳</span><span>Chengdu 成都</span><span>Hangzhou 杭州</span><span>Tianjin 天津</span><span>Chongqing 重庆</span><span>Wuhan 武汉</span><span>Nanjing 南京</span><span>Xi’an 西安</span><span>Suzhou 苏州</span><span>Zhengzhou 郑州</span><span>Changsha 长沙</span><span>Shenyang 沈阳</span><span>Qingdao 青岛</span><span>Dalian 大连</span><span>Ningbo 宁波</span><span>Wuxi 无锡</span><span>Kunming 昆明</span><span>Nanchang 南昌</span><span>Fuzhou 福州</span><span>Xiamen 厦门</span><span>Hefei 合肥</span><span>Shijiazhuang 石家庄</span><span>Guiyang 贵阳</span><span>Harbin 哈尔滨</span><span>Changchun 长春</span><span>Nanning 南宁</span><span>Lanzhou 兰州</span><span>Ürümqi 乌鲁木齐</span><span>Hohhot 呼和浩特</span><span>Taiyuan 太原</span><span>Dongguan 东莞</span><span>Foshan 佛山</span><span>Wenzhou 温州</span><span>Shaoxing 绍兴</span><span>Xuzhou 徐州</span><span>Changzhou 常州</span><span>Jinan 济南</span><span>Luoyang 洛阳</span><span>Wuhu 芜湖</span><span>Nantong 南通</span><span>Taizhou 台州</span><span>Hong Kong 香港</span><span>Macau 澳门</span>
+            </div>
+
+            <h3>Current downloadable city packs</h3>
+            <p>The manifest was generated on 2 July 2026. “Schedule only” in the live-arrival column means static first/last times are available; it does not mean a live vehicle countdown.</p>
+            <div class="table-wrap">
+              <table class="doc-table">
+                <thead><tr><th>City / pack</th><th>Accessibility</th><th>Schedules</th><th>Live arrivals</th><th>Station maps</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Nanjing</strong><br />20260702</td><td><span class="status-pill pending">PENDING</span></td><td><span class="status-pill partial">PARTIAL</span></td><td>Schedule only</td><td><span class="status-pill pending">PENDING</span></td></tr>
+                  <tr><td><strong>Wuhan</strong><br />20260702</td><td><span class="status-pill pending">PENDING</span></td><td><span class="status-pill partial">PARTIAL</span></td><td>Schedule only</td><td><span class="status-pill pending">PENDING</span></td></tr>
+                  <tr><td><strong>Zhengzhou</strong><br />20260702</td><td><span class="status-pill pending">PENDING</span></td><td><span class="status-pill partial">PARTIAL</span></td><td>Schedule only</td><td><span class="status-pill pending">PENDING</span></td></tr>
+                  <tr><td><strong>Qingdao</strong><br />20260702</td><td><span class="status-pill">OFFICIAL</span></td><td><span class="status-pill pending">PENDING</span></td><td><span class="status-pill pending">PENDING</span></td><td><span class="status-pill pending">PENDING</span></td></tr>
+                  <tr><td><strong>Beijing</strong><br />20260527</td><td><span class="status-pill">OFFICIAL</span></td><td><span class="status-pill">OFFICIAL</span></td><td>Schedule only</td><td><span class="status-pill">OFFICIAL</span></td></tr>
+                  <tr><td><strong>Shanghai</strong><br />20260601</td><td><span class="status-pill">OFFICIAL</span></td><td><span class="status-pill">OFFICIAL</span></td><td>Schedule only</td><td><span class="status-pill pending">PENDING</span></td></tr>
+                  <tr><td><strong>Guangzhou</strong><br />20260601</td><td><span class="status-pill">OFFICIAL</span></td><td><span class="status-pill">OFFICIAL</span></td><td>Schedule only</td><td><span class="status-pill pending">PENDING</span></td></tr>
+                  <tr><td><strong>Hangzhou</strong><br />20260528</td><td><span class="status-pill">OFFICIAL</span></td><td><span class="status-pill">OFFICIAL</span></td><td>Schedule only</td><td><span class="status-pill pending">PENDING</span></td></tr>
+                  <tr><td><strong>Shenzhen</strong><br />20260528</td><td><span class="status-pill pending">PENDING</span></td><td><span class="status-pill">OFFICIAL</span></td><td>Schedule only</td><td><span class="status-pill pending">PENDING</span></td></tr>
+                  <tr><td><strong>Chengdu</strong><br />20260528</td><td><span class="status-pill pending">PENDING</span></td><td><span class="status-pill">OFFICIAL</span></td><td>Schedule only</td><td><span class="status-pill pending">PENDING</span></td></tr>
+                  <tr><td><strong>Chongqing</strong><br />20260620</td><td><span class="status-pill pending">PENDING</span></td><td><span class="status-pill">OFFICIAL</span></td><td>Schedule only</td><td><span class="status-pill pending">PENDING</span></td></tr>
+                  <tr><td><strong>Xi’an</strong><br />20260620</td><td><span class="status-pill pending">PENDING</span></td><td><span class="status-pill">OFFICIAL</span></td><td>Schedule only</td><td><span class="status-pill pending">PENDING</span></td></tr>
+                  <tr><td><strong>Suzhou</strong><br />20260620</td><td><span class="status-pill pending">PENDING</span></td><td><span class="status-pill">OFFICIAL</span></td><td>Schedule only</td><td><span class="status-pill pending">PENDING</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="doc-source">SOURCE: <a href="https://github.com/E-Rail/JustGo/blob/main/DataPacks/manifest.json" target="_blank" rel="noreferrer">DATAPACKS/MANIFEST.JSON ↗</a></p>
+          </section>
+
+          <section class="doc-section" id="accessibility">
+            <p class="doc-label">07 / ACCESSIBILITY</p>
+            <h2>Support, with honest boundaries.</h2>
+            <p class="doc-lead">Accessibility affects the profile, route ordering, warnings, station detail, and the Go companion. JustGo distinguishes an affirmative facility record from the absence of evidence.</p>
+
+            <h3>Route assessment states</h3>
+            <div class="table-wrap">
+              <table class="doc-table">
+                <thead><tr><th>State</th><th>Current rule</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Confirmed</strong></td><td>Every critical stop has accessibility data and every record marks the station fully accessible.</td></tr>
+                  <tr><td><strong>Likely</strong></td><td>Every critical stop has accessibility data and each has either an elevator or a wheelchair ramp.</td></tr>
+                  <tr><td><strong>Barrier detected</strong></td><td>Apple walking directions or route warnings mention stairs.</td></tr>
+                  <tr><td><strong>Unknown</strong></td><td>Coverage is incomplete or does not meet a stronger rule. Unknown is not the same as inaccessible.</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3>Rider controls</h3>
+            <ul>
+              <li>Wheelchair access, elevator preference, stair avoidance, and maximum walking distance shape route filters and ranking.</li>
+              <li>Audio navigation speaks each Go step; vibration alerts add haptic feedback; visual announcements show a temporary step banner.</li>
+              <li>Simplified UI removes nonessential planner sections; step-by-step guidance can open the Go companion automatically.</li>
+              <li>Accessibility reports are personal notes stored locally. They can lower feasibility and confidence for matching routes, but are not sent to other riders.</li>
+            </ul>
+
+            <div class="doc-callout warning">
+              <strong>Step-free is not guaranteed</strong>
+              <p>The routing graph currently does not encode elevator outages or barrier-free transfer edges. Hard mobility requirements demote routes with a detected barrier; they do not remove every unknown route or prove a complete step-free path.</p>
+            </div>
+          </section>
+
+          <section class="doc-section" id="live-go">
+            <p class="doc-label">08 / LIVE GO</p>
+            <h2>A companion, not vehicle tracking.</h2>
+            <p class="doc-lead">Go converts a chosen route into ordered walk, ride, transfer, and arrival cards. The rider advances and reverses steps manually.</p>
+            <ul>
+              <li>Walking steps can show an Apple Maps route preview when path geometry is available.</li>
+              <li>Transfer steps can show a 3D station-area preview centered on the transfer coordinate.</li>
+              <li>Ride steps can display the exit hint selected from city-pack guidance.</li>
+              <li>Speech, haptics, and visual banners follow the rider’s local accessibility preferences.</li>
+              <li>Get-off reminders use the estimated segment duration minus the chosen lead time. Both the in-app banner and local notification explicitly say they are time estimates, not a live train position.</li>
+              <li>The active route is saved locally when Go starts so the planner can offer to resume after the app is terminated.</li>
+            </ul>
+          </section>
+
+          <section class="doc-section" id="storage">
+            <p class="doc-label">09 / ON-DEVICE DATA</p>
+            <h2>Your personal layer stays local.</h2>
+            <p class="doc-lead">The reviewed source stores preferences and rider-created records with <code>UserDefaults</code>. There is no sign-in or synchronization service.</p>
+
+            <div class="table-wrap">
+              <table class="doc-table">
+                <thead><tr><th>Record</th><th>Stored fields</th><th>Current limit</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Saved trips</strong></td><td>Name, endpoint coordinates and addresses, city, preferred strategy/filter, dates, use count, optional note.</td><td>50</td></tr>
+                  <tr><td><strong>Trip records</strong></td><td>Endpoint names, city, duration, walking, transfers, strategy, warnings, completion and optional note.</td><td>300</td></tr>
+                  <tr><td><strong>Favorite stations</strong></td><td>Station/city IDs, names, coordinates, line metadata, optional Home, Work, or custom tag.</td><td>50</td></tr>
+                  <tr><td><strong>Accessibility reports</strong></td><td>Station or route reference, item type, status, severity, note, timestamps.</td><td>100</td></tr>
+                  <tr><td><strong>Recent routes</strong></td><td>Station IDs and names, line, duration, city.</td><td>10</td></tr>
+                  <tr><td><strong>Recent station searches</strong></td><td>Station ID/name, city, date, count.</td><td>10</td></tr>
+                  <tr><td><strong>Active Go trip</strong></td><td>The selected route, retained until normal dismissal or explicit discard.</td><td>1</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>See the <a href="/justgo/docs/privacy/">privacy documentation</a> for permission timing, Apple Maps data flow, static-host requests, retention, and the app’s privacy-manifest declarations.</p>
+          </section>
+
+          <section class="doc-section" id="limits">
+            <p class="doc-label">10 / KNOWN LIMITS</p>
+            <h2>What the labels do not promise.</h2>
+            <ul>
+              <li><strong>No live vehicle position:</strong> arrival reminders and Go timing use route segment estimates.</li>
+              <li><strong>No general disruption feed:</strong> the current “line status” screen resolves running, not-yet-started, last-train-soon, or ended from first/last schedule windows at a representative station.</li>
+              <li><strong>No facility uptime guarantee:</strong> a city pack can record that an elevator exists; that does not prove it is operating now.</li>
+              <li><strong>No barrier-free graph:</strong> accessibility evidence enriches and ranks routes after graph generation.</li>
+              <li><strong>At most three unique graph alternatives:</strong> several user-facing modes rerank that set rather than generating a bespoke path.</li>
+              <li><strong>Walking text is language-dependent:</strong> stair detection relies in part on Apple walking instructions and source text.</li>
+              <li><strong>Pack freshness varies:</strong> version dates show build dates, not a promise that every source fact changed or was re-verified that day.</li>
+              <li><strong>City packs are process-memory data:</strong> the current service retains decoded packs in memory and may release them on memory pressure; it does not implement an app-managed persistent pack database.</li>
+            </ul>
+          </section>
+
+          <section class="doc-section" id="development">
+            <p class="doc-label">11 / DEVELOPMENT</p>
+            <h2>Build the current source.</h2>
+            <p class="doc-lead">The repository is MIT-licensed and built with SwiftUI plus Apple frameworks. No paid routing API key is required.</p>
+            <ol>
+              <li>Use macOS with Xcode 16 or later and a Swift 5.9-capable toolchain.</li>
+              <li>Clone <a href="https://github.com/E-Rail/JustGo" target="_blank" rel="noreferrer">E-Rail/JustGo</a>.</li>
+              <li>Open <code>JustGo.xcworkspace</code>.</li>
+              <li>Optionally define <code>CITY_PACK_SECRET_BASE_URL</code> or <code>CITY_PACK_SECRET_MANIFEST_URL</code> in <code>JustGo/Config/Secrets.xcconfig</code>.</li>
+              <li>Without a private host, the app falls back to jsDelivr and then raw GitHub for <code>DataPacks/manifest.json</code>.</li>
+              <li>Build for an iOS or iPadOS 18+ simulator or device.</li>
+            </ol>
+
+            <h3>Architecture in one sentence</h3>
+            <p>SwiftUI views and observable view models call injected service objects; network and graph services are actor-isolated where they own mutable caches; route and station facts remain plain Codable model values.</p>
+
+            <div class="doc-actions">
+              <a class="doc-button" href="/justgo/docs/services/">Read the service catalog →</a>
+              <a class="doc-button secondary" href="https://github.com/E-Rail/JustGo/blob/main/LICENSE" target="_blank" rel="noreferrer">MIT license ↗</a>
+            </div>
+          </section>
+        </article>
+      </div>
+    </main>
+
+    <footer class="jg-footer">
+      <a class="jg-brand" href="/justgo"><span class="logo-mark"><i></i><i></i><i></i></span><span>JustGo</span></a>
+      <p class="footer-links"><a href="/justgo/docs/">Docs</a><a href="/justgo/docs/services/">Services</a><a href="/justgo/docs/privacy/">Privacy</a><a href="/justgo/docs/terms/">Terms</a></p>
+      <p class="mono">DOCS · 2026-07-13</p>
+    </footer>
+  </body>
+</html>

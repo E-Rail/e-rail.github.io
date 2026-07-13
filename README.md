@@ -3,6 +3,10 @@
 Personal website for Ethan Song, hosted with GitHub Pages.
 
 - `/` — introduction, GitHub projects, and Bilibili videos
-- `/justgo` — product page for [JustGo](https://github.com/E-Rail/JustGo)
+- `/justgo` — current product page for [JustGo](https://github.com/E-Rail/JustGo)
+- `/justgo/docs` — implementation-level routing, confidence, coverage, and accessibility documentation
+- `/justgo/docs/services` — runtime service catalog and network boundaries
+- `/justgo/docs/privacy` — privacy policy and field-level data handling
+- `/justgo/docs/terms` — service terms and transit-data limitations
 
 The site is plain HTML, CSS, and JavaScript with no build step.
