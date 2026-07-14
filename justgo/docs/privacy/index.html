@@ -6,11 +6,13 @@
     <meta name="description" content="JustGo privacy policy and implementation notes: location, Apple Maps, city-pack requests, local storage, retention, and permissions." />
     <meta name="theme-color" content="#f8faf4" />
     <title>JustGo Privacy — Data handling and permissions</title>
+    <script src="/language.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/justgo/justgo.css" />
     <link rel="stylesheet" href="/justgo/docs/docs.css" />
+    <link rel="stylesheet" href="/language.css" />
   </head>
   <body class="docs-body">
     <header class="jg-nav docs-nav">
@@ -36,7 +38,7 @@
         </div>
         <aside class="docs-status" aria-label="Privacy policy status">
           <span class="status-label">POLICY STATUS</span>
-          <div class="status-row"><span>Effective</span><strong>2026-07-13</strong></div>
+          <div class="status-row"><span>Effective</span><strong>2026-07-14</strong></div>
           <div class="status-row"><span>Accounts</span><strong>None</strong></div>
           <div class="status-row"><span>Advertising / tracking</span><strong>None</strong></div>
           <div class="status-row"><span>Developer user backend</span><strong>None in source</strong></div>
@@ -110,6 +112,7 @@
                   <tr><td><strong>Accessibility reports</strong></td><td>When the rider writes a personal station or route report.</td><td>Local app storage only. The current service contains no upload call.</td><td>Up to 100 until individually removed or the app’s data is deleted.</td></tr>
                   <tr><td><strong>Notification content</strong></td><td>When the rider schedules a departure or estimated get-off reminder.</td><td>iOS local notification center.</td><td>Until it fires, is replaced, is canceled, or iOS removes it.</td></tr>
                   <tr><td><strong>City-pack request metadata</strong></td><td>When a manifest, selected city pack, or pack asset is requested.</td><td>The configured static host, jsDelivr, or GitHub. Hosts may receive IP address, request time, requested path, and ordinary HTTP metadata.</td><td>Controlled by the third-party host’s policy; JustGo keeps decoded pack data in process memory.</td></tr>
+                  <tr><td><strong>Website display language</strong></td><td>On the first visit when no preference exists, and whenever a visitor uses the language switcher.</td><td>The browser language is read locally and is not stored by the site. An explicit selection is written to localStorage as <code>erail-language</code> and a first-party <code>erail_language</code> cookie scoped to this site. The cookie accompanies same-origin requests handled by the site host; no developer-operated backend uses it.</td><td>The cookie lasts up to one year. localStorage remains until the choice is changed or browser site data is cleared.</td></tr>
                 </tbody>
               </table>
             </div>
@@ -241,7 +244,7 @@
     <footer class="jg-footer">
       <a class="jg-brand" href="/justgo"><span class="logo-mark"><i></i><i></i><i></i></span><span>JustGo</span></a>
       <p class="footer-links"><a href="/justgo/docs/">Docs</a><a href="/justgo/docs/services/">Services</a><a href="/justgo/docs/privacy/">Privacy</a><a href="/justgo/docs/terms/">Terms</a></p>
-      <p class="mono">PRIVACY · EFFECTIVE 2026-07-13</p>
+      <p class="mono">PRIVACY · EFFECTIVE 2026-07-14</p>
     </footer>
   </body>
 </html>

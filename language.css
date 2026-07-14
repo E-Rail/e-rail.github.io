@@ -1,0 +1,119 @@
+html.i18n-pending body {
+  visibility: hidden;
+}
+
+.language-switcher {
+  height: 36px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--line, rgba(22, 37, 42, 0.16));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--cream, #fffdf8) 74%, transparent);
+  font-family: var(--mono, monospace);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.language-switcher button {
+  min-width: 36px;
+  height: 28px;
+  margin: 0;
+  padding: 0 9px;
+  border: 0;
+  border-radius: 999px;
+  color: var(--muted, #667c74);
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+  transition: color 160ms ease, background-color 160ms ease, transform 160ms ease;
+}
+
+.language-switcher button:hover {
+  color: var(--ink, #16252a);
+}
+
+.language-switcher button:active {
+  transform: scale(0.96);
+}
+
+.language-switcher button[aria-pressed="true"] {
+  color: #fbfcf6;
+  background: var(--ink, #16252a);
+}
+
+.language-switcher button:focus-visible {
+  outline: 2px solid var(--orange, var(--lime, #326bff));
+  outline-offset: 2px;
+}
+
+.language-switcher-status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+html[lang="zh-CN"] body {
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", var(--sans, sans-serif);
+}
+
+html[lang="zh-CN"] .mono,
+html[lang="zh-CN"] .language-switcher {
+  font-family: var(--mono, "DM Mono"), "PingFang SC", "Microsoft YaHei", monospace;
+}
+
+html[lang="zh-CN"] h1,
+html[lang="zh-CN"] h2,
+html[lang="zh-CN"] h3,
+html[lang="zh-CN"] blockquote {
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+@media (max-width: 650px) {
+  .nav-actions,
+  .header-right {
+    gap: 10px;
+  }
+
+  .language-switcher {
+    height: 34px;
+  }
+
+  .language-switcher button {
+    min-width: 31px;
+    height: 26px;
+    padding: 0 7px;
+  }
+}
+
+@media (max-width: 420px) {
+  .github-button {
+    width: 38px;
+    height: 34px;
+    padding: 0;
+    gap: 0;
+    font-size: 0;
+    justify-content: center;
+  }
+
+  .github-button span {
+    font-size: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .language-switcher button {
+    transition: none;
+  }
+}
