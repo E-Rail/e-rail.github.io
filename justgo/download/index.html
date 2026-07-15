@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="JustGo downloads and offline-data guide: 46 included OSM baselines, two included city packs with 606 station records, external layouts, and online Hong Kong arrivals." />
+    <meta name="theme-color" content="#f8faf4" />
+    <title>JustGo Downloads — What is available offline</title>
+    <script src="/language.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/justgo/justgo.css" />
+    <link rel="stylesheet" href="/justgo/docs/docs.css" />
+    <link rel="stylesheet" href="/language.css" />
+  </head>
+  <body class="docs-body">
+    <header class="jg-nav docs-nav">
+      <a class="jg-brand" href="/justgo"><span class="logo-mark"><i></i><i></i><i></i></span><span>JustGo</span></a>
+      <nav aria-label="JustGo navigation">
+        <a href="/justgo/">Product</a>
+        <a href="/justgo/docs/">Docs</a>
+        <a href="/justgo/docs/data-sources/">Data sources</a>
+        <a href="/justgo/download/" aria-current="page">Downloads</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="back-link" href="/">Ethan’s site</a>
+        <a class="github-button" href="https://github.com/E-Rail/JustGo" target="_blank" rel="noreferrer">Source <span>↗</span></a>
+      </div>
+    </header>
+
+    <main>
+      <section class="docs-hero">
+        <div class="docs-hero-copy">
+          <p class="docs-breadcrumb"><a href="/justgo/">JustGo</a> / Downloads</p>
+          <h1>Know what is<br /><em>actually offline.</em></h1>
+          <p>The current build includes two station packs. This page separates files delivered with the app from external pages and live network services.</p>
+          <div class="doc-actions">
+            <a class="doc-button" href="https://github.com/E-Rail/JustGo" target="_blank" rel="noreferrer">Get the source on GitHub ↗</a>
+            <a class="doc-button secondary" href="/justgo/docs/data-sources/">Inspect the data record →</a>
+          </div>
+        </div>
+        <aside class="docs-status" aria-label="Download snapshot">
+          <span class="status-label">INCLUDED IN THE BUILD</span>
+          <div class="status-row"><span>Catalog</span><strong>58 cities</strong></div>
+          <div class="status-row"><span>OSM baselines</span><strong>46 cities</strong></div>
+          <div class="status-row"><span>Station packs</span><strong>2 · 606 records</strong></div>
+          <div class="status-row"><span>Licensed station media</span><strong>2 images</strong></div>
+        </aside>
+      </section>
+
+      <nav class="docs-tabs" aria-label="JustGo documentation pages">
+        <div class="docs-tabs-inner">
+          <a href="/justgo/docs/">Overview</a>
+          <a href="/justgo/docs/services/">Service catalog</a>
+          <a href="/justgo/docs/data-sources/">Data sources</a>
+          <a href="/justgo/download/" aria-current="page">Downloads</a>
+          <a href="/justgo/docs/privacy/">Privacy</a>
+          <a href="/justgo/docs/terms/">Service terms</a>
+          <a href="/justgo/docs/attribution/">Attribution</a>
+        </div>
+      </nav>
+
+      <div class="docs-shell">
+        <aside class="docs-sidebar" aria-label="On this page">
+          <span>ON THIS PAGE</span>
+          <a href="#included">Included now</a>
+          <a href="#city-packs">City packs</a>
+          <a href="#not-downloaded">Not downloaded</a>
+          <a href="#online">Online-only behavior</a>
+          <a href="#personal">Personal media</a>
+          <a href="#source">Source access</a>
+        </aside>
+
+        <article class="docs-content">
+          <section class="doc-section" id="included">
+            <p class="doc-label">01 / INCLUDED NOW</p>
+            <h2>The build’s offline inventory.</h2>
+            <p class="doc-lead">Included means delivered as app content. These counts do not include linked webpages, linked station layouts, or a response returned by a live API.</p>
+            <div class="fact-grid">
+              <div class="fact"><strong>58</strong><span>Catalog entries included for city discovery.</span></div>
+              <div class="fact"><strong>46</strong><span>Prepared OpenStreetMap network baselines included in the app.</span></div>
+              <div class="fact"><strong>2</strong><span>Included city packs: Beijing and Hong Kong.</span></div>
+              <div class="fact"><strong>606</strong><span>Matched station records in the two packs.</span></div>
+              <div class="fact"><strong>2</strong><span>Included licensed station images.</span></div>
+              <div class="fact"><strong>0</strong><span>Verified indoor transfer records.</span></div>
+            </div>
+          </section>
+
+          <section class="doc-section" id="city-packs">
+            <p class="doc-label">02 / CITY PACKS</p>
+            <h2>Two included packs, field by field.</h2>
+            <div class="table-wrap">
+              <table class="doc-table">
+                <thead><tr><th>Pack</th><th>Included records</th><th>Not included</th><th>Linked or live</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Beijing</strong></td><td>444 matched stations and one Jianguomen photo.</td><td>Accessibility, static schedules, live arrivals, layouts, and verified indoor transfers.</td><td>None declared for those missing datasets.</td></tr>
+                  <tr><td><strong>Hong Kong</strong></td><td>162 matched stations, 98 accessibility records, and one Hong Kong Central photo.</td><td>Static schedules and verified indoor transfers.</td><td>162 live-arrival references and 98 external layout references.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>The verified snapshot has no separate downloadable city-pack catalog. The other 56 cities are source-pending: 44 have included network geometry only and 12 are catalog-only.</p>
+          </section>
+
+          <section class="doc-section" id="not-downloaded">
+            <p class="doc-label">03 / NOT DOWNLOADED</p>
+            <h2>External pages stay external.</h2>
+            <div class="doc-callout">
+              <strong>User action is required</strong>
+              <p>Operator pages and station layouts open only after the rider chooses a link. JustGo does not download, cache, or prefetch them, and they are never counted as offline content.</p>
+            </div>
+            <ul>
+              <li>The 98 Hong Kong layout references are links to external destinations, not 98 included layout files.</li>
+              <li>Attribution, license, and provider links behave the same way: opening them contacts the destination only after a user action.</li>
+              <li>If an external destination changes or disappears, JustGo does not retain a hidden offline copy.</li>
+            </ul>
+          </section>
+
+          <section class="doc-section" id="online">
+            <p class="doc-label">04 / ONLINE-ONLY BEHAVIOR</p>
+            <h2>Live means a provider request.</h2>
+            <p>Hong Kong has live-arrival references for all 162 matched stations. Asking for current arrivals contacts the DATA.GOV.HK government transport API. The returned current values are not part of the offline pack and should not be described as static schedules.</p>
+            <p>Place search and walking approaches may also require Apple services and connectivity. Included metro network geometry does not make every part of trip planning offline.</p>
+            <div class="doc-actions">
+              <a class="doc-button" href="/justgo/docs/privacy/">Review network privacy →</a>
+              <a class="doc-button secondary" href="/justgo/docs/services/">Review service behavior →</a>
+            </div>
+          </section>
+
+          <section class="doc-section" id="personal">
+            <p class="doc-label">05 / PERSONAL MEDIA</p>
+            <h2>Private storage is not a public pack.</h2>
+            <p>Personal station media remains on the rider’s device. It is not downloaded as public JustGo content, uploaded into the included city packs, or used for routing or guidance.</p>
+          </section>
+
+          <section class="doc-section" id="source">
+            <p class="doc-label">06 / SOURCE ACCESS</p>
+            <h2>Build from the public repository.</h2>
+            <p>The public source is available from <a href="https://github.com/E-Rail/JustGo" target="_blank" rel="noreferrer">E-Rail/JustGo</a>. Consult the repository for current build instructions, platform requirements, release artifacts, and source changes. This page does not promise that a signed binary is available for every commit or device.</p>
+            <div class="doc-actions">
+              <a class="doc-button" href="https://github.com/E-Rail/JustGo" target="_blank" rel="noreferrer">Open E-Rail/JustGo ↗</a>
+              <a class="doc-button secondary" href="/justgo/docs/attribution/">Read licenses and credits →</a>
+            </div>
+          </section>
+        </article>
+      </div>
+    </main>
+
+    <footer class="jg-footer">
+      <a class="jg-brand" href="/justgo"><span class="logo-mark"><i></i><i></i><i></i></span><span>JustGo</span></a>
+      <p class="footer-links"><a href="/justgo/docs/">Docs</a><a href="/justgo/docs/services/">Services</a><a href="/justgo/docs/data-sources/">Data sources</a><a href="/justgo/download/">Downloads</a><a href="/justgo/docs/privacy/">Privacy</a><a href="/justgo/docs/terms/">Terms</a><a href="/justgo/docs/attribution/">Attribution</a></p>
+      <p class="mono">DOWNLOADS · VERIFIED 2026-07-15</p>
+    </footer>
+  </body>
+</html>

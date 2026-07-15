@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Verified JustGo data-source record for 58 cities, 46 included OSM baselines, two included city packs, Hong Kong live arrivals, external layouts, and licensed media." />
+    <meta name="theme-color" content="#f8faf4" />
+    <title>JustGo Data Sources — Included, external, and live</title>
+    <script src="/language.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/justgo/justgo.css" />
+    <link rel="stylesheet" href="/justgo/docs/docs.css" />
+    <link rel="stylesheet" href="/language.css" />
+  </head>
+  <body class="docs-body">
+    <header class="jg-nav docs-nav">
+      <a class="jg-brand" href="/justgo"><span class="logo-mark"><i></i><i></i><i></i></span><span>JustGo</span></a>
+      <nav aria-label="Documentation navigation">
+        <a href="/justgo/">Product</a>
+        <a href="/justgo/docs/">Docs</a>
+        <a href="/justgo/docs/data-sources/" aria-current="page">Data sources</a>
+        <a href="/justgo/docs/privacy/">Privacy</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="back-link" href="/">Ethan’s site</a>
+        <a class="github-button" href="https://github.com/E-Rail/JustGo" target="_blank" rel="noreferrer">Source <span>↗</span></a>
+      </div>
+    </header>
+
+    <main>
+      <section class="docs-hero">
+        <div class="docs-hero-copy">
+          <p class="docs-breadcrumb"><a href="/justgo/docs/">Docs</a> / Data sources</p>
+          <h1>Every count,<br /><em>with its boundary.</em></h1>
+          <p>This record states exactly what the verified build includes, what remains source-pending, which records are only external references, and which values require a live service.</p>
+        </div>
+        <aside class="docs-status" aria-label="Data-source snapshot">
+          <span class="status-label">VERIFIED 2026-07-15</span>
+          <div class="status-row"><span>Catalog</span><strong>58 cities</strong></div>
+          <div class="status-row"><span>Included OSM baselines</span><strong>46 cities</strong></div>
+          <div class="status-row"><span>Included city packs</span><strong>2 · 606 records</strong></div>
+          <div class="status-row"><span>Source-pending</span><strong>56 cities</strong></div>
+        </aside>
+      </section>
+
+      <nav class="docs-tabs" aria-label="JustGo documentation pages">
+        <div class="docs-tabs-inner">
+          <a href="/justgo/docs/">Overview</a>
+          <a href="/justgo/docs/services/">Service catalog</a>
+          <a href="/justgo/docs/data-sources/" aria-current="page">Data sources</a>
+          <a href="/justgo/download/">Downloads</a>
+          <a href="/justgo/docs/privacy/">Privacy</a>
+          <a href="/justgo/docs/terms/">Service terms</a>
+          <a href="/justgo/docs/attribution/">Attribution</a>
+        </div>
+      </nav>
+
+      <div class="docs-shell">
+        <aside class="docs-sidebar" aria-label="On this page">
+          <span>ON THIS PAGE</span>
+          <a href="#snapshot">Verified snapshot</a>
+          <a href="#definitions">Counting rules</a>
+          <a href="#beijing">Beijing</a>
+          <a href="#hong-kong">Hong Kong</a>
+          <a href="#pending">Source-pending cities</a>
+          <a href="#external">External &amp; live</a>
+          <a href="#media">Included media</a>
+          <a href="#maintenance">Maintenance rules</a>
+        </aside>
+
+        <article class="docs-content">
+          <section class="doc-section" id="snapshot">
+            <p class="doc-label">01 / VERIFIED SNAPSHOT</p>
+            <h2>The totals reconcile.</h2>
+            <p class="doc-lead">The catalog has 58 cities. Forty-six have included OpenStreetMap network baselines and 12 are catalog-only. Two of the 46 baseline cities also have included station packs.</p>
+
+            <div class="score-formula"><strong>58 cataloged cities</strong>
+= 46 with included OSM network baselines
+  + 12 catalog-only
+
+46 baseline cities
+= 2 with included city packs
+  + 44 geometry-only, source-pending
+
+2 included city packs
+= 444 Beijing station records
+  + 162 Hong Kong station records
+= 606 station records
+
+56 source-pending cities
+= 44 geometry-only
+  + 12 catalog-only</div>
+
+            <div class="doc-callout">
+              <strong>What “source-pending” means</strong>
+              <p>The project has not included a supported station-enrichment pack for that city. It does not mean the city or its operator has no public information; it means that information is not included in this build as a supported JustGo dataset.</p>
+            </div>
+          </section>
+
+          <section class="doc-section" id="definitions">
+            <p class="doc-label">02 / COUNTING RULES</p>
+            <h2>Four labels prevent double-counting.</h2>
+            <div class="table-wrap">
+              <table class="doc-table">
+                <thead><tr><th>Label</th><th>Exact meaning</th><th>Counts as offline app content?</th><th>Can trigger a network request?</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Included</strong></td><td>Data or media delivered as part of the app build.</td><td><span class="status-pill">YES</span></td><td>Not merely to read the included item.</td></tr>
+                  <tr><td><strong>External reference</strong></td><td>A stored URL or identifier pointing to a provider-controlled operator page or layout.</td><td><span class="status-pill pending">NO</span></td><td>Only after an explicit user action opens the destination.</td></tr>
+                  <tr><td><strong>Live API reference</strong></td><td>A station or line reference that can request a current value from an online provider.</td><td><span class="status-pill pending">THE REFERENCE ONLY</span></td><td>Yes, when current results are requested.</td></tr>
+                  <tr><td><strong>Personal media</strong></td><td>A rider-selected photo or file in the app’s private device layer.</td><td><span class="status-pill partial">PRIVATE LOCAL DATA</span></td><td>Not for routing or guidance; device services may govern the rider’s original media selection.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>An external reference can be present in an included station record without making the destination page or layout an included asset. Likewise, a live-arrival reference can be included while the current arrival result remains online-only.</p>
+          </section>
+
+          <section class="doc-section" id="beijing">
+            <p class="doc-label">03 / BEIJING</p>
+            <h2>444 matched stations, tightly scoped.</h2>
+            <div class="table-wrap">
+              <table class="doc-table">
+                <thead><tr><th>Field</th><th>Verified count</th><th>Classification</th><th>Explanation</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Matched station records</strong></td><td>444</td><td><span class="status-pill">INCLUDED</span></td><td>Station identities matched into the Beijing pack.</td></tr>
+                  <tr><td><strong>Accessibility</strong></td><td>0</td><td><span class="status-pill pending">NO DATASET</span></td><td>No included Beijing accessibility dataset.</td></tr>
+                  <tr><td><strong>Static schedules</strong></td><td>0</td><td><span class="status-pill pending">NO DATASET</span></td><td>No included Beijing first/last-train or timetable dataset.</td></tr>
+                  <tr><td><strong>Live arrivals</strong></td><td>0</td><td><span class="status-pill pending">NO DATASET</span></td><td>No Beijing live-arrival references or provider are declared in this snapshot.</td></tr>
+                  <tr><td><strong>Layouts</strong></td><td>0</td><td><span class="status-pill pending">NO DATASET</span></td><td>No included layout and no external layout-reference dataset.</td></tr>
+                  <tr><td><strong>Verified indoor transfers</strong></td><td>0</td><td><span class="status-pill pending">NO DATASET</span></td><td>No verified indoor transfer paths or doors.</td></tr>
+                  <tr><td><strong>Licensed station media</strong></td><td>1</td><td><span class="status-pill">INCLUDED</span></td><td>Jianguomen by Ian Holton, CC BY 2.0.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="doc-section" id="hong-kong">
+            <p class="doc-label">04 / HONG KONG</p>
+            <h2>Included facts, external layouts, live arrivals.</h2>
+            <div class="table-wrap">
+              <table class="doc-table">
+                <thead><tr><th>Field</th><th>Verified count</th><th>Classification</th><th>Explanation</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Matched station records</strong></td><td>162</td><td><span class="status-pill">INCLUDED</span></td><td>Station identities matched into the Hong Kong pack.</td></tr>
+                  <tr><td><strong>Accessibility records</strong></td><td>98</td><td><span class="status-pill">INCLUDED</span></td><td>Included accessibility facts; absence at another station remains unknown.</td></tr>
+                  <tr><td><strong>Static schedules</strong></td><td>0</td><td><span class="status-pill pending">NO DATASET</span></td><td>No included static schedule or timetable dataset.</td></tr>
+                  <tr><td><strong>Live-arrival references</strong></td><td>162</td><td><span class="status-pill partial">LIVE API</span></td><td>Every matched station has a reference; current values require the government transport API.</td></tr>
+                  <tr><td><strong>External layout references</strong></td><td>98</td><td><span class="status-pill partial">EXTERNAL LINK</span></td><td>The destination layouts are not downloaded, cached, prefetched, or counted as offline content.</td></tr>
+                  <tr><td><strong>Verified indoor transfers</strong></td><td>0</td><td><span class="status-pill pending">NO DATASET</span></td><td>Layout availability does not establish a verified transfer path, door, or indoor route.</td></tr>
+                  <tr><td><strong>Licensed station media</strong></td><td>1</td><td><span class="status-pill">INCLUDED</span></td><td>Hong Kong Central by Qqhhss, CC0 1.0.</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="doc-callout">
+              <strong>Hong Kong attribution</strong>
+              <p>Hong Kong data and live arrivals are attributed to MTR Corporation Limited and DATA.GOV.HK under the DATA.GOV.HK Terms of Use.</p>
+            </div>
+            <div class="doc-actions">
+              <a class="doc-button" href="https://data.gov.hk/en-data/dataset/mtr-data2-nexttrain-data" target="_blank" rel="noreferrer">MTR real-time dataset ↗</a>
+              <a class="doc-button secondary" href="https://data.gov.hk/en/terms-and-conditions" target="_blank" rel="noreferrer">DATA.GOV.HK Terms of Use ↗</a>
+            </div>
+          </section>
+
+          <section class="doc-section" id="pending">
+            <p class="doc-label">05 / SOURCE-PENDING CITIES</p>
+            <h2>Fifty-six cities do not have a station pack.</h2>
+            <div class="table-wrap">
+              <table class="doc-table">
+                <thead><tr><th>Source-pending group</th><th>City count</th><th>Included now</th><th>Not included now</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Geometry-only</strong></td><td>44</td><td>Catalog entry and OSM network baseline.</td><td>Supported station-enrichment pack.</td></tr>
+                  <tr><td><strong>Catalog-only</strong></td><td>12</td><td>Catalog entry.</td><td>OSM network baseline and supported station-enrichment pack.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Source-pending fields must not be described as inaccessible, closed, schedule-free, or unsupported by the operator. The accurate statement is narrower: JustGo does not include that dataset for the city in this build.</p>
+          </section>
+
+          <section class="doc-section" id="external">
+            <p class="doc-label">06 / EXTERNAL &amp; LIVE BEHAVIOR</p>
+            <h2>User action and network behavior are explicit.</h2>
+            <div class="pipeline">
+              <div class="pipeline-step"><span>01</span><strong>Included station view</strong><p>Read the included city-pack record locally. No operator webpage is contacted merely because a reference exists.</p></div>
+              <div class="pipeline-step"><span>02</span><strong>External layout</strong><p>Open the destination only after the rider taps it. Do not download, cache, or prefetch the page or count it as offline content.</p></div>
+              <div class="pipeline-step"><span>03</span><strong>Live arrivals</strong><p>When the rider requests current Hong Kong arrivals, contact the DATA.GOV.HK government transport API using the referenced station and line context.</p></div>
+              <div class="pipeline-step"><span>04</span><strong>Personal media</strong><p>Show private on-device context only to the rider. Never use it to select a route, calculate guidance, identify a door, or infer a transfer.</p></div>
+            </div>
+          </section>
+
+          <section class="doc-section" id="media">
+            <p class="doc-label">07 / INCLUDED MEDIA</p>
+            <h2>Two images, two separate licenses.</h2>
+            <div class="table-wrap">
+              <table class="doc-table">
+                <thead><tr><th>Displayed subject</th><th>Creator</th><th>License</th><th>Source record</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Jianguomen</strong></td><td>Ian Holton</td><td><a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noreferrer">CC BY 2.0 ↗</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Beijing_Subway_Jianguomen_Station_01.jpg" target="_blank" rel="noreferrer">Wikimedia Commons ↗</a></td></tr>
+                  <tr><td><strong>Hong Kong Central</strong></td><td>Qqhhss</td><td><a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noreferrer">CC0 1.0 ↗</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Central_Barracks.jpg" target="_blank" rel="noreferrer">Wikimedia Commons ↗</a></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>License and source details are consolidated on the <a href="/justgo/docs/attribution/">attribution page</a>.</p>
+          </section>
+
+          <section class="doc-section" id="maintenance">
+            <p class="doc-label">08 / MAINTENANCE RULES</p>
+            <h2>Future updates must preserve the distinctions.</h2>
+            <ul>
+              <li>Increase an included count only when the corresponding data ships as part of the app content.</li>
+              <li>Count a layout as external unless a licensed layout file itself is included.</li>
+              <li>Count a live reference separately from a static schedule and from a live response.</li>
+              <li>Do not count a transfer as verified without a source-backed indoor path that establishes the transfer.</li>
+              <li>Do not use personal station media as source evidence for public routing or guidance.</li>
+              <li>Update the privacy, terms, attribution, services, download, product, and documentation pages together when a data boundary changes.</li>
+            </ul>
+          </section>
+        </article>
+      </div>
+    </main>
+
+    <footer class="jg-footer">
+      <a class="jg-brand" href="/justgo"><span class="logo-mark"><i></i><i></i><i></i></span><span>JustGo</span></a>
+      <p class="footer-links"><a href="/justgo/docs/">Docs</a><a href="/justgo/docs/services/">Services</a><a href="/justgo/docs/data-sources/">Data sources</a><a href="/justgo/download/">Downloads</a><a href="/justgo/docs/privacy/">Privacy</a><a href="/justgo/docs/terms/">Terms</a><a href="/justgo/docs/attribution/">Attribution</a></p>
+      <p class="mono">DATA SOURCES · VERIFIED 2026-07-15</p>
+    </footer>
+  </body>
+</html>

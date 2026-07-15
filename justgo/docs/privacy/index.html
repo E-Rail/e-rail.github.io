@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="JustGo privacy policy and implementation notes: location, Apple Maps, city-pack requests, local storage, retention, and permissions." />
+    <meta name="description" content="JustGo privacy policy covering on-device station media, Apple services, Hong Kong live-arrival API requests, external links, website language preferences, retention, and deletion." />
     <meta name="theme-color" content="#f8faf4" />
-    <title>JustGo Privacy — Data handling and permissions</title>
+    <title>JustGo Privacy Policy</title>
     <script src="/language.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,7 +20,7 @@
       <nav aria-label="Documentation navigation">
         <a href="/justgo/">Product</a>
         <a href="/justgo/docs/">Docs</a>
-        <a href="/justgo/docs/services/">Services</a>
+        <a href="/justgo/docs/data-sources/">Data sources</a>
         <a href="/justgo/docs/privacy/" aria-current="page">Privacy</a>
       </nav>
       <div class="nav-actions">
@@ -33,15 +33,15 @@
       <section class="docs-hero">
         <div class="docs-hero-copy">
           <p class="docs-breadcrumb"><a href="/justgo/docs/">Docs</a> / Privacy</p>
-          <h1>Private by design,<br /><em>specific by policy.</em></h1>
-          <p>This page states what the current JustGo app handles, what stays on the device, which third parties receive requests, and how to remove or restrict that data.</p>
+          <h1>Local by default.<br /><em>Online when named.</em></h1>
+          <p>This policy explains what remains on the device, which actions contact Apple or DATA.GOV.HK, what happens when a rider opens an external link, and how this website remembers a language choice.</p>
         </div>
         <aside class="docs-status" aria-label="Privacy policy status">
-          <span class="status-label">POLICY STATUS</span>
-          <div class="status-row"><span>Effective</span><strong>2026-07-14</strong></div>
-          <div class="status-row"><span>Accounts</span><strong>None</strong></div>
-          <div class="status-row"><span>Advertising / tracking</span><strong>None</strong></div>
-          <div class="status-row"><span>Developer user backend</span><strong>None in source</strong></div>
+          <span class="status-label">PRIVACY STATUS</span>
+          <div class="status-row"><span>Effective</span><strong>2026-07-15</strong></div>
+          <div class="status-row"><span>Personal station media</span><strong>On-device only</strong></div>
+          <div class="status-row"><span>Live transit request</span><strong>Hong Kong only</strong></div>
+          <div class="status-row"><span>Website preference</span><strong>Language only</strong></div>
         </aside>
       </section>
 
@@ -49,189 +49,125 @@
         <div class="docs-tabs-inner">
           <a href="/justgo/docs/">Overview</a>
           <a href="/justgo/docs/services/">Service catalog</a>
+          <a href="/justgo/docs/data-sources/">Data sources</a>
+          <a href="/justgo/download/">Downloads</a>
           <a href="/justgo/docs/privacy/" aria-current="page">Privacy</a>
           <a href="/justgo/docs/terms/">Service terms</a>
-          <a href="https://github.com/E-Rail/JustGo/blob/main/JustGo/JustGo-Privacy.plist" target="_blank" rel="noreferrer">Privacy manifest ↗</a>
+          <a href="/justgo/docs/attribution/">Attribution</a>
         </div>
       </nav>
 
       <div class="docs-shell">
         <aside class="docs-sidebar" aria-label="On this page">
           <span>ON THIS PAGE</span>
-          <a href="#summary">Plain-language summary</a>
-          <a href="#scope">Scope &amp; contact</a>
-          <a href="#data">Data handled</a>
-          <a href="#location">Location</a>
-          <a href="#third-parties">Network services</a>
-          <a href="#local">Local storage</a>
-          <a href="#permissions">Permissions</a>
-          <a href="#manifest">Apple manifest</a>
+          <a href="#scope">Scope &amp; summary</a>
+          <a href="#included">Included app data</a>
+          <a href="#local">On-device records</a>
+          <a href="#network">Network requests</a>
+          <a href="#external">External links</a>
+          <a href="#website">This website</a>
           <a href="#retention">Retention &amp; deletion</a>
-          <a href="#security">Security</a>
-          <a href="#changes">Changes</a>
+          <a href="#security">Security &amp; children</a>
+          <a href="#changes">Changes &amp; contact</a>
         </aside>
 
         <article class="docs-content">
-          <section class="doc-section" id="summary">
-            <p class="doc-label">01 / PLAIN-LANGUAGE SUMMARY</p>
-            <h2>The privacy model in four facts.</h2>
-            <div class="policy-summary">
-              <div><strong>No JustGo account</strong><p>The current app has no sign-in, profile server, cloud synchronization, or developer-operated user database.</p></div>
-              <div><strong>Personal records stay local</strong><p>Saved trips, favorite stations, history, preferences, active trips, and accessibility reports are written to the app’s local container.</p></div>
-              <div><strong>Maps are a third-party service</strong><p>Apple frameworks receive place queries and coordinates when JustGo performs search, reverse geocoding, or walking directions.</p></div>
-              <div><strong>No ads or behavioral tracking</strong><p>The reviewed source contains no advertising SDK, analytics SDK, cross-app tracking code, or remote push provider.</p></div>
-            </div>
-
-            <div class="doc-callout warning">
-              <strong>Transit privacy is not the same as zero network traffic</strong>
-              <p>Place search and walking guidance depend on Apple services. City-pack enrichment depends on static file hosts. Those providers receive normal network requests under their own privacy terms.</p>
-            </div>
-          </section>
-
           <section class="doc-section" id="scope">
-            <p class="doc-label">02 / SCOPE &amp; CONTACT</p>
-            <h2>What this policy covers.</h2>
-            <p class="doc-lead">This policy covers the JustGo iOS and iPadOS app represented by the public <a href="https://github.com/E-Rail/JustGo" target="_blank" rel="noreferrer">E-Rail/JustGo</a> repository and the JustGo documentation on this site. It describes source reviewed through commit <code>7e516fb</code> and may change as the app adds services.</p>
-            <p>Questions, deletion concerns that cannot be resolved on the device, or privacy reports can be sent to <a href="mailto:songyf_ethan@hotmail.com">songyf_ethan@hotmail.com</a>.</p>
-          </section>
+            <p class="doc-label">01 / SCOPE &amp; SUMMARY</p>
+            <h2>Privacy follows the data boundary.</h2>
+            <p class="doc-lead">This policy covers the JustGo app and the JustGo pages on e-rail.github.io. Third-party services process their own requests under their own policies.</p>
 
-          <section class="doc-section" id="data">
-            <p class="doc-label">03 / DATA HANDLED</p>
-            <h2>Field-level data flow.</h2>
-
-            <div class="table-wrap">
-              <table class="doc-table">
-                <thead><tr><th>Data</th><th>When handled</th><th>Where it goes</th><th>Retention</th></tr></thead>
-                <tbody>
-                  <tr><td><strong>Device location</strong></td><td>When the rider requests current location, nearby stations, or a location-based route input.</td><td>Held in app memory; coordinates may be passed to Apple mapping/geocoding services. Not sent to a JustGo-operated server.</td><td>Latest fix in memory. A coordinate can persist locally if used in a saved place or trip.</td></tr>
-                  <tr><td><strong>Place queries</strong></td><td>When typing an address, landmark, or POI that requires Apple place search.</td><td>Apple Maps through <code>MKLocalSearch</code>, with a city or visible-map search region.</td><td>JustGo does not store raw free-text query history as a separate log. Selected station and recent-route records may persist locally.</td></tr>
-                  <tr><td><strong>Route endpoints</strong></td><td>When planning, saving, or resuming a trip.</td><td>Used locally by the metro graph; coordinates are sent to Apple when walking directions are requested.</td><td>Current planner state in memory; saved-trip coordinates/addresses, recent station IDs, or an active route may persist locally.</td></tr>
-                  <tr><td><strong>Favorite stations</strong></td><td>When a rider favorites or tags a station.</td><td>Local app storage only.</td><td>Up to 50 until individually removed or the app’s data is deleted.</td></tr>
-                  <tr><td><strong>Trip memory</strong></td><td>When a trip is saved, planned, completed, or annotated.</td><td>Local app storage only.</td><td>Up to 50 saved trips and 300 trip records.</td></tr>
-                  <tr><td><strong>Accessibility profile</strong></td><td>When route/accessibility settings are changed.</td><td>Local app storage; used to alter UI, warnings, and ranking.</td><td>Until changed or the app’s data is deleted.</td></tr>
-                  <tr><td><strong>Accessibility reports</strong></td><td>When the rider writes a personal station or route report.</td><td>Local app storage only. The current service contains no upload call.</td><td>Up to 100 until individually removed or the app’s data is deleted.</td></tr>
-                  <tr><td><strong>Notification content</strong></td><td>When the rider schedules a departure or estimated get-off reminder.</td><td>iOS local notification center.</td><td>Until it fires, is replaced, is canceled, or iOS removes it.</td></tr>
-                  <tr><td><strong>City-pack request metadata</strong></td><td>When a manifest, selected city pack, or pack asset is requested.</td><td>The configured static host, jsDelivr, or GitHub. Hosts may receive IP address, request time, requested path, and ordinary HTTP metadata.</td><td>Controlled by the third-party host’s policy; JustGo keeps decoded pack data in process memory.</td></tr>
-                  <tr><td><strong>Website display language</strong></td><td>On the first visit when no preference exists, and whenever a visitor uses the language switcher.</td><td>The browser language is read locally and is not stored by the site. An explicit selection is written to localStorage as <code>erail-language</code> and a first-party <code>erail_language</code> cookie scoped to this site. The cookie accompanies same-origin requests handled by the site host; no developer-operated backend uses it.</td><td>The cookie lasts up to one year. localStorage remains until the choice is changed or browser site data is cleared.</td></tr>
-                </tbody>
-              </table>
-            </div>
-
-            <h3>Data the reviewed app does not ask for</h3>
-            <p>JustGo does not request a name, email address, phone number, password, contacts, calendar, photos, camera, microphone, payment details, advertising identifier, or social profile. Speech guidance uses text-to-speech; it does not record the rider’s voice.</p>
-          </section>
-
-          <section class="doc-section" id="location">
-            <p class="doc-label">04 / LOCATION</p>
-            <h2>On demand—not a background trail.</h2>
-            <p class="doc-lead">The current source calls <code>requestWhenInUseAuthorization()</code>. It does not start a persistent background-location session.</p>
-            <ul>
-              <li>Location is used to center the map, identify a nearby city, calculate station distances, fill “Current Location,” and reverse geocode an address label.</li>
-              <li>A cached fix is reused only when authorized, no more than 30 seconds old, and no worse than 100 m horizontal accuracy.</li>
-              <li>Continuous GPS updates run only while one or more explicit requests are waiting and stop on success, error, timeout, or cancellation.</li>
-              <li>A prewarm operation uses a one-shot request only after permission already exists; it does not trigger the permission prompt.</li>
-              <li>Turning off location permission does not remove saved route or favorite coordinates already stored on the device.</li>
-            </ul>
-            <div class="doc-callout">
-              <strong>Info.plist wording</strong>
-              <p>The app bundle includes both when-in-use and always-and-when-in-use description strings. The reviewed implementation requests when-in-use access and does not configure background tracking.</p>
+            <div class="policy-summary">
+              <div><strong>Included data is local app content</strong><p>The 58-city catalog, 46 OSM network baselines, two city packs, and included licensed media do not require opening their source websites during ordinary use.</p></div>
+              <div><strong>Personal station media stays on-device</strong><p>It is not uploaded and is never used to calculate routes, scores, doors, transfers, or guidance.</p></div>
+              <div><strong>Hong Kong live arrivals are online</strong><p>Viewing current arrivals contacts the DATA.GOV.HK government transport API for the referenced station and line.</p></div>
+              <div><strong>External layouts require a tap</strong><p>Operator pages and layouts are not downloaded, cached, or prefetched by JustGo and are not offline content.</p></div>
             </div>
           </section>
 
-          <section class="doc-section" id="third-parties">
-            <p class="doc-label">05 / NETWORK SERVICES</p>
-            <h2>Third parties have their own rules.</h2>
-            <p class="doc-lead">JustGo uses Apple frameworks and public static hosts. These providers process requests under their own terms, independently from this policy.</p>
-
-            <div class="table-wrap">
-              <table class="doc-table">
-                <thead><tr><th>Provider</th><th>Purpose</th><th>JustGo request contents</th></tr></thead>
-                <tbody>
-                  <tr><td><strong>Apple</strong></td><td>Device location, place search, reverse geocoding, POI resolution, base-map display, and walking directions.</td><td>As required by the selected Apple API: query text, region, coordinates, walking endpoints, and device/service metadata.</td></tr>
-                  <tr><td><strong>jsDelivr</strong></td><td>Public fallback host for the manifest, city packs, and assets.</td><td>Static file path identifying the requested manifest, city, pack version, or asset; ordinary network metadata.</td></tr>
-                  <tr><td><strong>GitHub</strong></td><td>Final raw-file fallback and links to source/data attribution.</td><td>Static file path and ordinary network metadata when a fallback is used or a link is opened.</td></tr>
-                  <tr><td><strong>OpenStreetMap</strong></td><td>Attribution and source of prepared metro geometry.</td><td>No automatic runtime geometry request. Tapping the attribution link opens the OSM website.</td></tr>
-                </tbody>
-              </table>
-            </div>
-
-            <p>Reference policies: <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noreferrer">Apple Privacy Policy</a>, <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noreferrer">GitHub Privacy Statement</a>, <a href="https://www.jsdelivr.com/terms/privacy-policy" target="_blank" rel="noreferrer">jsDelivr Privacy Policy</a>, and <a href="https://osmfoundation.org/wiki/Privacy_Policy" target="_blank" rel="noreferrer">OpenStreetMap Foundation Privacy Policy</a>.</p>
+          <section class="doc-section" id="included">
+            <p class="doc-label">02 / INCLUDED APP DATA</p>
+            <h2>Reading included files does not call their sources.</h2>
+            <p>The app includes catalog metadata for 58 cities, OpenStreetMap-derived network baselines for 46 cities, 606 matched station records across Beijing and Hong Kong, and two licensed station images. Reading these included resources does not require a runtime request to OpenStreetMap, MTR, DATA.GOV.HK, or the image source pages.</p>
+            <p>Source and license links remain available for transparency. Opening an attribution link is a separate user action and may contact that website.</p>
           </section>
 
           <section class="doc-section" id="local">
-            <p class="doc-label">06 / LOCAL STORAGE</p>
-            <h2>What is written to the app container.</h2>
-            <p class="doc-lead">The current source serializes these records into <code>UserDefaults</code>. JustGo does not implement CloudKit, iCloud key-value synchronization, or an account sync API.</p>
+            <p class="doc-label">03 / ON-DEVICE RECORDS</p>
+            <h2>Your private layer is not public transit data.</h2>
+            <div class="table-wrap">
+              <table class="doc-table">
+                <thead><tr><th>Local record</th><th>Purpose</th><th>Sharing behavior</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Preferences and accessibility settings</strong></td><td>Remember the rider’s chosen app behavior.</td><td>Remain in app storage unless an operating-system service handles a related permission or request.</td></tr>
+                  <tr><td><strong>Saved and recent trips</strong></td><td>Offer history, favorites, and trip resumption.</td><td>Not published as city-pack data.</td></tr>
+                  <tr><td><strong>Personal accessibility notes</strong></td><td>Let the rider remember local concerns.</td><td>Not community-verified or uploaded by the current personal layer.</td></tr>
+                  <tr><td><strong>Personal station media</strong></td><td>Private visual context chosen by the rider.</td><td>Remains on-device; never used for routing or guidance.</td></tr>
+                  <tr><td><strong>Local notifications</strong></td><td>Show rider-requested reminders.</td><td>Scheduled through iOS; no remote push service is required for a local notification.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="doc-section" id="network">
+            <p class="doc-label">04 / NETWORK REQUESTS</p>
+            <h2>Online features name their provider.</h2>
+            <div class="table-wrap">
+              <table class="doc-table">
+                <thead><tr><th>Provider</th><th>When contacted</th><th>Information involved</th><th>Purpose</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Apple location and map services</strong></td><td>When the rider grants location access, searches for a place, resolves an address, or requests a walking approach.</td><td>As required by Apple frameworks: location or selected coordinates, search text, region, and walking endpoints, plus ordinary network metadata.</td><td>Device location, place search, geocoding, and surface walking directions.</td></tr>
+                  <tr><td><strong>DATA.GOV.HK government transport API</strong></td><td>When the rider opens or refreshes current Hong Kong arrivals.</td><td>Referenced station and line context plus ordinary HTTP metadata such as IP address, request time, and client/network information.</td><td>Return current MTR arrival information for supported Hong Kong references.</td></tr>
+                  <tr><td><strong>iOS notification service</strong></td><td>When the rider enables a local trip reminder.</td><td>Reminder text, local delivery time, and notification preferences.</td><td>Deliver a local notification on the device.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Hong Kong transit data and live arrivals are attributed to MTR Corporation Limited and DATA.GOV.HK under the <a href="https://data.gov.hk/en/terms-and-conditions" target="_blank" rel="noreferrer">DATA.GOV.HK Terms of Use</a>. JustGo does not control provider logging, retention, or service availability.</p>
+          </section>
+
+          <section class="doc-section" id="external">
+            <p class="doc-label">05 / EXTERNAL LINKS</p>
+            <h2>Nothing opens until the rider asks.</h2>
+            <p class="doc-lead">Hong Kong has 98 external station-layout references. Other source and operator links may also appear for verification and attribution.</p>
             <ul>
-              <li>Theme, language choice, badge display, reminder lead times, onboarding state, arrival-alert setting, and route sort strategy.</li>
-              <li>Accessibility category and mobility, audio, visual, haptic, cognitive, and walking preferences.</li>
-              <li>Saved trips, trip records, favorite stations and tags, recent route summaries, and recent station selections.</li>
-              <li>Personal accessibility reports and optional free-text notes.</li>
-              <li>One active route while the Go companion is in progress.</li>
+              <li>JustGo does not download, cache, or prefetch operator pages or layout pages.</li>
+              <li>Those pages are not counted as included or offline content.</li>
+              <li>After a rider taps a link, the browser or system web view connects to the destination. The provider may receive the requested URL, IP address, request time, browser information, and any data the rider chooses to submit there.</li>
+              <li>The destination’s privacy policy and terms govern that visit.</li>
             </ul>
-            <p>These records may be included in device backups according to the rider’s iOS backup settings. JustGo does not separately control Apple’s device-backup retention.</p>
           </section>
 
-          <section class="doc-section" id="permissions">
-            <p class="doc-label">07 / PERMISSIONS</p>
-            <h2>Permission timing and effects.</h2>
-            <div class="table-wrap">
-              <table class="doc-table">
-                <thead><tr><th>Permission</th><th>Requested when</th><th>If denied</th><th>Change later</th></tr></thead>
-                <tbody>
-                  <tr><td><strong>Location while using app</strong></td><td>The rider asks for current location and authorization is not yet determined.</td><td>Map centering, nearby distance, and Current Location input are unavailable. Manual place/station selection remains possible.</td><td>iOS Settings → Privacy &amp; Security → Location Services → JustGo.</td></tr>
-                  <tr><td><strong>Notifications</strong></td><td>The rider first enables a departure or get-off reminder.</td><td>No local reminder is scheduled. Route planning and Go cards still work.</td><td>iOS Settings → Notifications → JustGo.</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <p>JustGo does not request camera, microphone, photo-library, contacts, Bluetooth, motion, health, or tracking authorization in the reviewed source.</p>
-          </section>
-
-          <section class="doc-section" id="manifest">
-            <p class="doc-label">08 / APPLE PRIVACY MANIFEST</p>
-            <h2>The shipped declarations.</h2>
-            <p class="doc-lead">The repository includes <code>JustGo-Privacy.plist</code>. This table reproduces its current declarations; Apple’s manifest vocabulary is not a description of a JustGo account system.</p>
-
-            <div class="table-wrap">
-              <table class="doc-table">
-                <thead><tr><th>Declaration</th><th>Current value</th><th>Implementation context</th></tr></thead>
-                <tbody>
-                  <tr><td><strong>Tracking</strong></td><td><code>false</code></td><td>No cross-app tracking behavior or tracking domains are declared.</td></tr>
-                  <tr><td><strong>Location data</strong></td><td>Collected; linked; app functionality; not used for tracking.</td><td>Conservative Apple-manifest declaration for route/location functionality. The reviewed app has no JustGo account identifier or developer user backend.</td></tr>
-                  <tr><td><strong>UserDefaults API</strong></td><td>Reason <code>CA92.1</code></td><td>Stores settings, preferences, recent activity, saved trips, favorites, reports, and the active trip.</td></tr>
-                  <tr><td><strong>Disk space API</strong></td><td>Reason <code>E174.1</code></td><td>Declared required-reason API category in the app manifest.</td></tr>
-                  <tr><td><strong>System boot time API</strong></td><td>Reason <code>35F9.1</code></td><td>Declared required-reason API category in the app manifest.</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <p class="doc-source">SOURCE: <a href="https://github.com/E-Rail/JustGo/blob/main/JustGo/JustGo-Privacy.plist" target="_blank" rel="noreferrer">JUSTGO-PRIVACY.PLIST ↗</a></p>
+          <section class="doc-section" id="website">
+            <p class="doc-label">06 / THIS WEBSITE</p>
+            <h2>One preference is remembered.</h2>
+            <p>The language switcher stores the selected display language as <code>erail-language</code> in browser local storage and as the first-party <code>erail_language</code> cookie. The cookie is limited to the site path, uses <code>SameSite=Lax</code>, and is marked <code>Secure</code> when the page is served over HTTPS. If no choice is saved, the page uses the browser’s preferred language.</p>
+            <p>The site is hosted with GitHub Pages and loads font resources from Google Fonts. Those providers may receive ordinary web-request metadata under their own policies. The JustGo pages do not use the language preference to build a transit profile.</p>
           </section>
 
           <section class="doc-section" id="retention">
-            <p class="doc-label">09 / RETENTION &amp; DELETION</p>
-            <h2>Controls live where the records live.</h2>
+            <p class="doc-label">07 / RETENTION &amp; DELETION</p>
+            <h2>Controls live where the record lives.</h2>
             <ul>
-              <li>Saved trips, trip records, favorite stations, recent searches, and accessibility reports have item-level delete controls in their relevant screens.</li>
-              <li>The active Go route is cleared after normal dismissal or an explicit discard. If iOS terminates the app mid-trip, it remains so the rider can resume.</li>
-              <li>Pending local notifications can be canceled by changing the route/step flow or disabled in iOS Settings.</li>
-              <li>The current city-pack service holds decoded packs in memory. Its delete action cancels a load and removes the in-memory pack; no app-managed persistent pack database is present.</li>
-              <li>To remove all JustGo local records at once, delete the app and its data from the device. If the device is restored from a backup, Apple’s backup settings may restore app-container data.</li>
-              <li>To stop future Apple location processing, revoke JustGo’s location permission. To stop future static-host requests, do not load city-pack-dependent detail while online or remove network access at the system level.</li>
+              <li>Delete saved trips, favorites, reports, personal station media, and related records through their app controls where available.</li>
+              <li>Delete the app and its data to remove the app container, subject to iOS backup and restore settings.</li>
+              <li>Revoke location or notification permission in iOS Settings to stop future use of those permissions.</li>
+              <li>A live-arrival response is provider data; provider-side request logs are controlled by DATA.GOV.HK and its infrastructure, not by JustGo.</li>
+              <li>Clear this site’s cookie and local storage in browser settings to remove the saved language preference.</li>
             </ul>
           </section>
 
           <section class="doc-section" id="security">
-            <p class="doc-label">10 / SECURITY &amp; CHILDREN</p>
-            <h2>Reasonable safeguards, no impossible promises.</h2>
-            <p>Local records are kept inside the iOS app container and benefit from the device’s normal sandbox and protection settings. Network requests use system URL loading and HTTPS for the built-in jsDelivr and raw GitHub fallbacks. No security method eliminates every risk, especially on a compromised device or network.</p>
-            <p>JustGo is a general transit utility and does not knowingly operate a service that asks children for account or contact information. Because the current app has no account or developer user backend, it does not intentionally build child profiles. Third-party Apple and static-host processing remains governed by their policies and applicable law.</p>
+            <p class="doc-label">08 / SECURITY &amp; CHILDREN</p>
+            <h2>Device protections still matter.</h2>
+            <p>On-device records rely on the normal iOS app sandbox and device protections. Network requests use the operating system’s networking facilities. No method can eliminate every risk, especially on a compromised device, browser, or network.</p>
+            <p>JustGo is a general transit utility. It does not ask a rider to create a public JustGo profile for the features described in this policy. Third-party services may apply their own age requirements and privacy rules.</p>
           </section>
 
           <section class="doc-section" id="changes">
-            <p class="doc-label">11 / CHANGES &amp; QUESTIONS</p>
-            <h2>If the service changes, this page changes.</h2>
-            <p class="doc-lead">A future account system, analytics service, remote report sharing, real-time transit provider, or cloud sync feature would materially change this privacy model. The effective date at the top will be updated when the policy changes.</p>
-            <p>Questions or reports: <a href="mailto:songyf_ethan@hotmail.com">songyf_ethan@hotmail.com</a>.</p>
+            <p class="doc-label">09 / CHANGES &amp; CONTACT</p>
+            <h2>A changed data flow requires a changed policy.</h2>
+            <p>If JustGo adds account sync, uploads, analytics, advertising, another live provider, or a different use of personal media, this policy will be revised and the effective date will change.</p>
+            <p>Privacy questions: <a href="mailto:songyf_ethan@hotmail.com">songyf_ethan@hotmail.com</a>.</p>
             <div class="doc-actions">
               <a class="doc-button" href="/justgo/docs/services/">Inspect runtime services →</a>
               <a class="doc-button secondary" href="/justgo/docs/terms/">Read service terms →</a>
@@ -243,8 +179,8 @@
 
     <footer class="jg-footer">
       <a class="jg-brand" href="/justgo"><span class="logo-mark"><i></i><i></i><i></i></span><span>JustGo</span></a>
-      <p class="footer-links"><a href="/justgo/docs/">Docs</a><a href="/justgo/docs/services/">Services</a><a href="/justgo/docs/privacy/">Privacy</a><a href="/justgo/docs/terms/">Terms</a></p>
-      <p class="mono">PRIVACY · EFFECTIVE 2026-07-14</p>
+      <p class="footer-links"><a href="/justgo/docs/">Docs</a><a href="/justgo/docs/services/">Services</a><a href="/justgo/docs/data-sources/">Data sources</a><a href="/justgo/download/">Downloads</a><a href="/justgo/docs/privacy/">Privacy</a><a href="/justgo/docs/terms/">Terms</a><a href="/justgo/docs/attribution/">Attribution</a></p>
+      <p class="mono">PRIVACY · EFFECTIVE 2026-07-15</p>
     </footer>
   </body>
 </html>
