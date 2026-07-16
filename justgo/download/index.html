@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="JustGo downloads and offline-data guide: 46 included OSM baselines, two included city packs with 606 station records, external layouts, and online Hong Kong arrivals." />
+    <meta name="description" content="Round 35 JustGo offline-data guide: 46 route-picker baselines, two included offline city packs with 606 stations, 330 tap-only official-resource links, and online Hong Kong arrivals." />
     <meta name="theme-color" content="#f8faf4" />
     <title>JustGo Downloads — What is available offline</title>
     <script src="/language.js"></script>
@@ -34,7 +34,7 @@
         <div class="docs-hero-copy">
           <p class="docs-breadcrumb"><a href="/justgo/">JustGo</a> / Downloads</p>
           <h1>Know what is<br /><em>actually offline.</em></h1>
-          <p>The current build includes two station packs. This page separates files delivered with the app from external pages and live network services.</p>
+          <p>Round 35 includes two offline station packs. This page separates files delivered with the app from the official-resource hyperlink directory and live network services.</p>
           <div class="doc-actions">
             <a class="doc-button" href="https://github.com/E-Rail/JustGo" target="_blank" rel="noreferrer">Get the source on GitHub ↗</a>
             <a class="doc-button secondary" href="/justgo/docs/data-sources/">Inspect the data record →</a>
@@ -43,8 +43,8 @@
         <aside class="docs-status" aria-label="Download snapshot">
           <span class="status-label">INCLUDED IN THE BUILD</span>
           <div class="status-row"><span>Catalog</span><strong>58 cities</strong></div>
-          <div class="status-row"><span>OSM baselines</span><strong>46 cities</strong></div>
-          <div class="status-row"><span>Station packs</span><strong>2 · 606 records</strong></div>
+          <div class="status-row"><span>Route-picker baselines</span><strong>46 cities</strong></div>
+          <div class="status-row"><span>Offline city packs</span><strong>2 · 606 stations</strong></div>
           <div class="status-row"><span>Licensed station media</span><strong>2 images</strong></div>
         </aside>
       </section>
@@ -76,14 +76,15 @@
           <section class="doc-section" id="included">
             <p class="doc-label">01 / INCLUDED NOW</p>
             <h2>The build’s offline inventory.</h2>
-            <p class="doc-lead">Included means delivered as app content. These counts do not include linked webpages, linked station layouts, or a response returned by a live API.</p>
+            <p class="doc-lead">Included means delivered as app content. These counts exclude all 330 official-resource hyperlinks, their destination files, and responses returned by a live API.</p>
             <div class="fact-grid">
               <div class="fact"><strong>58</strong><span>Catalog entries included for city discovery.</span></div>
-              <div class="fact"><strong>46</strong><span>Prepared OpenStreetMap network baselines included in the app.</span></div>
+              <div class="fact"><strong>46</strong><span>OpenStreetMap-derived route-picker baselines included in the app.</span></div>
               <div class="fact"><strong>2</strong><span>Included city packs: Beijing and Hong Kong.</span></div>
               <div class="fact"><strong>606</strong><span>Matched station records in the two packs.</span></div>
               <div class="fact"><strong>2</strong><span>Included licensed station images.</span></div>
               <div class="fact"><strong>0</strong><span>Verified indoor transfer records.</span></div>
+              <div class="fact"><strong>330</strong><span>Official-resource hyperlink records; none is an included destination file.</span></div>
             </div>
           </section>
 
@@ -95,11 +96,11 @@
                 <thead><tr><th>Pack</th><th>Included records</th><th>Not included</th><th>Linked or live</th></tr></thead>
                 <tbody>
                   <tr><td><strong>Beijing</strong></td><td>444 matched stations and one Jianguomen photo.</td><td>Accessibility, static schedules, live arrivals, layouts, and verified indoor transfers.</td><td>None declared for those missing datasets.</td></tr>
-                  <tr><td><strong>Hong Kong</strong></td><td>162 matched stations, 98 accessibility records, and one Hong Kong Central photo.</td><td>Static schedules and verified indoor transfers.</td><td>162 live-arrival references and 98 external layout references.</td></tr>
+                  <tr><td><strong>Hong Kong</strong></td><td>162 stations, 98 accessibility records, and one Hong Kong Central photo.</td><td>Static schedules and verified indoor transfers.</td><td>Live references for all 162 stations; external targets for 1 System Map, 98 Location Maps, 98 Station Layouts, and 14 Light Rail Street Maps.</td></tr>
                 </tbody>
               </table>
             </div>
-            <p>The verified snapshot has no separate downloadable city-pack catalog. The other 56 cities are source-pending: 44 have included network geometry only and 12 are catalog-only.</p>
+            <p>The verified snapshot has exactly two included offline city packs and no separate downloadable city-pack catalog. The other 56 cities are source-pending: 44 have route-picker geometry only and 12 are catalog-only.</p>
           </section>
 
           <section class="doc-section" id="not-downloaded">
@@ -107,10 +108,11 @@
             <h2>External pages stay external.</h2>
             <div class="doc-callout">
               <strong>User action is required</strong>
-              <p>Operator pages and station layouts open only after the rider chooses a link. JustGo does not download, cache, or prefetch them, and they are never counted as offline content.</p>
+              <p>Operator pages and files open only after the rider taps a link. JustGo does not bundle, fetch, preview, cache, prefetch, or redistribute them, and they are never counted as offline content.</p>
             </div>
             <ul>
-              <li>The 98 Hong Kong layout references are links to external destinations, not 98 included layout files.</li>
+              <li>The directory’s 330 records comprise 275 Maps, 28 Travel, 6 Accessibility, and 21 Help links across 275 unique targets.</li>
+              <li>Hong Kong’s external MTR targets are 1 System Map, 98 Location Maps, 98 Station Layouts, and 14 Light Rail Street Maps—not included map files.</li>
               <li>Attribution, license, and provider links behave the same way: opening them contacts the destination only after a user action.</li>
               <li>If an external destination changes or disappears, JustGo does not retain a hidden offline copy.</li>
             </ul>
@@ -130,7 +132,7 @@
           <section class="doc-section" id="personal">
             <p class="doc-label">05 / PERSONAL MEDIA</p>
             <h2>Private storage is not a public pack.</h2>
-            <p>Personal station media remains on the rider’s device. It is not downloaded as public JustGo content, uploaded into the included city packs, or used for routing or guidance.</p>
+            <p>Personal station media remains entirely on the rider’s device. It is not downloaded as public JustGo content, uploaded into the included city packs, or used as verified routing, transfer, platform, or door data.</p>
           </section>
 
           <section class="doc-section" id="source">
@@ -149,7 +151,7 @@
     <footer class="jg-footer">
       <a class="jg-brand" href="/justgo"><span class="logo-mark"><i></i><i></i><i></i></span><span>JustGo</span></a>
       <p class="footer-links"><a href="/justgo/docs/">Docs</a><a href="/justgo/docs/services/">Services</a><a href="/justgo/docs/data-sources/">Data sources</a><a href="/justgo/download/">Downloads</a><a href="/justgo/docs/privacy/">Privacy</a><a href="/justgo/docs/terms/">Terms</a><a href="/justgo/docs/attribution/">Attribution</a></p>
-      <p class="mono">DOWNLOADS · VERIFIED 2026-07-15</p>
+      <p class="mono">DOWNLOADS · ROUND 35 · VERIFIED 2026-07-15</p>
     </footer>
   </body>
 </html>

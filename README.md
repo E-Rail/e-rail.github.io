@@ -12,9 +12,11 @@ Personal website for Ethan Song, hosted with GitHub Pages.
 - `/justgo/docs/terms` — service terms and transit-data limitations
 - `/justgo/docs/attribution` — OpenStreetMap, MTR/DATA.GOV.HK, media, and software credits
 
-The JustGo pages use the verified 2026-07-15 post-build snapshot: 58 cataloged
-cities, 46 included OSM network baselines, two included city packs with 606
-station records, 56 source-pending cities, and zero verified indoor transfers.
+The JustGo pages use the verified Round 35 snapshot dated 2026-07-15: 58
+cataloged cities, 46 route-picker baselines, 12 catalog-only cities, two
+included offline city packs with 606 station records, and zero verified indoor
+transfers. A separate official-resource directory contains 330 hyperlink
+records across 275 unique targets.
 
 The site is plain HTML, CSS, and JavaScript with no build step.
 

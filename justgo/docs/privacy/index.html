@@ -38,7 +38,7 @@
         </div>
         <aside class="docs-status" aria-label="Privacy policy status">
           <span class="status-label">PRIVACY STATUS</span>
-          <div class="status-row"><span>Effective</span><strong>2026-07-15</strong></div>
+          <div class="status-row"><span>Effective</span><strong>2026-07-16</strong></div>
           <div class="status-row"><span>Personal station media</span><strong>On-device only</strong></div>
           <div class="status-row"><span>Live transit request</span><strong>Hong Kong only</strong></div>
           <div class="status-row"><span>Website preference</span><strong>Language only</strong></div>
@@ -78,17 +78,17 @@
             <p class="doc-lead">This policy covers the JustGo app and the JustGo pages on e-rail.github.io. Third-party services process their own requests under their own policies.</p>
 
             <div class="policy-summary">
-              <div><strong>Included data is local app content</strong><p>The 58-city catalog, 46 OSM network baselines, two city packs, and included licensed media do not require opening their source websites during ordinary use.</p></div>
-              <div><strong>Personal station media stays on-device</strong><p>It is not uploaded and is never used to calculate routes, scores, doors, transfers, or guidance.</p></div>
+              <div><strong>Included data is local app content</strong><p>The 58-city catalog, 46 route-picker baselines, two offline city packs, and included pilot media do not require opening their source websites during ordinary use.</p></div>
+              <div><strong>Personal station media stays on-device</strong><p>It remains entirely on-device and is never used as verified routing, transfer, platform, or door data.</p></div>
               <div><strong>Hong Kong live arrivals are online</strong><p>Viewing current arrivals contacts the DATA.GOV.HK government transport API for the referenced station and line.</p></div>
-              <div><strong>External layouts require a tap</strong><p>Operator pages and layouts are not downloaded, cached, or prefetched by JustGo and are not offline content.</p></div>
+              <div><strong>Official-resource links require a tap</strong><p>The 330 directory records are URL metadata. Their 275 unique targets are not bundled, fetched, previewed, cached, prefetched, or redistributed by JustGo.</p></div>
             </div>
           </section>
 
           <section class="doc-section" id="included">
             <p class="doc-label">02 / INCLUDED APP DATA</p>
             <h2>Reading included files does not call their sources.</h2>
-            <p>The app includes catalog metadata for 58 cities, OpenStreetMap-derived network baselines for 46 cities, 606 matched station records across Beijing and Hong Kong, and two licensed station images. Reading these included resources does not require a runtime request to OpenStreetMap, MTR, DATA.GOV.HK, or the image source pages.</p>
+            <p>The app includes catalog metadata for 58 cities, OpenStreetMap-derived route-picker baselines for 46 cities, 606 station records across the Beijing and Hong Kong offline packs, and two licensed pilot images. Reading these included resources does not require a runtime request to OpenStreetMap, MTR, DATA.GOV.HK, or the image source pages.</p>
             <p>Source and license links remain available for transparency. Opening an attribution link is a separate user action and may contact that website.</p>
           </section>
 
@@ -102,7 +102,7 @@
                   <tr><td><strong>Preferences and accessibility settings</strong></td><td>Remember the rider’s chosen app behavior.</td><td>Remain in app storage unless an operating-system service handles a related permission or request.</td></tr>
                   <tr><td><strong>Saved and recent trips</strong></td><td>Offer history, favorites, and trip resumption.</td><td>Not published as city-pack data.</td></tr>
                   <tr><td><strong>Personal accessibility notes</strong></td><td>Let the rider remember local concerns.</td><td>Not community-verified or uploaded by the current personal layer.</td></tr>
-                  <tr><td><strong>Personal station media</strong></td><td>Private visual context chosen by the rider.</td><td>Remains on-device; never used for routing or guidance.</td></tr>
+                  <tr><td><strong>Personal station media</strong></td><td>Private visual context chosen by the rider.</td><td>Remains entirely on-device; never used as verified routing, transfer, platform, or door data.</td></tr>
                   <tr><td><strong>Local notifications</strong></td><td>Show rider-requested reminders.</td><td>Scheduled through iOS; no remote push service is required for a local notification.</td></tr>
                 </tbody>
               </table>
@@ -128,10 +128,12 @@
           <section class="doc-section" id="external">
             <p class="doc-label">05 / EXTERNAL LINKS</p>
             <h2>Nothing opens until the rider asks.</h2>
-            <p class="doc-lead">Hong Kong has 98 external station-layout references. Other source and operator links may also appear for verification and attribution.</p>
+            <p class="doc-lead">Round 35’s official-resource directory contains 330 hyperlink records—275 Maps, 28 Travel, 6 Accessibility, and 21 Help—across 275 unique targets.</p>
             <ul>
-              <li>JustGo does not download, cache, or prefetch operator pages or layout pages.</li>
-              <li>Those pages are not counted as included or offline content.</li>
+              <li>Operator pages and files open only after the rider taps a link.</li>
+              <li>JustGo does not bundle, fetch, preview, cache, prefetch, or redistribute those destinations.</li>
+              <li>The destinations are not counted as included or offline content.</li>
+              <li>Hong Kong’s map targets are 1 MTR System Map, 98 Location Maps, 98 Station Layouts, and 14 Light Rail Street Maps; each remains external.</li>
               <li>After a rider taps a link, the browser or system web view connects to the destination. The provider may receive the requested URL, IP address, request time, browser information, and any data the rider chooses to submit there.</li>
               <li>The destination’s privacy policy and terms govern that visit.</li>
             </ul>
@@ -180,7 +182,7 @@
     <footer class="jg-footer">
       <a class="jg-brand" href="/justgo"><span class="logo-mark"><i></i><i></i><i></i></span><span>JustGo</span></a>
       <p class="footer-links"><a href="/justgo/docs/">Docs</a><a href="/justgo/docs/services/">Services</a><a href="/justgo/docs/data-sources/">Data sources</a><a href="/justgo/download/">Downloads</a><a href="/justgo/docs/privacy/">Privacy</a><a href="/justgo/docs/terms/">Terms</a><a href="/justgo/docs/attribution/">Attribution</a></p>
-      <p class="mono">PRIVACY · EFFECTIVE 2026-07-15</p>
+      <p class="mono">PRIVACY · EFFECTIVE 2026-07-16</p>
     </footer>
   </body>
 </html>

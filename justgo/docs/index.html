@@ -43,11 +43,11 @@
           </p>
         </div>
         <aside class="docs-status" aria-label="Documentation snapshot">
-          <span class="status-label">VERIFIED POST-BUILD SNAPSHOT</span>
+          <span class="status-label">ROUND 35 · VERIFIED 2026-07-15</span>
           <div class="status-row"><span>City catalog</span><strong>58 cities</strong></div>
-          <div class="status-row"><span>Included baselines</span><strong>46 OSM networks</strong></div>
+          <div class="status-row"><span>Route-picker baselines</span><strong>46 cities</strong></div>
           <div class="status-row"><span>Included station packs</span><strong>2 · 606 records</strong></div>
-          <div class="status-row"><span>Documentation reviewed</span><strong>2026-07-15</strong></div>
+          <div class="status-row"><span>Official-resource directory</span><strong>330 links</strong></div>
         </aside>
       </section>
 
@@ -85,7 +85,7 @@
             <h2>What JustGo actually is.</h2>
             <p class="doc-lead">
               JustGo is an open-source SwiftUI app for planning metro journeys in
-              China. Its catalog, network baselines, station packs, external references,
+              China. Its catalog, route-picker baselines, station packs, official-resource hyperlinks,
               and live requests are separate layers. A city appearing in the catalog
               does not mean every layer exists. JustGo is not a transit operator, a live
               signaling system, or a guarantee that a station facility will be working.
@@ -93,16 +93,16 @@
 
             <div class="fact-grid">
               <div class="fact"><strong>58</strong><span>Cataloged cities. Catalog presence is discovery metadata, not a promise of network or station data.</span></div>
-              <div class="fact"><strong>46</strong><span>Included OpenStreetMap network baselines. The other 12 cities are catalog-only.</span></div>
+              <div class="fact"><strong>46</strong><span>OpenStreetMap-derived route-picker baselines. The other 12 cities are catalog-only.</span></div>
               <div class="fact"><strong>2</strong><span>Included city packs: Beijing and Hong Kong.</span></div>
               <div class="fact"><strong>606</strong><span>Matched station records: 444 Beijing plus 162 Hong Kong.</span></div>
               <div class="fact"><strong>56</strong><span>Source-pending cities: 44 geometry-only plus 12 catalog-only.</span></div>
-              <div class="fact"><strong>0</strong><span>Verified indoor transfers. No verified-door or indoor-routing coverage is claimed.</span></div>
+              <div class="fact"><strong>330</strong><span>Official-resource hyperlink records across 275 unique targets.</span></div>
             </div>
 
             <div class="doc-callout">
               <strong>The short version</strong>
-              <p>Included files work as app content. Operator pages and layouts stay external and open only after a user action. Hong Kong live arrivals require a request to the government transport API. Personal station media stays on the device.</p>
+              <p>Included files work as app content. Operator pages and files open only after a rider tap and are not bundled, fetched, previewed, cached, prefetched, or redistributed. Hong Kong live arrivals require a government transport API request. Personal station media stays entirely on-device.</p>
             </div>
 
             <div class="doc-actions">
@@ -123,7 +123,7 @@
               <div class="pipeline-step"><span>04</span><strong>Search the metro graph</strong><p>A minimum-cost graph search runs three times. Fastest uses normal costs; fewest transfers raises the transfer penalty from 300 to 1,200 seconds; least walking triples the access-walking weight.</p></div>
               <div class="pipeline-step"><span>05</span><strong>Build the legs</strong><p>Train time is estimated as <code>max(60 s, distance ÷ 9.7 m/s + 30 s)</code> per graph edge. Transfers add five minutes. Apple walking directions are requested for the first and last leg.</p></div>
               <div class="pipeline-step"><span>06</span><strong>Fall back honestly</strong><p>If walking directions fail, distance becomes straight-line distance and duration uses 1.25 m/s. The route receives a “walking distance is estimated” note instead of silently presenting the fallback as mapped walking.</p></div>
-              <div class="pipeline-step"><span>07</span><strong>Enrich only from available fields</strong><p>Boarding, transfer, and arrival stations are checked against the included city pack. Missing fields remain unknown. An external layout reference is a user-opened link, not included map content.</p></div>
+              <div class="pipeline-step"><span>07</span><strong>Enrich only from available fields</strong><p>Boarding, transfer, and arrival stations are checked against the included city pack. Missing fields remain unknown. An official-resource hyperlink is tap-to-open URL metadata, not included map content.</p></div>
               <div class="pipeline-step"><span>08</span><strong>Rank and explain</strong><p>The selected route mode reranks the unique alternatives. Feasibility, service-hours status, comfort, source coverage, and personal reports are then folded into the confidence explanation.</p></div>
             </div>
 
@@ -204,7 +204,7 @@
                 <thead><tr><th>Label</th><th>Interpretation</th></tr></thead>
                 <tbody>
                   <tr><td><span class="status-pill">Included</span></td><td>The record is shipped as part of an included app data pack and can be counted as app content.</td></tr>
-                  <tr><td><span class="status-pill partial">External reference</span></td><td>A URL to an operator page or station layout. It opens only after a user action and is not downloaded, cached, prefetched, or counted as offline content.</td></tr>
+                  <tr><td><span class="status-pill partial">Official-resource link</span></td><td>Reviewed URL metadata for an operator page or file. It opens only after a rider tap and is not bundled, fetched, previewed, cached, prefetched, redistributed, or counted as offline content.</td></tr>
                   <tr><td><span class="status-pill partial">Live API</span></td><td>A current value requested online. Hong Kong live arrivals contact the government transport API.</td></tr>
                   <tr><td><span class="status-pill">Estimated from maps</span></td><td>Produced from Apple Maps or map-derived walking context, not a transit-operator facility statement.</td></tr>
                   <tr><td><span class="status-pill partial">Estimated</span></td><td>Inferred from available text or geometry. For example, an exit token may be extracted from station accessibility text.</td></tr>
@@ -219,15 +219,15 @@
 
           <section class="doc-section" id="coverage">
             <p class="doc-label">06 / COVERAGE</p>
-            <h2>One catalog, four different layers.</h2>
-            <p class="doc-lead">Coverage is counted by what the app actually includes. The 58-city catalog contains 46 included network baselines and 12 catalog-only entries. Only Beijing and Hong Kong have included city packs.</p>
+            <h2>One catalog, five different layers.</h2>
+            <p class="doc-lead">Coverage is counted by what the app actually includes. Round 35 contains 46 route-picker baselines and 12 catalog-only entries. Only Beijing and Hong Kong have included offline city packs; official-resource hyperlinks remain separate.</p>
 
             <div class="fact-grid">
-              <div class="fact"><strong>46</strong><span>Included OSM network baselines: Beijing, Hong Kong, and 44 geometry-only source-pending cities.</span></div>
+              <div class="fact"><strong>46</strong><span>Route-picker baselines: Beijing, Hong Kong, and 44 geometry-only source-pending cities.</span></div>
               <div class="fact"><strong>12</strong><span>Catalog-only cities with no included network geometry or station pack.</span></div>
               <div class="fact"><strong>2</strong><span>Included city packs containing 606 matched station records.</span></div>
               <div class="fact"><strong>56</strong><span>Source-pending cities in total: 44 geometry-only and 12 catalog-only.</span></div>
-              <div class="fact"><strong>98</strong><span>Hong Kong external layout references. They are links, not included layouts.</span></div>
+              <div class="fact"><strong>330</strong><span>Official-resource links: 275 Maps, 28 Travel, 6 Accessibility, and 21 Help.</span></div>
               <div class="fact"><strong>0</strong><span>Verified indoor transfers across the current catalog.</span></div>
             </div>
 
@@ -237,14 +237,14 @@
                 <thead><tr><th>City</th><th>Matched stations</th><th>Included station fields</th><th>External or live fields</th><th>Verified indoor transfers</th></tr></thead>
                 <tbody>
                   <tr><td><strong>Beijing</strong></td><td>444</td><td>Matched station identities; one licensed Jianguomen photo.</td><td>No accessibility, static schedule, live-arrival, or layout dataset.</td><td><span class="status-pill pending">0</span></td></tr>
-                  <tr><td><strong>Hong Kong</strong></td><td>162</td><td>Matched station identities; 98 accessibility records; one licensed Hong Kong Central photo.</td><td>162 live-arrival references use the government API; 98 layout references open external pages.</td><td><span class="status-pill pending">0</span></td></tr>
+                  <tr><td><strong>Hong Kong</strong></td><td>162</td><td>Station identities; 98 accessibility records; one licensed Hong Kong Central photo.</td><td>162 live references use the government API; linked MTR targets comprise 1 System Map, 98 Location Maps, 98 Station Layouts, and 14 Light Rail Street Maps.</td><td><span class="status-pill pending">0</span></td></tr>
                 </tbody>
               </table>
             </div>
 
             <div class="doc-callout">
               <strong>Included is not the same as linked or live</strong>
-              <p>Operator pages and station layouts open only after the rider taps a link. JustGo does not download, cache, prefetch, or count those pages as offline content. Live Hong Kong arrivals are fetched separately from the government transport API.</p>
+              <p>Operator pages and files open only after the rider taps a link. JustGo does not bundle, fetch, preview, cache, prefetch, redistribute, or count them as offline content. Live Hong Kong arrivals are requested separately from the government transport API.</p>
             </div>
 
             <p class="doc-source">DETAILS: <a href="/justgo/docs/data-sources/">DATA SOURCES →</a> · <a href="/justgo/docs/attribution/">ATTRIBUTION →</a></p>
@@ -288,8 +288,8 @@
             <p class="doc-lead">Go converts a chosen route into ordered walk, ride, transfer, and arrival cards. The rider advances and reverses steps manually.</p>
             <ul>
               <li>Walking steps can show an Apple Maps route preview when path geometry is available.</li>
-              <li>JustGo does not claim universal 3D station maps, verified doors, indoor routing, or verified indoor transfer paths.</li>
-              <li>A Hong Kong layout reference can open its external page after a user action. The page is not prefetched, cached, downloaded, or available offline through JustGo.</li>
+              <li>Verified indoor transfer coverage is zero; route-picker geometry and external maps do not establish an indoor path, platform, door, or transfer.</li>
+              <li>A Hong Kong map link opens its operator destination only after a rider tap. JustGo does not bundle, fetch, preview, cache, prefetch, or redistribute that destination.</li>
               <li>Speech, haptics, and visual banners follow the rider’s local accessibility preferences.</li>
               <li>Get-off reminders use the estimated segment duration minus the chosen lead time. Both the in-app banner and local notification explicitly say they are time estimates, not a live train position.</li>
               <li>Hong Kong live-arrival boards are a separate online feature that contacts the government transport API; they do not provide indoor positioning.</li>
@@ -310,7 +310,7 @@
                   <tr><td><strong>Trip records</strong></td><td>Endpoint names, city, duration, walking, transfers, strategy, warnings, completion and optional note.</td><td>300</td></tr>
                   <tr><td><strong>Favorite stations</strong></td><td>Station/city IDs, names, coordinates, line metadata, optional Home, Work, or custom tag.</td><td>50</td></tr>
                   <tr><td><strong>Accessibility reports</strong></td><td>Station or route reference, item type, status, severity, note, timestamps.</td><td>100</td></tr>
-                  <tr><td><strong>Personal station media</strong></td><td>Rider-selected station photos or files.</td><td>On-device only; never used for routing or guidance</td></tr>
+                  <tr><td><strong>Personal station media</strong></td><td>Rider-selected station photos or files.</td><td>Entirely on-device; never used as verified routing, transfer, platform, or door data</td></tr>
                   <tr><td><strong>Recent routes</strong></td><td>Station IDs and names, line, duration, city.</td><td>10</td></tr>
                   <tr><td><strong>Recent station searches</strong></td><td>Station ID/name, city, date, count.</td><td>10</td></tr>
                   <tr><td><strong>Active Go trip</strong></td><td>The selected route, retained until normal dismissal or explicit discard.</td><td>1</td></tr>
@@ -327,10 +327,10 @@
               <li><strong>No universal live coverage:</strong> only Hong Kong has live-arrival references, covering its 162 matched stations; a live request is not vehicle positioning or an offline schedule.</li>
               <li><strong>No included static schedules:</strong> neither Beijing nor Hong Kong has a static schedule dataset in the verified snapshot.</li>
               <li><strong>No facility uptime guarantee:</strong> Hong Kong accessibility records describe sourced facts, not current operating status.</li>
-              <li><strong>No verified indoor routing:</strong> verified indoor transfer coverage is zero. There are no claimed verified doors or universal 3D station maps.</li>
+              <li><strong>No verified indoor transfer data:</strong> coverage is zero; route-picker geometry and linked maps do not prove an indoor path, platform, door, or transfer.</li>
               <li><strong>At most three unique graph alternatives:</strong> several user-facing modes rerank that set rather than generating a bespoke path.</li>
               <li><strong>Walking text is language-dependent:</strong> stair detection relies in part on Apple walking instructions and source text.</li>
-              <li><strong>External references are not app content:</strong> operator pages and 98 Hong Kong layout references are user-opened links, never prefetched, cached, downloaded, or counted as offline data.</li>
+              <li><strong>Official-resource links are not app content:</strong> 330 directory records resolve to 275 unique external targets and open only after a rider tap.</li>
               <li><strong>Source-pending means incomplete:</strong> 44 cities have geometry only and 12 are catalog-only.</li>
             </ul>
           </section>
@@ -361,7 +361,7 @@
     <footer class="jg-footer">
       <a class="jg-brand" href="/justgo"><span class="logo-mark"><i></i><i></i><i></i></span><span>JustGo</span></a>
       <p class="footer-links"><a href="/justgo/docs/">Docs</a><a href="/justgo/docs/services/">Services</a><a href="/justgo/docs/data-sources/">Data sources</a><a href="/justgo/download/">Downloads</a><a href="/justgo/docs/privacy/">Privacy</a><a href="/justgo/docs/terms/">Terms</a><a href="/justgo/docs/attribution/">Attribution</a></p>
-      <p class="mono">DOCS · REVIEWED 2026-07-15</p>
+      <p class="mono">DOCS · ROUND 35 · REVIEWED 2026-07-16</p>
     </footer>
   </body>
 </html>

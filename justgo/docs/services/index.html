@@ -38,10 +38,10 @@
         </div>
         <aside class="docs-status" aria-label="Service snapshot">
           <span class="status-label">VERIFIED SERVICE SNAPSHOT</span>
-          <div class="status-row"><span>Included baselines</span><strong>46 cities</strong></div>
+          <div class="status-row"><span>Route-picker baselines</span><strong>46 cities</strong></div>
           <div class="status-row"><span>Included station packs</span><strong>2 · 606 records</strong></div>
+          <div class="status-row"><span>Official-resource links</span><strong>330 records</strong></div>
           <div class="status-row"><span>Live-arrival coverage</span><strong>Hong Kong · 162</strong></div>
-          <div class="status-row"><span>Verified indoor transfers</span><strong>0</strong></div>
         </aside>
       </section>
 
@@ -76,15 +76,15 @@
             <p class="doc-lead">A station field is not simply “available.” It belongs to one of four classes, and the app must preserve that class from display through network behavior.</p>
 
             <div class="service-grid">
-              <a class="service-card" href="#included"><span class="mini-label">APP CONTENT</span><strong>Included data</strong><p>Catalog metadata, 46 OSM network baselines, two city packs, and licensed media shipped with the build.</p></a>
-              <a class="service-card" href="#external"><span class="mini-label">USER ACTION</span><strong>External references</strong><p>Operator pages and layouts that open only when the rider chooses them.</p></a>
+              <a class="service-card" href="#included"><span class="mini-label">APP CONTENT</span><strong>Included data</strong><p>Catalog metadata, 46 route-picker baselines, two offline city packs, and licensed media shipped with the build.</p></a>
+              <a class="service-card" href="#external"><span class="mini-label">USER ACTION</span><strong>Official-resource links</strong><p>330 operator hyperlinks across 275 unique targets that open only when the rider taps them.</p></a>
               <a class="service-card" href="#live"><span class="mini-label">ONLINE REQUEST</span><strong>Live Hong Kong arrivals</strong><p>Current results requested from the government transport API for referenced stations.</p></a>
               <a class="service-card" href="#personal"><span class="mini-label">ON DEVICE</span><strong>Personal station media</strong><p>Rider-selected media that stays local and never influences routing or guidance.</p></a>
             </div>
 
             <div class="doc-callout warning">
               <strong>No category promotion</strong>
-              <p>An external layout URL is not an included layout. A live-arrival reference is not an offline timetable. A personal photo is not route evidence. Missing data remains missing.</p>
+              <p>An official-resource URL is not an included page or file. A live-arrival reference is not an offline timetable. A personal photo is not route evidence. Missing data remains missing.</p>
             </div>
           </section>
 
@@ -98,9 +98,9 @@
                 <thead><tr><th>Included layer</th><th>Coverage</th><th>What it provides</th><th>What it does not imply</th></tr></thead>
                 <tbody>
                   <tr><td><strong>City catalog</strong></td><td>58 cities</td><td>City identity and discovery metadata.</td><td>Twelve entries are catalog-only; catalog presence does not imply geometry or station records.</td></tr>
-                  <tr><td><strong>OSM network baselines</strong></td><td>46 cities</td><td>Prepared OpenStreetMap-derived network geometry.</td><td>It does not provide verified doors, indoor paths, or station facilities.</td></tr>
+                  <tr><td><strong>Route-picker baselines</strong></td><td>46 cities</td><td>Prepared OpenStreetMap-derived network geometry.</td><td>It does not establish indoor paths, platforms, doors, transfers, or station facilities.</td></tr>
                   <tr><td><strong>Beijing city pack</strong></td><td>444 matched stations</td><td>Matched station records and one licensed Jianguomen photo.</td><td>No accessibility, static schedule, live-arrival, layout, or verified-transfer dataset.</td></tr>
-                  <tr><td><strong>Hong Kong city pack</strong></td><td>162 matched stations</td><td>Matched station records, 98 accessibility records, and one licensed Hong Kong Central photo.</td><td>Live values and 98 layout destinations remain external to the included pack.</td></tr>
+                  <tr><td><strong>Hong Kong city pack</strong></td><td>162 stations</td><td>Station records, 98 accessibility records, and one licensed Hong Kong Central photo.</td><td>Live values and all operator map destinations remain external to the included pack.</td></tr>
                 </tbody>
               </table>
             </div>
@@ -110,11 +110,12 @@
           <section class="doc-section" id="external">
             <p class="doc-label">03 / EXTERNAL REFERENCES</p>
             <h2>A link is not a local asset.</h2>
-            <p class="doc-lead">Hong Kong includes 98 station-layout references. Operator pages and layouts are provider-controlled web destinations, not copies stored by JustGo.</p>
+            <p class="doc-lead">The separate directory contains 330 hyperlink records: 275 Maps, 28 Travel, 6 Accessibility, and 21 Help, resolving to 275 unique targets.</p>
             <ul>
-              <li>JustGo opens an operator page or layout only after an explicit user action.</li>
-              <li>JustGo does not download, cache, or prefetch those pages or layouts.</li>
-              <li>External pages and layouts are not counted as offline content.</li>
+              <li>JustGo opens an operator page or file only after the rider taps its link.</li>
+              <li>JustGo does not bundle, fetch, preview, cache, prefetch, or redistribute those destinations.</li>
+              <li>External pages and files are not counted as offline content.</li>
+              <li>Hong Kong links to 1 MTR System Map, 98 Location Maps, 98 Station Layouts, and 14 Light Rail Street Maps.</li>
               <li>After opening, the destination provider and the rider’s browser or system web view handle the connection under their own terms and privacy practices.</li>
               <li>A broken or changed external page does not become an included fallback copy.</li>
             </ul>
@@ -147,7 +148,7 @@
             <ul>
               <li>Personal station media remains on the device and is not part of the public city packs.</li>
               <li>JustGo does not upload it as a station-data contribution.</li>
-              <li>It is never used to choose a route, change a score, identify a door, or generate guidance.</li>
+              <li>It is never used as verified routing, transfer, platform, or door data.</li>
               <li>Removing the media or deleting the app removes JustGo’s local use of that media, subject to the device’s own backup behavior.</li>
             </ul>
           </section>
@@ -155,10 +156,10 @@
           <section class="doc-section" id="routing">
             <p class="doc-label">06 / MAPS &amp; ROUTING</p>
             <h2>Surface routing is not indoor routing.</h2>
-            <p>Place search, device location, and walking approaches may use Apple frameworks and therefore may require a network connection. Metro network baselines are included for 46 cities; 12 catalog-only cities do not have an included routable baseline.</p>
+            <p>Place search, device location, and walking approaches may use Apple frameworks and therefore may require a network connection. Route-picker baselines are included for 46 cities; 12 catalog-only cities do not have one.</p>
             <div class="doc-callout warning">
               <strong>Current indoor boundary</strong>
-              <p>Verified indoor transfer coverage is zero. JustGo does not claim universal 3D maps, verified station doors, indoor routing, or a verified step-free transfer path.</p>
+              <p>Verified indoor transfer coverage is zero. Route-picker geometry and external maps do not establish an indoor path, platform, door, transfer, or verified step-free route.</p>
             </div>
           </section>
 
@@ -189,7 +190,7 @@
     <footer class="jg-footer">
       <a class="jg-brand" href="/justgo"><span class="logo-mark"><i></i><i></i><i></i></span><span>JustGo</span></a>
       <p class="footer-links"><a href="/justgo/docs/">Docs</a><a href="/justgo/docs/services/">Services</a><a href="/justgo/docs/data-sources/">Data sources</a><a href="/justgo/download/">Downloads</a><a href="/justgo/docs/privacy/">Privacy</a><a href="/justgo/docs/terms/">Terms</a><a href="/justgo/docs/attribution/">Attribution</a></p>
-      <p class="mono">SERVICES · VERIFIED 2026-07-15</p>
+      <p class="mono">SERVICES · ROUND 35 · VERIFIED 2026-07-15</p>
     </footer>
   </body>
 </html>

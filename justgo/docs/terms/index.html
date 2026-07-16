@@ -38,7 +38,7 @@
         </div>
         <aside class="docs-status" aria-label="Service terms status">
           <span class="status-label">TERMS STATUS</span>
-          <div class="status-row"><span>Effective</span><strong>2026-07-15</strong></div>
+          <div class="status-row"><span>Effective</span><strong>2026-07-16</strong></div>
           <div class="status-row"><span>Product stage</span><strong>Open-source development</strong></div>
           <div class="status-row"><span>Transit operator</span><strong>No</strong></div>
           <div class="status-row"><span>Verified indoor transfers</span><strong>0</strong></div>
@@ -96,15 +96,15 @@
                 <thead><tr><th>Class</th><th>Current scope</th><th>Service meaning</th></tr></thead>
                 <tbody>
                   <tr><td><strong>Included catalog</strong></td><td>58 cities.</td><td>Catalog presence supports discovery only. Twelve cities are catalog-only.</td></tr>
-                  <tr><td><strong>Included network baselines</strong></td><td>46 OpenStreetMap-derived city networks.</td><td>Prepared network geometry; not verified indoor routing, doors, or transfer paths.</td></tr>
-                  <tr><td><strong>Included city packs</strong></td><td>Beijing and Hong Kong; 606 matched station records.</td><td>Only the listed fields are included. Missing fields remain unavailable or source-pending.</td></tr>
-                  <tr><td><strong>External references</strong></td><td>Operator pages and 98 Hong Kong layout references.</td><td>User-opened links. They are not downloaded, cached, prefetched, or counted as offline content.</td></tr>
+                  <tr><td><strong>Route-picker baselines</strong></td><td>46 OpenStreetMap-derived city networks.</td><td>Prepared network geometry; it does not establish indoor paths, platforms, doors, or transfers.</td></tr>
+                  <tr><td><strong>Included offline city packs</strong></td><td>Beijing and Hong Kong; 606 station records.</td><td>Only the listed fields are included. Missing fields remain unavailable or source-pending.</td></tr>
+                  <tr><td><strong>Official-resource directory</strong></td><td>330 hyperlink records: 275 Maps, 28 Travel, 6 Accessibility, and 21 Help, resolving to 275 unique targets.</td><td>Tap-to-open URL metadata only. Destination pages and files are not included or offline content.</td></tr>
                   <tr><td><strong>Live API results</strong></td><td>Hong Kong live-arrival references for 162 matched stations.</td><td>Current results require a request to the DATA.GOV.HK government transport API.</td></tr>
-                  <tr><td><strong>Personal station media</strong></td><td>Media selected by the rider.</td><td>Remains on-device and is never used for routing or guidance.</td></tr>
+                  <tr><td><strong>Personal station media</strong></td><td>Media selected by the rider.</td><td>Remains entirely on-device and is never used as verified routing, transfer, platform, or door data.</td></tr>
                 </tbody>
               </table>
             </div>
-            <p>The current catalog has zero verified indoor transfers. Beijing has 444 matched stations but no accessibility, static schedule, live-arrival, layout, or verified-transfer dataset. Hong Kong has 162 matched stations, 98 accessibility records, 162 live-arrival references, and 98 external layout references, but no static schedule or verified indoor-transfer dataset.</p>
+            <p>The current catalog has zero verified indoor transfers. Beijing has 444 included stations but no accessibility, static-schedule, live-arrival, included-layout, or verified-transfer dataset. Hong Kong has 162 included stations, 98 accessibility records, and live-arrival references for all 162 stations, but no static-schedule or verified indoor-transfer dataset. Its external MTR map targets are 1 System Map, 98 Location Maps, 98 Station Layouts, and 14 Light Rail Street Maps.</p>
           </section>
 
           <section class="doc-section" id="safety">
@@ -115,9 +115,9 @@
               <p>Check official operator notices, station signage, platform displays, announcements, barriers, and staff instructions. In an emergency or evacuation, follow authorities and station personnel—not JustGo.</p>
             </div>
             <ul>
-              <li>Routes, durations, fares, walking times, service states, live arrivals, accessibility facts, external layouts, reminders, and confidence labels may be delayed, incomplete, unavailable, stale, or wrong.</li>
+              <li>Routes, durations, fares, walking times, service states, live arrivals, accessibility facts, external resources, reminders, and confidence labels may be delayed, incomplete, unavailable, stale, or wrong.</li>
               <li>An accessibility record can describe a known facility without proving that it works now or that every indoor segment is step-free.</li>
-              <li>Verified indoor transfer coverage is zero; JustGo does not promise verified doors, indoor routing, or universal 3D station maps.</li>
+              <li>Verified indoor transfer coverage is zero. Route-picker geometry and external maps do not prove an indoor path, platform, door, or transfer.</li>
               <li>A high-confidence label is a comparison aid, not a probability, safety certification, accessibility guarantee, or operator instruction.</li>
               <li>Do not use JustGo as the sole source for last-train decisions, emergency movement, medical transport, or any journey where delay or error could cause serious harm.</li>
             </ul>
@@ -126,8 +126,8 @@
           <section class="doc-section" id="third-party">
             <p class="doc-label">05 / THIRD-PARTY SERVICES</p>
             <h2>External services remain external.</h2>
-            <p>Apple services, OpenStreetMap, MTR Corporation Limited, DATA.GOV.HK, GitHub, Google Fonts, transit-operator websites, and linked layout providers are governed by their own terms, licenses, availability, and privacy practices. JustGo does not control their content, logging, uptime, changes, or decisions.</p>
-            <p>Operator pages and layouts open only after a user action. Hong Kong live arrivals are different: asking for current arrivals sends a request to the government transport API. See the <a href="/justgo/docs/privacy/">privacy policy</a> for the associated data flows.</p>
+            <p>Apple services, OpenStreetMap, MTR Corporation Limited, DATA.GOV.HK, GitHub, Google Fonts, transit-operator websites, and linked resource providers are governed by their own terms, licenses, availability, and privacy practices. JustGo does not control their content, logging, uptime, changes, or decisions.</p>
+            <p>Operator pages and files open only after the rider taps a link. JustGo does not bundle, fetch, preview, cache, prefetch, or redistribute them. Hong Kong live arrivals are different: asking for current arrivals sends a request to the government transport API. See the <a href="/justgo/docs/privacy/">privacy policy</a> for the associated data flows.</p>
           </section>
 
           <section class="doc-section" id="use">
@@ -154,8 +154,8 @@
           <section class="doc-section" id="availability">
             <p class="doc-label">08 / AVAILABILITY &amp; CHANGES</p>
             <h2>An active project can change.</h2>
-            <p>Features, supported cities, network baselines, city-pack fields, external links, live providers, system requirements, labels, and documentation may be corrected, added, limited, suspended, or removed. The project does not promise continuous availability, a release schedule, backward compatibility, or support for a particular city or source.</p>
-            <p>Live arrivals depend on DATA.GOV.HK and connectivity. External layouts depend on their destination providers. A provider outage, changed URL, rate limit, or altered dataset may make a feature temporarily or permanently unavailable.</p>
+            <p>Features, supported cities, route-picker baselines, city-pack fields, official-resource links, live providers, system requirements, labels, and documentation may be corrected, added, limited, suspended, or removed. The project does not promise continuous availability, a release schedule, backward compatibility, or support for a particular city or source.</p>
+            <p>Live arrivals depend on DATA.GOV.HK and connectivity. Official-resource hyperlinks depend on their destination providers. A provider outage, changed URL, rate limit, or altered dataset may make a feature temporarily or permanently unavailable.</p>
           </section>
 
           <section class="doc-section" id="disclaimer">
@@ -188,7 +188,7 @@
     <footer class="jg-footer">
       <a class="jg-brand" href="/justgo"><span class="logo-mark"><i></i><i></i><i></i></span><span>JustGo</span></a>
       <p class="footer-links"><a href="/justgo/docs/">Docs</a><a href="/justgo/docs/services/">Services</a><a href="/justgo/docs/data-sources/">Data sources</a><a href="/justgo/download/">Downloads</a><a href="/justgo/docs/privacy/">Privacy</a><a href="/justgo/docs/terms/">Terms</a><a href="/justgo/docs/attribution/">Attribution</a></p>
-      <p class="mono">TERMS · EFFECTIVE 2026-07-15</p>
+      <p class="mono">TERMS · EFFECTIVE 2026-07-16</p>
     </footer>
   </body>
 </html>
