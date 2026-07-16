@@ -43,7 +43,7 @@
           </p>
         </div>
         <aside class="docs-status" aria-label="Documentation snapshot">
-          <span class="status-label">ROUND 35 · VERIFIED 2026-07-15</span>
+          <span class="status-label">MAIN f35e624 · DATA 2026-07-15</span>
           <div class="status-row"><span>City catalog</span><strong>58 cities</strong></div>
           <div class="status-row"><span>Route-picker baselines</span><strong>46 cities</strong></div>
           <div class="status-row"><span>Included station packs</span><strong>2 · 606 records</strong></div>
@@ -117,14 +117,14 @@
             <p class="doc-lead">A route is assembled in layers. The source of each layer stays visible so a missing schedule cannot be mistaken for a routing failure, and an estimated exit cannot be mistaken for an official instruction.</p>
 
             <div class="pipeline">
-              <div class="pipeline-step"><span>01</span><strong>Resolve places</strong><p>Typed POIs and addresses are searched with <code>MKLocalSearch</code>. “Current Location” asks Core Location only when the rider invokes it. Saved and favorite places may already contain coordinates.</p></div>
+              <div class="pipeline-step"><span>01</span><strong>Resolve places</strong><p>Typed POIs and addresses are searched with <code>MKLocalSearch</code>. “Current Location” asks Core Location only when the rider invokes it. Saved places and Station Quick Tags may already contain coordinates.</p></div>
               <div class="pipeline-step"><span>02</span><strong>Choose a network</strong><p>Both endpoints must lie within 25 km of a bundled network’s bounds. If more than one network qualifies, JustGo chooses the one with the smallest combined endpoint-to-network access distance.</p></div>
               <div class="pipeline-step"><span>03</span><strong>Choose access stations</strong><p>For each endpoint, the four nearest stations become graph candidates. Their walking distance is included in the path cost rather than forcing the single nearest station.</p></div>
               <div class="pipeline-step"><span>04</span><strong>Search the metro graph</strong><p>A minimum-cost graph search runs three times. Fastest uses normal costs; fewest transfers raises the transfer penalty from 300 to 1,200 seconds; least walking triples the access-walking weight.</p></div>
-              <div class="pipeline-step"><span>05</span><strong>Build the legs</strong><p>Train time is estimated as <code>max(60 s, distance ÷ 9.7 m/s + 30 s)</code> per graph edge. Transfers add five minutes. Apple walking directions are requested for the first and last leg.</p></div>
+              <div class="pipeline-step"><span>05</span><strong>Build geometry and legs</strong><p>Train segments carry the selected track geometry projected between station endpoints; a straight station-to-station segment is the fallback. Train time is estimated as <code>max(60 s, distance ÷ 9.7 m/s + 30 s)</code> per graph edge, transfers add five minutes, and Apple walking directions supply the first and last leg.</p></div>
               <div class="pipeline-step"><span>06</span><strong>Fall back honestly</strong><p>If walking directions fail, distance becomes straight-line distance and duration uses 1.25 m/s. The route receives a “walking distance is estimated” note instead of silently presenting the fallback as mapped walking.</p></div>
               <div class="pipeline-step"><span>07</span><strong>Enrich only from available fields</strong><p>Boarding, transfer, and arrival stations are checked against the included city pack. Missing fields remain unknown. An official-resource hyperlink is tap-to-open URL metadata, not included map content.</p></div>
-              <div class="pipeline-step"><span>08</span><strong>Rank and explain</strong><p>The selected route mode reranks the unique alternatives. Feasibility, service-hours status, comfort, source coverage, and personal reports are then folded into the confidence explanation.</p></div>
+              <div class="pipeline-step"><span>08</span><strong>Rank and explain</strong><p>The selected route mode reranks the unique alternatives. Feasibility, service-hours status, comfort, and source coverage are then folded into the confidence explanation.</p></div>
             </div>
 
             <div class="doc-callout warning">
@@ -178,8 +178,8 @@
               <table class="doc-table">
                 <thead><tr><th>Signal</th><th>Adjustment</th><th>Meaning</th></tr></thead>
                 <tbody>
-                  <tr><td>Feasibility: caution / risky / unknown</td><td>−8 / −20 / −10</td><td>Based on stairs, step-free uncertainty, long walks, service state, crowding, and personal reports.</td></tr>
-                  <tr><td>Personal issue affects route</td><td>−15</td><td>A local report matches the route or one of its station IDs.</td></tr>
+                  <tr><td>Feasibility: caution / risky / unknown</td><td>−8 / −20 / −10</td><td>Based on stairs, step-free uncertainty, long walks, service state, and source-backed crowding signals.</td></tr>
+                  <tr><td>AI report insight present</td><td>−15</td><td>The scoring path exists, but the current main-branch report provider returns no insights, so it does not affect current routes.</td></tr>
                   <tr><td>Service ended / not started / last train soon</td><td>−40 / −25 / −12</td><td>Derived from static first/last schedule windows for the boarding line.</td></tr>
                   <tr><td>Comfort: busy / moderate</td><td>−8 / −3</td><td>Busy requires an active source-backed crowd-control window. A weekday rush-hour heuristic alone is capped at moderate.</td></tr>
                   <tr><td>Fewest transfers among alternatives</td><td>+5</td><td>Rewards the route if its transfer count equals the current minimum.</td></tr>
@@ -273,7 +273,7 @@
               <li>Wheelchair access, elevator preference, stair avoidance, and maximum walking distance shape route filters and ranking.</li>
               <li>Audio navigation speaks each Go step; vibration alerts add haptic feedback; visual announcements show a temporary step banner.</li>
               <li>Simplified UI removes nonessential planner sections; step-by-step guidance can open the Go companion automatically.</li>
-              <li>Accessibility reports are personal notes stored locally. They can lower feasibility and confidence for matching routes, but are not sent to other riders.</li>
+              <li>Accessibility preferences are stored locally. Current main does not expose a rider-created accessibility-report store or apply personal report adjustments.</li>
             </ul>
 
             <div class="doc-callout warning">
@@ -284,11 +284,13 @@
 
           <section class="doc-section" id="live-go">
             <p class="doc-label">08 / GO COMPANION</p>
-            <h2>Trip steps without indoor-routing claims.</h2>
-            <p class="doc-lead">Go converts a chosen route into ordered walk, ride, transfer, and arrival cards. The rider advances and reverses steps manually.</p>
+            <h2>Map-first steps, without indoor-routing claims.</h2>
+            <p class="doc-lead">Go combines a full-screen interactive route map and user position with ordered walk, ride, transfer, and arrival cards. The rider still controls moving backward and forward through the steps.</p>
             <ul>
-              <li>Walking steps can show an Apple Maps route preview when path geometry is available.</li>
+              <li>Transit overlays use the route’s traveled track segments; walking overlays use the Apple route polyline when one is available.</li>
+              <li>Off-route checks run only during walking steps with a usable location fix. Repeated deviation can request a fresh route; underground ride and transfer steps do not auto-reroute from GPS drift.</li>
               <li>Verified indoor transfer coverage is zero; route-picker geometry and external maps do not establish an indoor path, platform, door, or transfer.</li>
+              <li>The code includes a user-started, on-device station-sign scanner for verified indoor checkpoints, with manual fallback. Current packs contain zero verified transfer contexts, so it does not create current indoor coverage.</li>
               <li>A Hong Kong map link opens its operator destination only after a rider tap. JustGo does not bundle, fetch, preview, cache, prefetch, or redistribute that destination.</li>
               <li>Speech, haptics, and visual banners follow the rider’s local accessibility preferences.</li>
               <li>Get-off reminders use the estimated segment duration minus the chosen lead time. Both the in-app banner and local notification explicitly say they are time estimates, not a live train position.</li>
@@ -308,9 +310,8 @@
                 <tbody>
                   <tr><td><strong>Saved trips</strong></td><td>Name, endpoint coordinates and addresses, city, preferred strategy/filter, dates, use count, optional note.</td><td>50</td></tr>
                   <tr><td><strong>Trip records</strong></td><td>Endpoint names, city, duration, walking, transfers, strategy, warnings, completion and optional note.</td><td>300</td></tr>
-                  <tr><td><strong>Favorite stations</strong></td><td>Station/city IDs, names, coordinates, line metadata, optional Home, Work, or custom tag.</td><td>50</td></tr>
-                  <tr><td><strong>Accessibility reports</strong></td><td>Station or route reference, item type, status, severity, note, timestamps.</td><td>100</td></tr>
-                  <tr><td><strong>Personal station media</strong></td><td>Rider-selected station photos or files.</td><td>Entirely on-device; never used as verified routing, transfer, platform, or door data</td></tr>
+                  <tr><td><strong>Station Quick Tags</strong></td><td>Station/city IDs, names, coordinates, line metadata, and Home, Work, or a custom label.</td><td>50</td></tr>
+                  <tr><td><strong>Personal station media</strong></td><td>Rider-selected station photos or files, normalized into a metadata-free local copy.</td><td>10 per station · 25 MB source limit</td></tr>
                   <tr><td><strong>Recent routes</strong></td><td>Station IDs and names, line, duration, city.</td><td>10</td></tr>
                   <tr><td><strong>Recent station searches</strong></td><td>Station ID/name, city, date, count.</td><td>10</td></tr>
                   <tr><td><strong>Active Go trip</strong></td><td>The selected route, retained until normal dismissal or explicit discard.</td><td>1</td></tr>
@@ -328,6 +329,7 @@
               <li><strong>No included static schedules:</strong> neither Beijing nor Hong Kong has a static schedule dataset in the verified snapshot.</li>
               <li><strong>No facility uptime guarantee:</strong> Hong Kong accessibility records describe sourced facts, not current operating status.</li>
               <li><strong>No verified indoor transfer data:</strong> coverage is zero; route-picker geometry and linked maps do not prove an indoor path, platform, door, or transfer.</li>
+              <li><strong>No current report feed:</strong> the main-branch report provider returns no station or route insights, so report-based score paths are inactive.</li>
               <li><strong>At most three unique graph alternatives:</strong> several user-facing modes rerank that set rather than generating a bespoke path.</li>
               <li><strong>Walking text is language-dependent:</strong> stair detection relies in part on Apple walking instructions and source text.</li>
               <li><strong>Official-resource links are not app content:</strong> 330 directory records resolve to 275 unique external targets and open only after a rider tap.</li>
@@ -338,7 +340,7 @@
           <section class="doc-section" id="development">
             <p class="doc-label">11 / DEVELOPMENT</p>
             <h2>Build the current source.</h2>
-            <p class="doc-lead">The repository is MIT-licensed and built with SwiftUI plus Apple frameworks. Consult the repository for current build requirements and configuration.</p>
+            <p class="doc-lead">This review tracks JustGo main at <a href="https://github.com/E-Rail/JustGo/commit/f35e624d18fb20db936b140bcc5114b87bada241" target="_blank" rel="noreferrer">f35e624</a>. The repository is MIT-licensed and built with SwiftUI plus Apple frameworks; consult it for current build requirements and configuration.</p>
             <ol>
               <li>Clone <a href="https://github.com/E-Rail/JustGo" target="_blank" rel="noreferrer">E-Rail/JustGo</a>.</li>
               <li>Read the repository README and project settings for the current Xcode and platform requirements.</li>
@@ -361,7 +363,7 @@
     <footer class="jg-footer">
       <a class="jg-brand" href="/justgo"><span class="logo-mark"><i></i><i></i><i></i></span><span>JustGo</span></a>
       <p class="footer-links"><a href="/justgo/docs/">Docs</a><a href="/justgo/docs/services/">Services</a><a href="/justgo/docs/data-sources/">Data sources</a><a href="/justgo/download/">Downloads</a><a href="/justgo/docs/privacy/">Privacy</a><a href="/justgo/docs/terms/">Terms</a><a href="/justgo/docs/attribution/">Attribution</a></p>
-      <p class="mono">DOCS · ROUND 35 · REVIEWED 2026-07-16</p>
+      <p class="mono">DOCS · MAIN f35e624 · REVIEWED 2026-07-16</p>
     </footer>
   </body>
 </html>

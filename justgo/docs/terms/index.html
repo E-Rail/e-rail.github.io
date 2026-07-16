@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="JustGo service terms covering included transit data, external references, Hong Kong live arrivals, personal media, safety limits, licenses, and availability." />
+    <meta name="description" content="JustGo service terms covering included transit data, external references, Hong Kong live arrivals, user-started on-device sign recognition, personal media, safety limits, licenses, and availability." />
     <meta name="theme-color" content="#f8faf4" />
     <title>JustGo Service Terms</title>
     <script src="/language.js"></script>
@@ -40,6 +40,7 @@
           <span class="status-label">TERMS STATUS</span>
           <div class="status-row"><span>Effective</span><strong>2026-07-16</strong></div>
           <div class="status-row"><span>Product stage</span><strong>Open-source development</strong></div>
+          <div class="status-row"><span>Source snapshot</span><strong>main · f35e624</strong></div>
           <div class="status-row"><span>Transit operator</span><strong>No</strong></div>
           <div class="status-row"><span>Verified indoor transfers</span><strong>0</strong></div>
         </aside>
@@ -84,7 +85,7 @@
           <section class="doc-section" id="service">
             <p class="doc-label">02 / THE SERVICE</p>
             <h2>Informational transit tools.</h2>
-            <p>JustGo provides informational tools for city and station discovery, metro route planning where network data exists, walking approaches, route comparison, accessibility context, live Hong Kong arrival lookups, local trip memory, and trip-step cards.</p>
+            <p>JustGo provides informational tools for city and station discovery, metro route planning where network data exists, track-shaped route previews, map-first trip guidance, walking approaches, route comparison, accessibility context, live Hong Kong arrival lookups, Station Quick Tags, local trip memory, and trip-step cards.</p>
             <p>JustGo is an independent open-source project. It is not a transit operator, emergency service, accessibility certification body, or official indoor-navigation system. Attribution to a provider does not imply that provider sponsors, certifies, or endorses JustGo.</p>
           </section>
 
@@ -100,6 +101,7 @@
                   <tr><td><strong>Included offline city packs</strong></td><td>Beijing and Hong Kong; 606 station records.</td><td>Only the listed fields are included. Missing fields remain unavailable or source-pending.</td></tr>
                   <tr><td><strong>Official-resource directory</strong></td><td>330 hyperlink records: 275 Maps, 28 Travel, 6 Accessibility, and 21 Help, resolving to 275 unique targets.</td><td>Tap-to-open URL metadata only. Destination pages and files are not included or offline content.</td></tr>
                   <tr><td><strong>Live API results</strong></td><td>Hong Kong live-arrival references for 162 matched stations.</td><td>Current results require a request to the DATA.GOV.HK government transport API.</td></tr>
+                  <tr><td><strong>Station-sign recognition</strong></td><td>Available only after the rider taps Scan Sign.</td><td>Camera frames are matched on-device and are not saved or uploaded. Manual confirmation remains available.</td></tr>
                   <tr><td><strong>Personal station media</strong></td><td>Media selected by the rider.</td><td>Remains entirely on-device and is never used as verified routing, transfer, platform, or door data.</td></tr>
                 </tbody>
               </table>
@@ -118,6 +120,7 @@
               <li>Routes, durations, fares, walking times, service states, live arrivals, accessibility facts, external resources, reminders, and confidence labels may be delayed, incomplete, unavailable, stale, or wrong.</li>
               <li>An accessibility record can describe a known facility without proving that it works now or that every indoor segment is step-free.</li>
               <li>Verified indoor transfer coverage is zero. Route-picker geometry and external maps do not prove an indoor path, platform, door, or transfer.</li>
+              <li>Station-sign recognition is a rider-started convenience, not a safety or location guarantee. Confirm the station manually before relying on the result.</li>
               <li>A high-confidence label is a comparison aid, not a probability, safety certification, accessibility guarantee, or operator instruction.</li>
               <li>Do not use JustGo as the sole source for last-train decisions, emergency movement, medical transport, or any journey where delay or error could cause serious harm.</li>
             </ul>
@@ -168,7 +171,7 @@
           <section class="doc-section" id="privacy">
             <p class="doc-label">10 / PRIVACY</p>
             <h2>Privacy is part of the service boundary.</h2>
-            <p>Use of JustGo is also governed by the <a href="/justgo/docs/privacy/">JustGo Privacy Policy</a>, which explains on-device records and media, Apple-service requests, Hong Kong live-arrival requests, external-link behavior, website language preferences, retention, and deletion.</p>
+            <p>Use of JustGo is also governed by the <a href="/justgo/docs/privacy/">JustGo Privacy Policy</a>, which explains on-device records and media, user-started on-device station-sign recognition, Apple-service requests, Hong Kong live-arrival requests, external-link behavior, website language preferences, retention, and deletion.</p>
           </section>
 
           <section class="doc-section" id="changes">
@@ -188,7 +191,7 @@
     <footer class="jg-footer">
       <a class="jg-brand" href="/justgo"><span class="logo-mark"><i></i><i></i><i></i></span><span>JustGo</span></a>
       <p class="footer-links"><a href="/justgo/docs/">Docs</a><a href="/justgo/docs/services/">Services</a><a href="/justgo/docs/data-sources/">Data sources</a><a href="/justgo/download/">Downloads</a><a href="/justgo/docs/privacy/">Privacy</a><a href="/justgo/docs/terms/">Terms</a><a href="/justgo/docs/attribution/">Attribution</a></p>
-      <p class="mono">TERMS · EFFECTIVE 2026-07-16</p>
+      <p class="mono">TERMS · MAIN f35e624 · EFFECTIVE 2026-07-16</p>
     </footer>
   </body>
 </html>

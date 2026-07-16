@@ -33,11 +33,11 @@
       <section class="docs-hero">
         <div class="docs-hero-copy">
           <p class="docs-breadcrumb"><a href="/justgo/docs/">Docs</a> / Services</p>
-          <h1>Four boundaries<br /><em>behind one trip.</em></h1>
-          <p>JustGo treats included files, external links, live API responses, and personal on-device media as different service classes. This catalog explains exactly when each class is used.</p>
+          <h1>Five boundaries<br /><em>behind one trip.</em></h1>
+          <p>JustGo separates included files, external links, live API responses, personal media, and user-started on-device sign recognition. This catalog explains exactly when each class is used.</p>
         </div>
         <aside class="docs-status" aria-label="Service snapshot">
-          <span class="status-label">VERIFIED SERVICE SNAPSHOT</span>
+          <span class="status-label">MAIN f35e624 · SERVICE SNAPSHOT</span>
           <div class="status-row"><span>Route-picker baselines</span><strong>46 cities</strong></div>
           <div class="status-row"><span>Included station packs</span><strong>2 · 606 records</strong></div>
           <div class="status-row"><span>Official-resource links</span><strong>330 records</strong></div>
@@ -65,6 +65,7 @@
           <a href="#external">External references</a>
           <a href="#live">Live arrivals</a>
           <a href="#personal">Personal media</a>
+          <a href="#scanner">Checkpoint scanner</a>
           <a href="#routing">Maps &amp; routing</a>
           <a href="#failures">Failures &amp; labels</a>
         </aside>
@@ -80,6 +81,7 @@
               <a class="service-card" href="#external"><span class="mini-label">USER ACTION</span><strong>Official-resource links</strong><p>330 operator hyperlinks across 275 unique targets that open only when the rider taps them.</p></a>
               <a class="service-card" href="#live"><span class="mini-label">ONLINE REQUEST</span><strong>Live Hong Kong arrivals</strong><p>Current results requested from the government transport API for referenced stations.</p></a>
               <a class="service-card" href="#personal"><span class="mini-label">ON DEVICE</span><strong>Personal station media</strong><p>Rider-selected media that stays local and never influences routing or guidance.</p></a>
+              <a class="service-card" href="#scanner"><span class="mini-label">USER ACTION · ON DEVICE</span><strong>Station-sign recognition</strong><p>A camera scan started by the rider and processed locally, with manual fallback and no saved frames.</p></a>
             </div>
 
             <div class="doc-callout warning">
@@ -149,14 +151,27 @@
               <li>Personal station media remains on the device and is not part of the public city packs.</li>
               <li>JustGo does not upload it as a station-data contribution.</li>
               <li>It is never used as verified routing, transfer, platform, or door data.</li>
-              <li>Removing the media or deleting the app removes JustGo’s local use of that media, subject to the device’s own backup behavior.</li>
+              <li>The system Photos picker or file importer supplies only the selected item. JustGo redraws it as a metadata-free JPEG.</li>
+              <li>The app copy lives in Application Support, is excluded from backup, and can be removed through the station-media controls.</li>
+            </ul>
+          </section>
+
+          <section class="doc-section" id="scanner">
+            <p class="doc-label">06 / CHECKPOINT SCANNER</p>
+            <h2>Camera access follows a deliberate tap.</h2>
+            <p class="doc-lead">The latest main branch contains a station-sign scanner for authored indoor checkpoints. It is local assistive infrastructure, not proof of current indoor coverage.</p>
+            <ul>
+              <li>Opening Live Go or arriving at a transfer does not request camera access; the rider must tap Scan Sign.</li>
+              <li>Apple Vision recognizes text on-device and matches it against authored checkpoint aliases. JustGo does not save or upload frames.</li>
+              <li>VoiceOver, denied permission, an unavailable camera, or an unmatched sign uses manual checkpoint controls.</li>
+              <li>Current included packs contain zero verified transfer contexts and zero indoor-map data files, so the scanner does not create a verified route, platform, door, or transfer.</li>
             </ul>
           </section>
 
           <section class="doc-section" id="routing">
-            <p class="doc-label">06 / MAPS &amp; ROUTING</p>
+            <p class="doc-label">07 / MAPS &amp; ROUTING</p>
             <h2>Surface routing is not indoor routing.</h2>
-            <p>Place search, device location, and walking approaches may use Apple frameworks and therefore may require a network connection. Route-picker baselines are included for 46 cities; 12 catalog-only cities do not have one.</p>
+            <p>Place search, device location, walking approaches, and walking-step rerouting may use Apple frameworks and therefore may require a network connection. Route-picker baselines are included for 46 cities; 12 catalog-only cities do not have one. Transit previews draw the traveled segment of the selected OpenStreetMap-derived track geometry.</p>
             <div class="doc-callout warning">
               <strong>Current indoor boundary</strong>
               <p>Verified indoor transfer coverage is zero. Route-picker geometry and external maps do not establish an indoor path, platform, door, transfer, or verified step-free route.</p>
@@ -164,7 +179,7 @@
           </section>
 
           <section class="doc-section" id="failures">
-            <p class="doc-label">07 / FAILURES &amp; LABELS</p>
+            <p class="doc-label">08 / FAILURES &amp; LABELS</p>
             <h2>Failure does not change provenance.</h2>
             <div class="table-wrap">
               <table class="doc-table">
@@ -175,6 +190,7 @@
                   <tr><td><strong>External page unavailable</strong></td><td>Report that the provider page could not be opened; do not claim a local copy exists.</td></tr>
                   <tr><td><strong>Accessibility record absent</strong></td><td>Display unknown, not inaccessible and not step-free.</td></tr>
                   <tr><td><strong>Indoor transfer requested</strong></td><td>State that verified indoor transfer data is unavailable; do not promote geometry or personal media into indoor guidance.</td></tr>
+                  <tr><td><strong>Camera unavailable or denied</strong></td><td>Keep manual checkpoint controls available; do not treat camera access as required proof of location.</td></tr>
                 </tbody>
               </table>
             </div>
@@ -190,7 +206,7 @@
     <footer class="jg-footer">
       <a class="jg-brand" href="/justgo"><span class="logo-mark"><i></i><i></i><i></i></span><span>JustGo</span></a>
       <p class="footer-links"><a href="/justgo/docs/">Docs</a><a href="/justgo/docs/services/">Services</a><a href="/justgo/docs/data-sources/">Data sources</a><a href="/justgo/download/">Downloads</a><a href="/justgo/docs/privacy/">Privacy</a><a href="/justgo/docs/terms/">Terms</a><a href="/justgo/docs/attribution/">Attribution</a></p>
-      <p class="mono">SERVICES · ROUND 35 · VERIFIED 2026-07-15</p>
+      <p class="mono">SERVICES · MAIN f35e624 · DATA 2026-07-15</p>
     </footer>
   </body>
 </html>

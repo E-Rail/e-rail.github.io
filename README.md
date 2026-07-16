@@ -20,6 +20,11 @@ included offline city packs with 606 station records, and zero verified indoor
 transfers. A separate official-resource directory contains 330 hyperlink
 records across 275 unique targets.
 
+Current source snapshots are JustGo `main` at `f35e624` (the merged Round
+26–35 tree, with the data snapshot above unchanged) and ccmgr v0.1.3 at
+`c3de597`. The public ccmgr installer mirrors the current upstream `install.sh`
+byte-for-byte.
+
 The site is plain HTML, CSS, and JavaScript with no build step.
 
 Every page supports English and Simplified Chinese through the shared

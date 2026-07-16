@@ -653,7 +653,7 @@ body::before {
   transform: translate(38px, 34px) rotate(-5deg);
 }
 
-.universal-icon {
+.data-icon {
   color: #3b9b7b;
   font-size: 78px;
 }

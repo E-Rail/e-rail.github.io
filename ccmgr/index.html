@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="ccmgr is a fast Rust terminal UI for browsing, filtering, renaming, deleting, and resuming Claude Code sessions without a background service." />
+    <meta name="description" content="ccmgr v0.1.3 is a fast Rust terminal UI for browsing, filtering, renaming, deleting, and resuming Claude Code sessions with branch, age, and log-size context." />
     <meta name="theme-color" content="#102b24" />
     <title>ccmgr — Claude Code session manager</title>
     <script src="/language.js"></script>
@@ -34,10 +34,10 @@
     <main>
       <section class="hero">
         <div class="hero-copy">
-          <div class="release-line"><span>v0.1.2</span><i></i><span>RUST TUI</span><i></i><span>macOS / Linux</span></div>
+          <div class="release-line"><span>v0.1.3</span><i></i><span>RUST TUI</span><i></i><span>macOS / Linux</span></div>
           <p class="eyebrow">CLAUDE CODE SESSION MANAGER</p>
           <h1>Your sessions,<br /><em>without the archaeology.</em></h1>
-          <p class="hero-lead">Browse, live-filter, rename, delete, and resume Claude Code sessions from one fast terminal interface. No account, no indexer, no background service.</p>
+          <p class="hero-lead">Browse, live-filter, rename, delete, and resume Claude Code sessions with age, Git branch, and log-size context. No account, no indexer, no background service.</p>
           <div class="hero-actions">
             <a class="primary-button" href="#install"><span class="button-prompt">$</span> Install ccmgr <span>→</span></a>
             <a class="source-button" href="https://github.com/E-Rail/ccmgr" target="_blank" rel="noreferrer">Read the source <span>↗</span></a>
@@ -55,31 +55,31 @@
             <div class="terminal-bar">
               <div class="window-dots" aria-hidden="true"><i></i><i></i><i></i></div>
               <span>ccmgr — current project</span>
-              <span class="terminal-version">v0.1.2</span>
+              <span class="terminal-version">v0.1.3</span>
             </div>
             <div class="terminal-command"><span>~/Projects/rail</span><b>$</b> ccmgr<span class="cursor">_</span></div>
-            <div class="tui-box">
-              <div class="tui-title"><span>ccmgr — current project</span></div>
-              <div class="search-row"><span>Search:</span> release<span class="cursor">_</span></div>
+            <div class="tui-rule" aria-hidden="true"></div>
+            <div class="tui-heading">ccmgr — current project</div>
+            <div class="tui-search">
+              <span>⌕</span> session<span class="cursor">_</span>
             </div>
-            <div class="session-box">
-              <div class="session-title"><span>Sessions</span><small>3 matches</small></div>
+            <div class="session-list">
               <div class="session-row selected">
                 <b>❯</b>
-                <div><strong>Prepare v0.1.2 release</strong><span>2 minutes ago</span></div>
+                <div><strong>Redesign the session picker</strong><span>2m ago · main · 182.4KB</span></div>
               </div>
               <div class="session-row">
                 <b> </b>
-                <div><strong>Fix release archive names</strong><span>yesterday</span></div>
+                <div><strong>Fix session selection highlight</strong><span>1h ago · fix/ui-picker · 91.8KB</span></div>
               </div>
               <div class="session-row">
                 <b> </b>
-                <div><strong>Review npm release workflow</strong><span>3 days ago</span></div>
+                <div><strong>Review session metadata</strong><span>3d ago · release/npm · 64.2KB</span></div>
               </div>
             </div>
-            <div class="terminal-help">↑/↓ move · type to search · Enter resume · Ctrl+R rename · Ctrl+D delete · Tab scope</div>
+            <div class="terminal-help">Type to search · ↑/↓ move · Enter resume · Ctrl+R rename · Ctrl+D delete · Tab scope · Ctrl+C quit</div>
           </div>
-          <div class="terminal-note"><span>01</span><p>Reads Claude Code’s existing JSONL session logs directly.</p></div>
+          <div class="terminal-note"><span>01</span><p>v0.1.3 reads age, Git branch, and log size directly from each session.</p></div>
         </div>
       </section>
 
@@ -143,11 +143,11 @@
         </div>
 
         <div class="feature-grid">
-          <article><span class="feature-index">01</span><div class="feature-glyph">⌕</div><h3>Live-filter sessions</h3><p>Start typing to filter by title immediately. Sessions remain ordered by most recent modification time.</p></article>
+          <article><span class="feature-index">01</span><div class="feature-glyph">⌕</div><h3>Filter with context</h3><p>Start typing to filter by title. Each row shows relative age, Git branch when present, and JSONL log size.</p></article>
           <article><span class="feature-index">02</span><div class="feature-glyph">↵</div><h3>Resume in context</h3><p>Press Enter to run <code>claude --resume &lt;id&gt;</code> from the session’s original working directory.</p></article>
           <article><span class="feature-index">03</span><div class="feature-glyph">Aa</div><h3>Rename append-only</h3><p>Renaming appends a new <code>ai-title</code> event to the JSONL log, matching Claude Code’s own convention.</p></article>
-          <article><span class="feature-index">04</span><div class="feature-glyph">⇥</div><h3>Switch scope</h3><p>Use Tab to move between the current project and every project under Claude Code’s session store.</p></article>
-          <article><span class="feature-index">05</span><div class="feature-glyph">⌫</div><h3>Delete with confirmation</h3><p>Ctrl+D asks first, then removes the session log and its file-history sidecar directory when present.</p></article>
+          <article><span class="feature-index">04</span><div class="feature-glyph">⇥</div><h3>Switch scope</h3><p>Use Tab to move between the current project and every project; all-project rows also show the recorded working directory.</p></article>
+          <article><span class="feature-index">05</span><div class="feature-glyph">⌫</div><h3>Delete with confirmation</h3><p>Ctrl+D asks first, then removes the session log and its file-history sidecar directory. Rename, delete, and resume statuses clear after three seconds.</p></article>
           <article><span class="feature-index">06</span><div class="feature-glyph">↻</div><h3>Update in place</h3><p>Run <code>ccmgr update</code> to fetch the latest matching release and atomically replace the current non-npm binary.</p></article>
         </div>
       </section>
@@ -164,7 +164,7 @@
         <div class="data-pipeline" aria-label="ccmgr data flow">
           <div><span>01</span><strong>DISCOVER</strong><code>~/.claude/projects</code><p>Locate project directories in Claude Code’s local session store.</p></div>
           <i aria-hidden="true">→</i>
-          <div><span>02</span><strong>PARSE</strong><code>*.jsonl</code><p>Read titles, working directories, IDs, and modification times.</p></div>
+          <div><span>02</span><strong>PARSE</strong><code>*.jsonl</code><p>Read titles, working directories, IDs, Git branches, modification times, and log sizes.</p></div>
           <i aria-hidden="true">→</i>
           <div><span>03</span><strong>ACT</strong><code>claude --resume</code><p>Hand the selected session back to the Claude Code CLI.</p></div>
         </div>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="JustGo privacy policy covering on-device station media, Apple services, Hong Kong live-arrival API requests, external links, website language preferences, retention, and deletion." />
+    <meta name="description" content="JustGo privacy policy covering on-device station media and sign recognition, Apple services, Hong Kong live-arrival API requests, external links, website language preferences, retention, and deletion." />
     <meta name="theme-color" content="#f8faf4" />
     <title>JustGo Privacy Policy</title>
     <script src="/language.js"></script>
@@ -34,12 +34,13 @@
         <div class="docs-hero-copy">
           <p class="docs-breadcrumb"><a href="/justgo/docs/">Docs</a> / Privacy</p>
           <h1>Local by default.<br /><em>Online when named.</em></h1>
-          <p>This policy explains what remains on the device, which actions contact Apple or DATA.GOV.HK, what happens when a rider opens an external link, and how this website remembers a language choice.</p>
+          <p>This policy explains what remains on the device, when a user-started sign scan can request camera access, which actions contact Apple or DATA.GOV.HK, what happens when a rider opens an external link, and how this website remembers a language choice.</p>
         </div>
         <aside class="docs-status" aria-label="Privacy policy status">
           <span class="status-label">PRIVACY STATUS</span>
           <div class="status-row"><span>Effective</span><strong>2026-07-16</strong></div>
           <div class="status-row"><span>Personal station media</span><strong>On-device only</strong></div>
+          <div class="status-row"><span>Station-sign scan</span><strong>User-started · on-device</strong></div>
           <div class="status-row"><span>Live transit request</span><strong>Hong Kong only</strong></div>
           <div class="status-row"><span>Website preference</span><strong>Language only</strong></div>
         </aside>
@@ -64,6 +65,7 @@
           <a href="#included">Included app data</a>
           <a href="#local">On-device records</a>
           <a href="#network">Network requests</a>
+          <a href="#permissions">Camera &amp; media input</a>
           <a href="#external">External links</a>
           <a href="#website">This website</a>
           <a href="#retention">Retention &amp; deletion</a>
@@ -80,6 +82,7 @@
             <div class="policy-summary">
               <div><strong>Included data is local app content</strong><p>The 58-city catalog, 46 route-picker baselines, two offline city packs, and included pilot media do not require opening their source websites during ordinary use.</p></div>
               <div><strong>Personal station media stays on-device</strong><p>It remains entirely on-device and is never used as verified routing, transfer, platform, or door data.</p></div>
+              <div><strong>Station-sign recognition stays on-device</strong><p>A camera request can occur only after the rider taps Scan Sign. Frames are processed locally and are not saved or uploaded.</p></div>
               <div><strong>Hong Kong live arrivals are online</strong><p>Viewing current arrivals contacts the DATA.GOV.HK government transport API for the referenced station and line.</p></div>
               <div><strong>Official-resource links require a tap</strong><p>The 330 directory records are URL metadata. Their 275 unique targets are not bundled, fetched, previewed, cached, prefetched, or redistributed by JustGo.</p></div>
             </div>
@@ -100,9 +103,9 @@
                 <thead><tr><th>Local record</th><th>Purpose</th><th>Sharing behavior</th></tr></thead>
                 <tbody>
                   <tr><td><strong>Preferences and accessibility settings</strong></td><td>Remember the rider’s chosen app behavior.</td><td>Remain in app storage unless an operating-system service handles a related permission or request.</td></tr>
-                  <tr><td><strong>Saved and recent trips</strong></td><td>Offer history, favorites, and trip resumption.</td><td>Not published as city-pack data.</td></tr>
-                  <tr><td><strong>Personal accessibility notes</strong></td><td>Let the rider remember local concerns.</td><td>Not community-verified or uploaded by the current personal layer.</td></tr>
-                  <tr><td><strong>Personal station media</strong></td><td>Private visual context chosen by the rider.</td><td>Remains entirely on-device; never used as verified routing, transfer, platform, or door data.</td></tr>
+                  <tr><td><strong>Saved and recent trips</strong></td><td>Offer history, reuse, and trip resumption.</td><td>Not published as city-pack data.</td></tr>
+                  <tr><td><strong>Station Quick Tags</strong></td><td>Remember Home, Work, or a custom station label for one-tap planner input.</td><td>Stored locally; no account or synchronization service receives it.</td></tr>
+                  <tr><td><strong>Personal station media</strong></td><td>Private visual context chosen by the rider.</td><td>Re-encoded as a metadata-free JPEG in Application Support, excluded from backup, and never used as verified routing, transfer, platform, or door data.</td></tr>
                   <tr><td><strong>Local notifications</strong></td><td>Show rider-requested reminders.</td><td>Scheduled through iOS; no remote push service is required for a local notification.</td></tr>
                 </tbody>
               </table>
@@ -123,10 +126,23 @@
               </table>
             </div>
             <p>Hong Kong transit data and live arrivals are attributed to MTR Corporation Limited and DATA.GOV.HK under the <a href="https://data.gov.hk/en/terms-and-conditions" target="_blank" rel="noreferrer">DATA.GOV.HK Terms of Use</a>. JustGo does not control provider logging, retention, or service availability.</p>
+            <p>On-device station-sign recognition does not contact an OCR or image-analysis provider. Camera frames are processed by Apple Vision APIs on the device and are not retained by JustGo.</p>
+          </section>
+
+          <section class="doc-section" id="permissions">
+            <p class="doc-label">05 / CAMERA &amp; MEDIA INPUT</p>
+            <h2>A scan starts only when the rider asks.</h2>
+            <ul>
+              <li>Opening Live Go or reaching a transfer does not request camera access. The request can occur only after the rider taps Scan Sign in verified indoor guidance.</li>
+              <li>Recognized sign text is matched on-device against authored checkpoint aliases. Frames are not saved or uploaded.</li>
+              <li>VoiceOver uses manual checkpoint confirmation before the camera starts. Denied or unavailable camera access also falls back to manual controls.</li>
+              <li>Current included packs contain zero verified transfer contexts, so the scanner code does not create current indoor-routing coverage.</li>
+              <li>Personal station media is chosen through the system Photos picker or file importer. JustGo redraws it into a metadata-free JPEG, stores only the app copy, and excludes that storage directory from backup.</li>
+            </ul>
           </section>
 
           <section class="doc-section" id="external">
-            <p class="doc-label">05 / EXTERNAL LINKS</p>
+            <p class="doc-label">06 / EXTERNAL LINKS</p>
             <h2>Nothing opens until the rider asks.</h2>
             <p class="doc-lead">Round 35’s official-resource directory contains 330 hyperlink records—275 Maps, 28 Travel, 6 Accessibility, and 21 Help—across 275 unique targets.</p>
             <ul>
@@ -140,33 +156,33 @@
           </section>
 
           <section class="doc-section" id="website">
-            <p class="doc-label">06 / THIS WEBSITE</p>
+            <p class="doc-label">07 / THIS WEBSITE</p>
             <h2>One preference is remembered.</h2>
             <p>The language switcher stores the selected display language as <code>erail-language</code> in browser local storage and as the first-party <code>erail_language</code> cookie. The cookie is limited to the site path, uses <code>SameSite=Lax</code>, and is marked <code>Secure</code> when the page is served over HTTPS. If no choice is saved, the page uses the browser’s preferred language.</p>
             <p>The site is hosted with GitHub Pages and loads font resources from Google Fonts. Those providers may receive ordinary web-request metadata under their own policies. The JustGo pages do not use the language preference to build a transit profile.</p>
           </section>
 
           <section class="doc-section" id="retention">
-            <p class="doc-label">07 / RETENTION &amp; DELETION</p>
+            <p class="doc-label">08 / RETENTION &amp; DELETION</p>
             <h2>Controls live where the record lives.</h2>
             <ul>
-              <li>Delete saved trips, favorites, reports, personal station media, and related records through their app controls where available.</li>
+              <li>Delete saved trips, trip records, Station Quick Tags, personal station media, and related records through their app controls where available.</li>
               <li>Delete the app and its data to remove the app container, subject to iOS backup and restore settings.</li>
-              <li>Revoke location or notification permission in iOS Settings to stop future use of those permissions.</li>
+              <li>Revoke location, camera, or notification permission in iOS Settings to stop future use of those permissions.</li>
               <li>A live-arrival response is provider data; provider-side request logs are controlled by DATA.GOV.HK and its infrastructure, not by JustGo.</li>
               <li>Clear this site’s cookie and local storage in browser settings to remove the saved language preference.</li>
             </ul>
           </section>
 
           <section class="doc-section" id="security">
-            <p class="doc-label">08 / SECURITY &amp; CHILDREN</p>
+            <p class="doc-label">09 / SECURITY &amp; CHILDREN</p>
             <h2>Device protections still matter.</h2>
             <p>On-device records rely on the normal iOS app sandbox and device protections. Network requests use the operating system’s networking facilities. No method can eliminate every risk, especially on a compromised device, browser, or network.</p>
             <p>JustGo is a general transit utility. It does not ask a rider to create a public JustGo profile for the features described in this policy. Third-party services may apply their own age requirements and privacy rules.</p>
           </section>
 
           <section class="doc-section" id="changes">
-            <p class="doc-label">09 / CHANGES &amp; CONTACT</p>
+            <p class="doc-label">10 / CHANGES &amp; CONTACT</p>
             <h2>A changed data flow requires a changed policy.</h2>
             <p>If JustGo adds account sync, uploads, analytics, advertising, another live provider, or a different use of personal media, this policy will be revised and the effective date will change.</p>
             <p>Privacy questions: <a href="mailto:songyf_ethan@hotmail.com">songyf_ethan@hotmail.com</a>.</p>
