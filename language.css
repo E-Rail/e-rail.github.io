@@ -13,7 +13,7 @@ html.i18n-pending body {
   border-radius: 999px;
   background: color-mix(in srgb, var(--cream, #fffdf8) 74%, transparent);
   font-family: var(--mono, monospace);
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.04em;
   line-height: 1;
@@ -64,7 +64,7 @@ html.i18n-pending body {
 }
 
 html[lang="zh-CN"] body {
-  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", var(--sans, sans-serif);
+  font-family: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", var(--sans, sans-serif);
 }
 
 html[lang="zh-CN"] .mono,

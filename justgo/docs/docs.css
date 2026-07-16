@@ -573,6 +573,152 @@ code {
   font-size: 9px;
 }
 
+/* Documentation favors sustained reading over the smaller display typography
+   used by the product mockups. */
+.docs-breadcrumb,
+.docs-eyebrow,
+.doc-label,
+.doc-source,
+.mini-label {
+  color: var(--accent-text);
+  font-size: 11px;
+}
+
+.status-label {
+  font-size: 11px;
+}
+
+.docs-nav nav a[aria-current="page"],
+.docs-sidebar > span,
+.pipeline-step > span,
+.doc-table th,
+.service-card .mini-label {
+  color: var(--accent-text);
+}
+
+.docs-hero-copy > p:last-child {
+  font-size: 19px;
+  line-height: 1.72;
+}
+
+.status-row span,
+.status-row strong {
+  font-size: 12px;
+}
+
+.docs-tabs a,
+.docs-sidebar a {
+  font-size: 12px;
+}
+
+.docs-sidebar > span {
+  font-size: 10px;
+}
+
+.doc-section h4 {
+  font-size: 17px;
+}
+
+.doc-lead {
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+.doc-section > p:not(.doc-label):not(.doc-lead),
+.doc-section li {
+  color: #49635b;
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.doc-callout strong {
+  font-size: 15px;
+}
+
+.doc-callout p {
+  color: #49635b;
+  font-size: 15px;
+}
+
+.fact span {
+  font-size: 13px;
+}
+
+.pipeline-step strong {
+  font-size: 15px;
+}
+
+.pipeline-step > span {
+  font-size: 10px;
+}
+
+.pipeline-step p {
+  font-size: 14px;
+}
+
+.doc-table th {
+  font-size: 10px;
+}
+
+.doc-table td,
+.doc-table td strong {
+  color: #49635b;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.doc-table td strong {
+  color: var(--ink);
+}
+
+.status-pill {
+  font-size: 9px;
+}
+
+.score-formula {
+  font-size: 13px;
+}
+
+.city-cloud span {
+  font-size: 12px;
+}
+
+.service-card strong {
+  font-size: 17px;
+}
+
+.service-card p {
+  font-size: 14px;
+}
+
+.service-detail-head h3 {
+  font-size: 18px;
+}
+
+.detail-list strong {
+  font-size: 12px;
+}
+
+.detail-list span {
+  font-size: 13px;
+}
+
+.policy-summary strong {
+  font-size: 16px;
+}
+
+.policy-summary p {
+  font-size: 14px;
+}
+
+.doc-button {
+  font-size: 13px;
+}
+
+.docs-footer-note {
+  font-size: 11px;
+}
+
 @media (max-width: 1020px) {
   .docs-hero,
   .docs-tabs-inner,

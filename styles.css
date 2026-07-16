@@ -2,15 +2,15 @@
   --paper: #f3efe5;
   --paper-deep: #e8e1d3;
   --ink: #16252a;
-  --muted: #6e7774;
+  --muted: #53615d;
   --line: rgba(22, 37, 42, 0.16);
-  --orange: #f0643b;
-  --orange-dark: #d44c25;
+  --orange: #b84322;
+  --orange-dark: #96391d;
   --blue: #326bff;
   --green: #1d8a68;
   --white: #fffdf8;
   --mono: "DM Mono", monospace;
-  --sans: "Manrope", sans-serif;
+  --sans: "Source Sans 3", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 * {
@@ -26,7 +26,10 @@ body {
   color: var(--ink);
   background: var(--paper);
   font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 body::before {
@@ -852,6 +855,86 @@ footer p {
   margin: 0;
 }
 
+/* Readability baseline: preserve the editorial layout while keeping supporting
+   text comfortably legible on laptop and mobile displays. */
+.status,
+.route-label,
+.label {
+  font-size: 12px;
+}
+
+.portrait-stamp,
+.card-caption span,
+.project-index,
+.video-meta {
+  font-size: 11px;
+}
+
+.card-caption strong {
+  font-size: 13px;
+}
+
+.tab {
+  font-size: 15px;
+}
+
+.tab span {
+  color: #5f6b67;
+  font-size: 11px;
+}
+
+.featured .project-index {
+  color: #b0cdc2;
+}
+
+.button.bilibili {
+  color: #a92e5c;
+}
+
+.about-copy > p {
+  font-size: 18px;
+}
+
+.interest-grid strong {
+  font-size: 16px;
+}
+
+.interest-grid p {
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.button,
+.text-link {
+  font-size: 14px;
+}
+
+.project-copy > p {
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.tags span,
+.duration {
+  font-size: 10px;
+}
+
+.video-copy h3 {
+  font-size: 18px;
+}
+
+.large-video .video-copy h3 {
+  font-size: 28px;
+}
+
+.video-copy p {
+  font-size: 15px;
+}
+
+footer {
+  font-size: 13px;
+}
+
 .footer-route {
   width: min(340px, 30vw);
   display: flex;
@@ -956,7 +1039,7 @@ footer p {
     flex: 0 0 auto;
     width: max-content;
     padding: 0 20px;
-    font-size: 11px;
+    font-size: 13px;
   }
 
   .tab-line {

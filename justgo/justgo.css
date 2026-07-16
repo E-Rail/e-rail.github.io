@@ -2,14 +2,15 @@
   --bg: #eef2e8;
   --ink: #113f35;
   --ink-deep: #0b2f29;
-  --muted: #667c74;
+  --muted: #52675f;
   --lime: #c9f34a;
   --cream: #fbfcf6;
   --yellow: #f2ca3a;
   --blue: #4385f5;
+  --accent-text: #276f5a;
   --line: rgba(17, 63, 53, 0.15);
   --mono: "DM Mono", monospace;
-  --sans: "Manrope", sans-serif;
+  --sans: "Source Sans 3", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -20,7 +21,10 @@ body {
   color: var(--ink);
   background: var(--bg);
   font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 a { color: inherit; text-decoration: none; }
 p, h1, h2, h3, blockquote { margin-top: 0; }
@@ -843,6 +847,109 @@ body::before {
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px 18px;
+}
+
+/* Readability baseline for product and documentation chrome. Decorative phone
+   UI remains compact because it is an illustration, not the reading surface. */
+.jg-nav nav a,
+.back-link,
+.github-button,
+.watch-link {
+  font-size: 13px;
+}
+
+.big-button {
+  font-size: 14px;
+}
+
+.availability,
+.built-for,
+.section-code {
+  font-size: 11px;
+}
+
+.built-for > span,
+.section-code {
+  color: var(--accent-text);
+}
+
+.built-for > span,
+.feature-number,
+.local-icon span {
+  font-size: 10px;
+}
+
+.feature-number {
+  color: #4f665e;
+}
+
+.statement-copy > p {
+  color: #aebfb9;
+  font-size: 18px;
+}
+
+.confidence-legend span {
+  color: #afc2bb;
+  font-size: 11px;
+}
+
+.confidence-legend strong {
+  font-size: 13px;
+}
+
+.section-head > p:last-child {
+  font-size: 16px;
+}
+
+.source-icon small {
+  font-size: 9px;
+}
+
+.feature-card h3 {
+  font-size: 22px;
+}
+
+.feature-card p {
+  font-size: 15px;
+  line-height: 1.72;
+}
+
+.city-copy > p:not(.section-code) {
+  color: #b2c8c0;
+  font-size: 16px;
+}
+
+.city-copy a,
+.cta-source {
+  font-size: 13px;
+}
+
+.city-list span {
+  color: #a6beb5;
+  font-size: 10px;
+}
+
+.city-list p {
+  color: #bdd0c8;
+  font-size: 14px;
+}
+
+.city-list p small {
+  color: #9db9af;
+  font-size: 9px;
+}
+
+.cta > p:not(.section-code) {
+  color: #bdcdc7;
+  font-size: 16px;
+}
+
+.jg-footer {
+  font-size: 12px;
+}
+
+.jg-footer .mono {
+  font-size: 10px;
 }
 
 @media (max-width: 1020px) {
