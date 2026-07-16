@@ -3,6 +3,8 @@
 Personal website for Ethan Song, hosted with GitHub Pages.
 
 - `/` — introduction, GitHub projects, and Bilibili videos
+- `/ccmgr` — product page, install options, internals, and keybindings for [ccmgr](https://github.com/E-Rail/ccmgr)
+- `/ccmgr/install.sh` — first-party mirror of the upstream ccmgr installer
 - `/justgo` — current product page for [JustGo](https://github.com/E-Rail/JustGo)
 - `/justgo/docs` — implementation-level routing, confidence, coverage, and accessibility documentation
 - `/justgo/docs/services` — runtime service catalog and network boundaries

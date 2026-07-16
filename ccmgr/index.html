@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="ccmgr is a fast Rust terminal UI for browsing, filtering, renaming, deleting, and resuming Claude Code sessions without a background service." />
+    <meta name="theme-color" content="#102b24" />
+    <title>ccmgr — Claude Code session manager</title>
+    <script src="/language.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/ccmgr/ccmgr.css" />
+    <link rel="stylesheet" href="/language.css" />
+  </head>
+  <body>
+    <header class="cc-nav">
+      <a class="cc-brand" href="/ccmgr/" aria-label="ccmgr home">
+        <span class="prompt-mark" aria-hidden="true"><i>&gt;</i><b>_</b></span>
+        <span>ccmgr</span>
+      </a>
+      <nav aria-label="ccmgr navigation">
+        <a href="#install">Install</a>
+        <a href="#features">Features</a>
+        <a href="#internals">How it works</a>
+        <a href="#keys">Keybindings</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="back-link" href="/">Ethan’s site</a>
+        <a class="github-link" href="https://github.com/E-Rail/ccmgr" target="_blank" rel="noreferrer">GitHub <span>↗</span></a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="release-line"><span>v0.1.2</span><i></i><span>RUST TUI</span><i></i><span>macOS / Linux</span></div>
+          <p class="eyebrow">CLAUDE CODE SESSION MANAGER</p>
+          <h1>Your sessions,<br /><em>without the archaeology.</em></h1>
+          <p class="hero-lead">Browse, live-filter, rename, delete, and resume Claude Code sessions from one fast terminal interface. No account, no indexer, no background service.</p>
+          <div class="hero-actions">
+            <a class="primary-button" href="#install"><span class="button-prompt">$</span> Install ccmgr <span>→</span></a>
+            <a class="source-button" href="https://github.com/E-Rail/ccmgr" target="_blank" rel="noreferrer">Read the source <span>↗</span></a>
+          </div>
+          <dl class="hero-facts">
+            <div><dt>SESSION SOURCE</dt><dd>~/.claude/projects</dd></div>
+            <div><dt>DEFAULT SCOPE</dt><dd>current project</dd></div>
+            <div><dt>RUNTIME</dt><dd>one native binary</dd></div>
+          </dl>
+        </div>
+
+        <div class="terminal-stage" role="img" aria-label="Illustrative ccmgr terminal interface showing searchable Claude Code sessions">
+          <div class="terminal-shadow" aria-hidden="true"></div>
+          <div class="terminal">
+            <div class="terminal-bar">
+              <div class="window-dots" aria-hidden="true"><i></i><i></i><i></i></div>
+              <span>ccmgr — current project</span>
+              <span class="terminal-version">v0.1.2</span>
+            </div>
+            <div class="terminal-command"><span>~/Projects/rail</span><b>$</b> ccmgr<span class="cursor">_</span></div>
+            <div class="tui-box">
+              <div class="tui-title"><span>ccmgr — current project</span></div>
+              <div class="search-row"><span>Search:</span> release<span class="cursor">_</span></div>
+            </div>
+            <div class="session-box">
+              <div class="session-title"><span>Sessions</span><small>3 matches</small></div>
+              <div class="session-row selected">
+                <b>❯</b>
+                <div><strong>Prepare v0.1.2 release</strong><span>2 minutes ago</span></div>
+              </div>
+              <div class="session-row">
+                <b> </b>
+                <div><strong>Fix release archive names</strong><span>yesterday</span></div>
+              </div>
+              <div class="session-row">
+                <b> </b>
+                <div><strong>Review npm release workflow</strong><span>3 days ago</span></div>
+              </div>
+            </div>
+            <div class="terminal-help">↑/↓ move · type to search · Enter resume · Ctrl+R rename · Ctrl+D delete · Tab scope</div>
+          </div>
+          <div class="terminal-note"><span>01</span><p>Reads Claude Code’s existing JSONL session logs directly.</p></div>
+        </div>
+      </section>
+
+      <section class="install-section" id="install">
+        <div class="section-heading">
+          <div>
+            <p class="section-label">01 / INSTALL</p>
+            <h2>One command.<br />One native binary.</h2>
+          </div>
+          <p>Use the E-Rail mirror, npm, or build from source. The install script selects the matching macOS or Linux release for x86_64 or ARM64.</p>
+        </div>
+
+        <div class="install-grid">
+          <article class="install-card mirror-card">
+            <div class="card-head"><span>RECOMMENDED</span><strong>E-Rail mirror</strong><small>latest GitHub release</small></div>
+            <div class="command-block">
+              <span class="command-prompt">$</span>
+              <code>curl -fsSL https://e-rail.github.io/ccmgr/install.sh | bash</code>
+              <button type="button" class="copy-button" data-copy="curl -fsSL https://e-rail.github.io/ccmgr/install.sh | bash" aria-label="Copy mirror install command">COPY</button>
+            </div>
+            <p>Installs to <code>~/.local/bin</code> by default. Set <code>CCMGR_INSTALL_DIR</code> to choose another destination.</p>
+            <div class="install-links">
+              <a href="/ccmgr/install.sh">Inspect install.sh →</a>
+              <a href="https://github.com/E-Rail/ccmgr/releases" target="_blank" rel="noreferrer">View releases ↗</a>
+            </div>
+          </article>
+
+          <article class="install-card">
+            <div class="card-head"><span>PACKAGE</span><strong>npm</strong><small>global command</small></div>
+            <div class="command-block compact">
+              <span class="command-prompt">$</span>
+              <code>npm install -g ccmgr</code>
+              <button type="button" class="copy-button" data-copy="npm install -g ccmgr" aria-label="Copy npm install command">COPY</button>
+            </div>
+            <p>The npm package downloads the native release matching the package version and exposes the <code>ccmgr</code> command.</p>
+          </article>
+
+          <article class="install-card">
+            <div class="card-head"><span>TOOLCHAIN</span><strong>Build from source</strong><small>Rust / Cargo</small></div>
+            <div class="command-block compact">
+              <span class="command-prompt">$</span>
+              <code>cargo install --path .</code>
+              <button type="button" class="copy-button" data-copy="cargo install --path ." aria-label="Copy Cargo install command">COPY</button>
+            </div>
+            <p>Clone the repository and compile the release locally with the Rust toolchain.</p>
+          </article>
+        </div>
+
+        <div class="compatibility-row">
+          <span>Darwin · x86_64</span><span>Darwin · aarch64</span><span>Linux · x86_64</span><span>Linux · aarch64</span>
+        </div>
+      </section>
+
+      <section class="features-section" id="features">
+        <div class="section-heading inverted">
+          <div>
+            <p class="section-label">02 / THE LOOP</p>
+            <h2>Find the thread.<br />Get back to work.</h2>
+          </div>
+          <p>ccmgr keeps the interaction deliberately small: select a scope, narrow the list, then resume or maintain the session you need.</p>
+        </div>
+
+        <div class="feature-grid">
+          <article><span class="feature-index">01</span><div class="feature-glyph">⌕</div><h3>Live-filter sessions</h3><p>Start typing to filter by title immediately. Sessions remain ordered by most recent modification time.</p></article>
+          <article><span class="feature-index">02</span><div class="feature-glyph">↵</div><h3>Resume in context</h3><p>Press Enter to run <code>claude --resume &lt;id&gt;</code> from the session’s original working directory.</p></article>
+          <article><span class="feature-index">03</span><div class="feature-glyph">Aa</div><h3>Rename append-only</h3><p>Renaming appends a new <code>ai-title</code> event to the JSONL log, matching Claude Code’s own convention.</p></article>
+          <article><span class="feature-index">04</span><div class="feature-glyph">⇥</div><h3>Switch scope</h3><p>Use Tab to move between the current project and every project under Claude Code’s session store.</p></article>
+          <article><span class="feature-index">05</span><div class="feature-glyph">⌫</div><h3>Delete with confirmation</h3><p>Ctrl+D asks first, then removes the session log and its file-history sidecar directory when present.</p></article>
+          <article><span class="feature-index">06</span><div class="feature-glyph">↻</div><h3>Update in place</h3><p>Run <code>ccmgr update</code> to fetch the latest matching release and atomically replace the current non-npm binary.</p></article>
+        </div>
+      </section>
+
+      <section class="internals-section" id="internals">
+        <div class="section-heading">
+          <div>
+            <p class="section-label">03 / INTERNALS</p>
+            <h2>Local files in.<br />Terminal actions out.</h2>
+          </div>
+          <p>No database, account, or resident process sits between ccmgr and the session files Claude Code already maintains.</p>
+        </div>
+
+        <div class="data-pipeline" aria-label="ccmgr data flow">
+          <div><span>01</span><strong>DISCOVER</strong><code>~/.claude/projects</code><p>Locate project directories in Claude Code’s local session store.</p></div>
+          <i aria-hidden="true">→</i>
+          <div><span>02</span><strong>PARSE</strong><code>*.jsonl</code><p>Read titles, working directories, IDs, and modification times.</p></div>
+          <i aria-hidden="true">→</i>
+          <div><span>03</span><strong>ACT</strong><code>claude --resume</code><p>Hand the selected session back to the Claude Code CLI.</p></div>
+        </div>
+
+        <div class="internals-grid">
+          <div><span>NO DAEMON</span><strong>Nothing waits in the background.</strong><p>The binary scans on launch and when the session list needs to reload.</p></div>
+          <div><span>NO REINDEX</span><strong>Claude Code remains the source.</strong><p>ccmgr reads the existing JSONL logs instead of maintaining a second session database.</p></div>
+          <div><span>NO PATH GUESSING</span><strong>Resume from the recorded cwd.</strong><p>The original working directory is used when handing a session back to the CLI.</p></div>
+          <div><span>SMALL RELEASE</span><strong>Optimized as a native binary.</strong><p>The Rust release profile enables size optimization, LTO, stripping, and one codegen unit.</p></div>
+        </div>
+      </section>
+
+      <section class="keys-section" id="keys">
+        <div class="section-heading compact-heading">
+          <div>
+            <p class="section-label">04 / KEYBINDINGS</p>
+            <h2>Stay on the keyboard.</h2>
+          </div>
+          <p>The whole manager is designed around a short, visible set of terminal controls.</p>
+        </div>
+
+        <div class="keys-layout">
+          <div class="key-table" role="table" aria-label="ccmgr keybindings">
+            <div class="key-row key-header" role="row"><span role="columnheader">KEY</span><span role="columnheader">ACTION</span></div>
+            <div class="key-row" role="row"><span role="cell"><kbd>↑</kbd> <kbd>↓</kbd></span><span role="cell">Move selection</span></div>
+            <div class="key-row" role="row"><span role="cell"><kbd>type</kbd></span><span role="cell">Live-filter by title</span></div>
+            <div class="key-row" role="row"><span role="cell"><kbd>Enter</kbd></span><span role="cell">Resume selected session</span></div>
+            <div class="key-row" role="row"><span role="cell"><kbd>Ctrl</kbd> + <kbd>R</kbd></span><span role="cell">Rename selected session</span></div>
+            <div class="key-row" role="row"><span role="cell"><kbd>Ctrl</kbd> + <kbd>D</kbd></span><span role="cell">Delete after confirmation</span></div>
+            <div class="key-row" role="row"><span role="cell"><kbd>Tab</kbd></span><span role="cell">Toggle current / all projects</span></div>
+            <div class="key-row" role="row"><span role="cell"><kbd>Ctrl</kbd> + <kbd>C</kbd></span><span role="cell">Quit</span></div>
+          </div>
+
+          <aside class="command-reference">
+            <p class="mini-label">COMMAND REFERENCE</p>
+            <div><code>ccmgr</code><span>Open sessions for the current project.</span></div>
+            <div><code>ccmgr --all</code><span>Start with sessions from every project.</span></div>
+            <div><code>ccmgr update</code><span>Update the current non-npm binary.</span></div>
+            <div><code>ccmgr uninstall</code><span>Remove the current non-npm binary after confirmation.</span></div>
+            <p class="npm-note">npm installs use <code>npm install -g ccmgr@latest</code> and <code>npm uninstall -g ccmgr</code> instead.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="cta-section">
+        <div class="cta-code" aria-hidden="true"><span>fn main()</span><i>{</i><b>resume();</b><i>}</i></div>
+        <p class="section-label">OPEN SOURCE · MIT</p>
+        <h2>Less session hunting.<br />More building.</h2>
+        <p>Read the Rust source, inspect the installer, or open the terminal and pick up where you left off.</p>
+        <div class="hero-actions centered">
+          <a class="primary-button light" href="#install"><span class="button-prompt">$</span> Install ccmgr <span>→</span></a>
+          <a class="source-button light-link" href="https://github.com/E-Rail/ccmgr" target="_blank" rel="noreferrer">Open E-Rail/ccmgr <span>↗</span></a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="cc-footer">
+      <a class="cc-brand" href="/ccmgr/"><span class="prompt-mark" aria-hidden="true"><i>&gt;</i><b>_</b></span><span>ccmgr</span></a>
+      <p><a href="#install">Install</a><a href="#features">Features</a><a href="#internals">How it works</a><a href="https://github.com/E-Rail/ccmgr" target="_blank" rel="noreferrer">GitHub ↗</a></p>
+      <span class="footer-meta">RUST · RATATUI · CROSTERM</span>
+    </footer>
+
+    <div class="copy-status" aria-live="polite" aria-atomic="true"></div>
+    <script src="/ccmgr/ccmgr.js"></script>
+  </body>
+</html>

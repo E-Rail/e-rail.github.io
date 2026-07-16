@@ -703,6 +703,14 @@ h2 {
   font-weight: 800;
 }
 
+.ccmgr-symbol {
+  border: 1px solid rgba(201, 242, 91, 0.5);
+  color: #c9f25b;
+  background: #0d2721;
+  box-shadow: 5px 5px 0 rgba(18, 60, 51, 0.16);
+  font: 500 19px var(--mono);
+}
+
 .rail-symbol {
   border-radius: 50%;
   background: var(--blue);
