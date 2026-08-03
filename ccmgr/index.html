@@ -5,15 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="ccmgr v0.1.3 is a fast Rust terminal UI for browsing, filtering, renaming, deleting, and resuming Claude Code sessions with branch, age, and log-size context." />
     <meta name="theme-color" content="#102b24" />
+    <meta name="color-scheme" content="light" />
     <title>ccmgr — Claude Code session manager</title>
     <script src="/language.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Noto+Sans+SC:wght@400;500;600;700;800&amp;family=Source+Sans+3:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/base.css" />
     <link rel="stylesheet" href="/ccmgr/ccmgr.css" />
     <link rel="stylesheet" href="/language.css" />
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <header class="cc-nav">
       <a class="cc-brand" href="/ccmgr/" aria-label="ccmgr home">
         <span class="prompt-mark" aria-hidden="true"><i>&gt;</i><b>_</b></span>
@@ -31,7 +34,7 @@
       </div>
     </header>
 
-    <main>
+    <main id="main">
       <section class="hero">
         <div class="hero-copy">
           <div class="release-line"><span>v0.1.3</span><i></i><span>RUST TUI</span><i></i><span>macOS / Linux</span></div>

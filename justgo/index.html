@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Round 35 catalogs 58 cities with 46 route-picker baselines, 12 catalog-only cities, two included offline packs containing 606 stations, and 330 official-resource hyperlinks." />
     <meta name="theme-color" content="#eef2e8" />
+    <meta name="color-scheme" content="light" />
     <title>JustGo — Subway confidence for China</title>
     <script src="/language.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -13,10 +14,12 @@
       href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Noto+Sans+SC:wght@400;500;600;700;800&amp;family=Source+Sans+3:wght@400;500;600;700;800&amp;display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="/base.css" />
     <link rel="stylesheet" href="/justgo/justgo.css" />
     <link rel="stylesheet" href="/language.css" />
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <header class="jg-nav">
       <a class="jg-brand" href="/justgo">
         <span class="logo-mark"><i></i><i></i><i></i></span>
@@ -36,7 +39,7 @@
       </div>
     </header>
 
-    <main>
+    <main id="main">
       <section class="jg-hero">
         <div class="hero-copy">
           <div class="availability"><i></i> OPEN SOURCE · MAIN f35e624 · iOS &amp; iPadOS 18+</div>
@@ -58,11 +61,11 @@
           </div>
         </div>
 
-        <div class="phone-stage" aria-label="Illustrative JustGo route-confidence interface">
+        <div class="phone-stage" role="img" aria-label="Illustrative JustGo route-confidence interface">
           <div class="orbit orbit-one"></div>
           <div class="orbit orbit-two"></div>
-          <div class="city-label city-beijing">BEIJING <span>北京</span></div>
-          <div class="city-label city-shanghai">SHANGHAI <span>上海</span></div>
+          <div class="city-label city-beijing" data-i18n-ignore>BEIJING <span>北京</span></div>
+          <div class="city-label city-shanghai" data-i18n-ignore>SHANGHAI <span>上海</span></div>
           <div class="phone">
             <div class="dynamic-island"></div>
             <div class="phone-screen">

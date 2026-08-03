@@ -11,6 +11,7 @@
   const attributeOriginals = new WeakMap();
 
   const commonTranslations = {
+    "Skip to content": "跳到主要内容",
     "Product": "产品",
     "Docs": "文档",
     "Services": "服务",

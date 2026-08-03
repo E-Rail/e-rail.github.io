@@ -1,12 +1,5 @@
 const tabs = [...document.querySelectorAll("[data-tab]")];
 const panels = [...document.querySelectorAll("[data-panel]")];
-const indicator = document.querySelector(".tab-line");
-
-function moveIndicator(tab) {
-  if (!indicator || window.innerWidth <= 620) return;
-  indicator.style.width = `${tab.offsetWidth}px`;
-  indicator.style.transform = `translateX(${tab.offsetLeft}px)`;
-}
 
 function selectTab(name, updateHash = true) {
   const selected = tabs.find((tab) => tab.dataset.tab === name) || tabs[0];
@@ -24,7 +17,6 @@ function selectTab(name, updateHash = true) {
     panel.hidden = !active;
   });
 
-  moveIndicator(selected);
   if (updateHash) history.replaceState(null, "", `#${selected.dataset.tab}`);
 }
 
@@ -41,11 +33,6 @@ tabs.forEach((tab, index) => {
     tabs[nextIndex].focus();
     selectTab(tabs[nextIndex].dataset.tab);
   });
-});
-
-window.addEventListener("resize", () => {
-  const active = document.querySelector(".tab.active");
-  if (active) moveIndicator(active);
 });
 
 const initialTab = location.hash.replace("#", "");

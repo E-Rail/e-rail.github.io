@@ -3,7 +3,7 @@ html.i18n-pending body {
 }
 
 .language-switcher {
-  height: 36px;
+  height: var(--control-h, 2.375rem);
   display: inline-flex;
   flex: 0 0 auto;
   align-items: center;
@@ -12,16 +12,16 @@ html.i18n-pending body {
   border: 1px solid var(--line, rgba(22, 37, 42, 0.16));
   border-radius: 999px;
   background: color-mix(in srgb, var(--cream, #fffdf8) 74%, transparent);
-  font-family: var(--mono, monospace);
-  font-size: 11px;
+  font-family: var(--font-mono, var(--mono, monospace));
+  font-size: var(--text-2xs, 12px);
   font-weight: 500;
   letter-spacing: 0.04em;
   line-height: 1;
 }
 
 .language-switcher button {
-  min-width: 36px;
-  height: 28px;
+  min-width: 38px;
+  height: calc(var(--control-h, 2.375rem) - 8px);
   margin: 0;
   padding: 0 9px;
   border: 0;
@@ -47,7 +47,7 @@ html.i18n-pending body {
 }
 
 .language-switcher button:focus-visible {
-  outline: 2px solid var(--orange, var(--lime, #326bff));
+  outline: 3px solid var(--focus-ring, currentColor);
   outline-offset: 2px;
 }
 
@@ -64,20 +64,43 @@ html.i18n-pending body {
 }
 
 html[lang="zh-CN"] body {
-  font-family: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", var(--sans, sans-serif);
+  font-family: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+    var(--font-sans, var(--sans, sans-serif));
+  line-height: 1.75;
 }
 
 html[lang="zh-CN"] .mono,
 html[lang="zh-CN"] .language-switcher {
-  font-family: var(--mono, "DM Mono"), "PingFang SC", "Microsoft YaHei", monospace;
+  font-family: var(--font-mono, var(--mono, "DM Mono")), "PingFang SC", "Microsoft YaHei", monospace;
 }
 
+/* Han glyphs sit on a fixed em square, so the optical tracking that tightens
+   Latin display type only makes them collide. Reset it and give the extra
+   stroke density a little more room to breathe. */
 html[lang="zh-CN"] h1,
 html[lang="zh-CN"] h2,
 html[lang="zh-CN"] h3,
+html[lang="zh-CN"] h4,
 html[lang="zh-CN"] blockquote {
-  letter-spacing: -0.035em;
-  line-height: 1.08;
+  letter-spacing: 0;
+  line-height: 1.22;
+}
+
+/* For the same reason a heading set for Latin reads oversized in Chinese, and
+   because Chinese wraps between any two characters, display type is stepped
+   down to roughly 80% and the measure widened — otherwise a two-character word
+   splits across lines. */
+html[lang="zh-CN"] {
+  --display-2xs: clamp(1.125rem, 0.19vw + 1.05rem, 1.25rem);
+  --display-xs: clamp(1.25rem, 0.66vw + 1.09rem, 1.6875rem);
+  --display-sm: clamp(1.4375rem, 1.04vw + 1.19rem, 2.125rem);
+  --display-md: clamp(1.8125rem, 1.79vw + 1.39rem, 3rem);
+  --display-lg: clamp(2.1875rem, 2.64vw + 1.56rem, 3.9375rem);
+  --display-xl: clamp(2.375rem, 3.68vw + 1.5rem, 4.8125rem);
+}
+
+html[lang="zh-CN"] h1 {
+  max-width: 22ch;
 }
 
 @media (max-width: 650px) {

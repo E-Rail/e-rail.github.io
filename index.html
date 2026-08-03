@@ -7,7 +7,8 @@
       name="description"
       content="Ethan Song — student developer, transit enthusiast, and maker of JustGo."
     />
-    <meta name="theme-color" content="#f3efe5" />
+    <meta name="theme-color" content="#eceff3" />
+    <meta name="color-scheme" content="light" />
     <title>Ethan Song — Developer & Transit Enthusiast</title>
     <script src="/language.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -16,12 +17,13 @@
       href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Noto+Sans+SC:wght@400;500;600;700;800&amp;family=Source+Sans+3:wght@400;500;600;700;800&amp;display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="/base.css" />
     <link rel="stylesheet" href="/styles.css" />
     <link rel="stylesheet" href="/language.css" />
     <script src="/script.js" defer></script>
   </head>
   <body>
-    <div class="noise" aria-hidden="true"></div>
+    <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
       <a class="brand" href="/" aria-label="Ethan Song, home">
         <span class="brand-mark"><i></i><i></i><i></i></span>
@@ -37,13 +39,8 @@
       </div>
     </header>
 
-    <main>
+    <main id="main">
       <section class="hero">
-        <div class="route-label mono">
-          <span>01</span>
-          <i></i>
-          <span>PERSONAL TERMINAL</span>
-        </div>
         <div class="hero-grid">
           <div class="hero-copy">
             <p class="eyebrow">Hello, I’m Ethan.</p>
@@ -55,7 +52,7 @@
           </div>
           <div class="hero-card">
             <div class="portrait-wrap">
-              <img src="/assets/ethan-avatar.png" alt="Ethan Song" />
+              <img src="/assets/ethan-avatar.png" alt="Ethan Song" width="460" height="460" decoding="async" />
               <span class="portrait-stamp mono">E-RAIL<br />2026</span>
             </div>
             <div class="mini-route" aria-hidden="true">
@@ -84,7 +81,6 @@
           <button class="tab" role="tab" aria-selected="false" aria-controls="videos-panel" id="videos-tab" data-tab="videos">
             <span>03</span> Bilibili Videos
           </button>
-          <div class="tab-line" aria-hidden="true"></div>
         </div>
 
         <div class="panels">
@@ -210,7 +206,7 @@
             <div class="video-grid">
               <a class="video-card large-video" href="https://www.bilibili.com/video/BV1kmviBfE85" target="_blank" rel="noreferrer">
                 <div class="thumb">
-                  <img src="/assets/video/beijing-lines.jpg" alt="" />
+                  <img src="/assets/video/beijing-lines.jpg" alt="" loading="lazy" decoding="async" />
                   <span class="duration mono">04:39</span>
                   <span class="play">▶</span>
                 </div>
@@ -221,23 +217,23 @@
                 </div>
               </a>
               <a class="video-card" href="https://www.bilibili.com/video/BV1tDhBzDE6M" target="_blank" rel="noreferrer">
-                <div class="thumb"><img src="/assets/video/singapore.jpg" alt="" /><span class="duration mono">02:13</span><span class="play">▶</span></div>
+                <div class="thumb"><img src="/assets/video/singapore.jpg" alt="" loading="lazy" decoding="async" /><span class="duration mono">02:13</span><span class="play">▶</span></div>
                 <div class="video-copy"><span class="video-meta mono">TRAVEL</span><h3>带你云游新加坡。</h3></div>
               </a>
               <a class="video-card" href="https://www.bilibili.com/video/BV1mjL3zNEm9" target="_blank" rel="noreferrer">
-                <div class="thumb"><img src="/assets/video/jinan-metro.jpg" alt="" /><span class="duration mono">03:39</span><span class="play">▶</span></div>
+                <div class="thumb"><img src="/assets/video/jinan-metro.jpg" alt="" loading="lazy" decoding="async" /><span class="duration mono">03:39</span><span class="play">▶</span></div>
                 <div class="video-copy"><span class="video-meta mono">METRO</span><h3>济南地铁-水下的地铁</h3></div>
               </a>
               <a class="video-card" href="https://www.bilibili.com/video/BV1JcN8epE2Q" target="_blank" rel="noreferrer">
-                <div class="thumb"><img src="/assets/video/spring-festival.jpg" alt="" /><span class="duration mono">04:02</span><span class="play">▶</span></div>
+                <div class="thumb"><img src="/assets/video/spring-festival.jpg" alt="" loading="lazy" decoding="async" /><span class="duration mono">04:02</span><span class="play">▶</span></div>
                 <div class="video-copy"><span class="video-meta mono">CITY LIFE</span><h3>【春节】春节·一个现代视角</h3></div>
               </a>
               <a class="video-card" href="https://www.bilibili.com/video/BV1uSUrYhEYE" target="_blank" rel="noreferrer">
-                <div class="thumb"><img src="/assets/video/d901.jpg" alt="" /><span class="duration mono">10:31</span><span class="play">▶</span></div>
+                <div class="thumb"><img src="/assets/video/d901.jpg" alt="" loading="lazy" decoding="async" /><span class="duration mono">10:31</span><span class="play">▶</span></div>
                 <div class="video-copy"><span class="video-meta mono">RAIL JOURNEY</span><h3>纵向动卧怎么样？D901次列车运转！</h3></div>
               </a>
               <a class="video-card" href="https://www.bilibili.com/video/BV1LzpdePED6" target="_blank" rel="noreferrer">
-                <div class="thumb"><img src="/assets/video/race.jpg" alt="" /><span class="duration mono">08:50</span><span class="play">▶</span></div>
+                <div class="thumb"><img src="/assets/video/race.jpg" alt="" loading="lazy" decoding="async" /><span class="duration mono">08:50</span><span class="play">▶</span></div>
                 <div class="video-copy"><span class="video-meta mono">TRANSIT RACE</span><h3>三里屯-清华东路西口 谁！更！快！</h3></div>
               </a>
             </div>
@@ -248,7 +244,6 @@
 
     <footer>
       <p>Designed & built by Ethan Song.</p>
-      <div class="footer-route" aria-hidden="true"><span></span><i></i><span></span></div>
       <p class="mono">BEIJING · 2026</p>
     </footer>
   </body>
