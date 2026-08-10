@@ -3,208 +3,150 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Just-Go privacy policy covering on-device records, operator station-information requests and their device-only cache, Apple services, Hong Kong live-arrival API requests, external links, website language preferences, retention, and deletion." />
-    <meta name="theme-color" content="#f8faf4" />
+    <meta name="description" content="Just-Go privacy policy covering device-local Quick Tags and caches, Apple services, operator station information, Hong Kong live arrivals, external links, and website preferences." />
+    <meta name="theme-color" content="#c45100" />
     <meta name="color-scheme" content="light" />
     <title>Just-Go Privacy Policy</title>
     <script src="/language.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Noto+Sans+SC:wght@400;500;600;700;800&amp;family=Source+Sans+3:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/base.css" />
+    <link rel="stylesheet" href="/just-go/base.css" />
     <link rel="stylesheet" href="/just-go/just-go.css" />
     <link rel="stylesheet" href="/just-go/docs/docs.css" />
     <link rel="stylesheet" href="/language.css" />
+    <link rel="icon" href="/just-go/assets/justgo-icon.png" />
+    <link rel="apple-touch-icon" href="/just-go/assets/justgo-icon.png" />
   </head>
   <body class="docs-body">
     <a class="skip-link" href="#main">Skip to content</a>
-    <header class="jg-nav docs-nav">
-      <a class="jg-brand" href="/just-go"><span class="logo-mark"><i></i><i></i><i></i></span><span>Just-Go</span></a>
-      <nav aria-label="Documentation navigation">
-        <a href="/just-go/">Product</a>
-        <a href="/just-go/docs/">Docs</a>
-        <a href="/just-go/docs/data-sources/">Data sources</a>
-        <a href="/just-go/docs/privacy/" aria-current="page">Privacy</a>
-      </nav>
-      <div class="nav-actions">
-        <a class="back-link" href="/">Ethan’s site</a>
-        <a class="github-button" href="https://github.com/E-Rail/Just-Go" target="_blank" rel="noreferrer">Source <span>↗</span></a>
-      </div>
+    <header class="jg-nav global-nav">
+      <a class="jg-brand" href="/just-go/"><img class="app-icon-mark" src="/just-go/assets/justgo-icon.png" alt="" width="36" height="36" /><span>Just-Go</span></a>
+      <nav aria-label="Primary navigation"><a href="/just-go/">Home</a><a href="/just-go/docs/" aria-current="page">Docs</a></nav>
+      <div class="nav-actions"><a class="site-link" href="/">Ethan’s site</a>
+        <a class="github-button" href="https://github.com/E-Rail/Just-Go" target="_blank" rel="noreferrer">Source <span>↗</span></a></div>
     </header>
+    <nav class="sub-nav docs-sub-nav" aria-label="Just-Go documentation pages">
+      <a class="sub-nav-title" href="/just-go/docs/">Documentation</a>
+      <div class="sub-nav-links">
+        <a href="/just-go/docs/">Docs</a>
+        <a href="/just-go/docs/services/">API Service</a>
+        <a href="/just-go/docs/privacy/" aria-current="page">Privacy</a>
+        <a href="/just-go/docs/terms/">Terms</a>
+        <a href="/just-go/docs/attribution/">Attribution</a>
+      </div>
+    </nav>
 
     <main id="main">
       <section class="docs-hero">
         <div class="docs-hero-copy">
           <p class="docs-breadcrumb"><a href="/just-go/docs/">Docs</a> / Privacy</p>
           <h1>Local by default.<br /><em>Online when named.</em></h1>
-          <p>This policy explains what remains on the device, which actions contact Apple, a transit operator, or DATA.GOV.HK, what is stored after those requests, what happens when a rider opens an external link, and how this website remembers a language choice.</p>
+          <p>Just-Go has no account, ad network, analytics SDK, or Just-Go data server. This policy explains the smaller set of actions that contact Apple, a transit operator, DATA.GOV.HK, GitHub Pages, or a link you choose to open.</p>
         </div>
         <aside class="docs-status" aria-label="Privacy policy status">
-          <span class="status-label">PRIVACY STATUS</span>
-          <div class="status-row"><span>Effective</span><strong>2026-08-06</strong></div>
+          <span class="status-label">EFFECTIVE 2026-08-06</span>
           <div class="status-row"><span>Account</span><strong>None</strong></div>
-          <div class="status-row"><span>Camera permission</span><strong>Not requested</strong></div>
-          <div class="status-row"><span>Operator requests</span><strong>4 cities · on-device cache</strong></div>
-          <div class="status-row"><span>Live transit request</span><strong>Hong Kong only</strong></div>
-          <div class="status-row"><span>Website preference</span><strong>Language only</strong></div>
+          <div class="status-row"><span>Analytics / ads</span><strong>None</strong></div>
+          <div class="status-row"><span>Quick Tags</span><strong>Device only</strong></div>
+          <div class="status-row"><span>Official-data cache</span><strong>Device only · clearable</strong></div>
         </aside>
       </section>
-
-      <nav class="docs-tabs" aria-label="Just-Go documentation pages">
-        <div class="docs-tabs-inner">
-          <a href="/just-go/docs/">Overview</a>
-          <a href="/just-go/docs/services/">Service catalog</a>
-          <a href="/just-go/docs/data-sources/">Data sources</a>
-          <a href="/just-go/download/">Downloads</a>
-          <a href="/just-go/docs/privacy/" aria-current="page">Privacy</a>
-          <a href="/just-go/docs/terms/">Service terms</a>
-          <a href="/just-go/docs/attribution/">Attribution</a>
-        </div>
-      </nav>
 
       <div class="docs-shell">
         <aside class="docs-sidebar" aria-label="On this page">
           <span>ON THIS PAGE</span>
-          <a href="#scope">Scope &amp; summary</a>
-          <a href="#included">Included app data</a>
-          <a href="#local">On-device records</a>
+          <a href="#summary">Summary</a>
+          <a href="#device">On your device</a>
           <a href="#network">Network requests</a>
-          <a href="#cache">Station-information cache</a>
+          <a href="#cache">Cache and deletion</a>
           <a href="#external">External links</a>
           <a href="#website">This website</a>
-          <a href="#retention">Retention &amp; deletion</a>
-          <a href="#security">Security &amp; children</a>
-          <a href="#changes">Changes &amp; contact</a>
+          <a href="#changes">Changes</a>
         </aside>
 
         <article class="docs-content">
-          <section class="doc-section" id="scope">
-            <p class="doc-label">01 / SCOPE &amp; SUMMARY</p>
-            <h2>Privacy follows the data boundary.</h2>
-            <p class="doc-lead">This policy covers the Just-Go app and the Just-Go pages on e-rail.github.io. Third-party services process their own requests under their own policies.</p>
-
+          <section class="doc-section" id="summary">
+            <p class="doc-label">01 / SUMMARY</p>
+            <h2>Just-Go does not run a user-data backend.</h2>
             <div class="policy-summary">
-              <div><strong>Included data is local app content</strong><p>The 58-city catalog, 53 route-picker baselines, and 14 offline city packs do not require opening their source websites during ordinary use.</p></div>
-              <div><strong>There is no Just-Go account or server</strong><p>No sign-in, no synchronization, and no Just-Go-operated backend receives your trips, tags, or searches.</p></div>
-              <div><strong>Station information is fetched, then kept locally</strong><p>Opening a station detail page in Beijing, Shanghai, Guangzhou, or Hangzhou sends that station’s opaque operator identifier to the operator. The last good response is stored on your device only.</p></div>
-              <div><strong>Hong Kong live arrivals are online</strong><p>Viewing current arrivals contacts the DATA.GOV.HK government transport API for the referenced station and line.</p></div>
-              <div><strong>Official-resource links require a tap</strong><p>The 770 directory records are URL metadata. Their 698 unique targets are not bundled, prefetched, or redistributed by Just-Go.</p></div>
+              <div><strong>Routing data ships with the app</strong><p>Bundled metro networks and station packs are read locally.</p></div>
+              <div><strong>Quick Tags stay local</strong><p>Home, Work, and custom place tags are stored on the device.</p></div>
+              <div><strong>Operator content is requested directly</strong><p>Where supported, the rider’s device contacts the named operator—not a Just-Go proxy.</p></div>
+              <div><strong>Saved responses are clearable</strong><p>Device-only operator snapshots and downloaded packs can be removed in Settings.</p></div>
+              <div><strong>There is no camera feature</strong><p>Round 36 ships no personal station-photo feature or station-sign scanner.</p></div>
             </div>
           </section>
 
-          <section class="doc-section" id="included">
-            <p class="doc-label">02 / INCLUDED APP DATA</p>
-            <h2>Reading included files does not call their sources.</h2>
-            <p>The app includes catalog metadata for 58 cities, OpenStreetMap-derived route-picker baselines for 53 cities, and 2,849 station records across 14 offline city packs. Reading these included resources does not require a runtime request to OpenStreetMap, MTR, DATA.GOV.HK, or any operator website.</p>
-            <p>Source and license links remain available for transparency. Opening an attribution link is a separate user action and may contact that website.</p>
-          </section>
-
-          <section class="doc-section" id="local">
-            <p class="doc-label">03 / ON-DEVICE RECORDS</p>
-            <h2>Your private layer is not public transit data.</h2>
+          <section class="doc-section" id="device">
+            <p class="doc-label">02 / ON YOUR DEVICE</p>
+            <h2>Your private layer remains private.</h2>
             <div class="table-wrap">
               <table class="doc-table">
-                <thead><tr><th>Local record</th><th>Purpose</th><th>Sharing behavior</th></tr></thead>
+                <thead><tr><th>Record</th><th>Purpose</th><th>Sharing</th></tr></thead>
                 <tbody>
-                  <tr><td><strong>Preferences and accessibility settings</strong></td><td>Remember the rider’s chosen app behavior.</td><td>Remain in app storage unless an operating-system service handles a related permission or request.</td></tr>
-                  <tr><td><strong>Saved and recent trips</strong></td><td>Offer history, reuse, and trip resumption.</td><td>Not published as city-pack data.</td></tr>
-                  <tr><td><strong>Place tags</strong></td><td>Remember Home, Work, or a custom label for a station or any map place, for one-tap planner input.</td><td>Stored locally; no account or synchronization service receives it.</td></tr>
-                  <tr><td><strong>Station-information snapshots</strong></td><td>Keep the last good operator response so a station page still answers offline.</td><td>Written to a backup-excluded cache directory on this device, never sent to a Just-Go server, and deletable from Settings.</td></tr>
-                  <tr><td><strong>Local notifications</strong></td><td>Show rider-requested reminders.</td><td>Scheduled through iOS; no remote push service is required for a local notification.</td></tr>
+                  <tr><td><strong>Quick Tags</strong></td><td>Remember Home, Work, stations, and other frequently used places.</td><td>No account or synchronization service receives them.</td></tr>
+                  <tr><td><strong>Trip records and preferences</strong></td><td>Support local history, accessibility choices, and app behavior.</td><td>Not published as transit data.</td></tr>
+                  <tr><td><strong>Downloaded city packs</strong></td><td>Provide locally available city data.</td><td>Stored in the app container and removable with Clear Cache.</td></tr>
+                  <tr><td><strong>Official station snapshots</strong></td><td>Provide a labeled last-good fallback when an operator is temporarily unavailable.</td><td>Application Support, backup-excluded, schema-versioned, and device-only.</td></tr>
                 </tbody>
               </table>
             </div>
           </section>
 
           <section class="doc-section" id="network">
-            <p class="doc-label">04 / NETWORK REQUESTS</p>
-            <h2>Online features name their provider.</h2>
+            <p class="doc-label">03 / NETWORK REQUESTS</p>
+            <h2>Online features identify their provider.</h2>
             <div class="table-wrap">
               <table class="doc-table">
-                <thead><tr><th>Provider</th><th>When contacted</th><th>Information involved</th><th>Purpose</th></tr></thead>
+                <thead><tr><th>Action</th><th>Provider contacted</th><th>Information involved</th></tr></thead>
                 <tbody>
-                  <tr><td><strong>Apple location and map services</strong></td><td>When the rider grants location access, searches for a place, resolves an address, or requests a walking approach.</td><td>As required by Apple frameworks: location or selected coordinates, search text, region, and walking endpoints, plus ordinary network metadata.</td><td>Device location, place search, geocoding, and surface walking directions.</td></tr>
-                  <tr><td><strong>Transit operator websites</strong><br /><code>www.bjsubway.com</code>, <code>service.shmetro.com</code>, <code>www.gzmtr.com</code>, <code>www.hzmetro.com</code></td><td>When the rider opens the detail page of a station served by that operator.</td><td>The station’s reviewed opaque operator identifier plus ordinary HTTP metadata such as IP address, request time, and client/network information. No search text, personal record, or rider location is included.</td><td>Return that station’s first/last trains, exits, and facilities.</td></tr>
-                  <tr><td><strong>DATA.GOV.HK government transport API</strong></td><td>When the rider opens or refreshes current Hong Kong arrivals.</td><td>Referenced station and line context plus ordinary HTTP metadata such as IP address, request time, and client/network information.</td><td>Return current MTR arrival information for supported Hong Kong references.</td></tr>
-                  <tr><td><strong>iOS notification service</strong></td><td>When the rider enables a local trip reminder.</td><td>Reminder text, local delivery time, and notification preferences.</td><td>Deliver a local notification on the device.</td></tr>
+                  <tr><td><strong>Place search, walking route, or current location</strong></td><td>Apple services</td><td>The request Apple needs to return the selected map or route result, subject to Apple’s policies.</td></tr>
+                  <tr><td><strong>Open supported station details</strong></td><td>Beijing, Shanghai, Guangzhou, or Hangzhou operator</td><td>A reviewed station identifier and the fixed request required by that source; not the rider’s location, tags, or trips.</td></tr>
+                  <tr><td><strong>View Hong Kong arrivals</strong></td><td>DATA.GOV.HK</td><td>Official station and line identifiers; not the rider’s location, tags, or trips.</td></tr>
+                  <tr><td><strong>Open an official resource</strong></td><td>The linked transit operator or government site</td><td>Normal web-request metadata determined by the destination and network.</td></tr>
                 </tbody>
               </table>
             </div>
-            <p>Hong Kong transit data and live arrivals are attributed to MTR Corporation Limited and DATA.GOV.HK under the <a href="https://data.gov.hk/en/terms-and-conditions" target="_blank" rel="noreferrer">DATA.GOV.HK Terms of Use</a>. Just-Go does not control provider logging, retention, or service availability.</p>
-            <p>Opening the exact official source page for a station may additionally contact provider-selected third-party web services. That page is loaded in a non-persistent session and its content is not written to disk.</p>
+            <p>Just-Go does not combine these provider requests into a Just-Go profile.</p>
           </section>
 
           <section class="doc-section" id="cache">
-            <p class="doc-label">05 / STATION-INFORMATION CACHE</p>
-            <h2>What the operator returns stays with you.</h2>
-            <ul>
-              <li>Only the station you opened is requested. Just-Go does not prefetch a city, crawl an operator, or request stations in the background.</li>
-              <li>The response is validated against the station you asked for, then written to <code>Application Support/Just-Go/StationInformationCache/</code>, capped at 1 MB per station and excluded from device backup.</li>
-              <li>A stored snapshot is served only when the operator is unreachable, and it is labeled as saved on this device with its age. Snapshots are never sent to a Just-Go server, because there is no Just-Go server.</li>
-              <li>Settings → Clear Cache deletes every snapshot along with downloaded city packs. Deleting the app removes them too.</li>
-              <li>The app declares no camera permission. Indoor navigation and the station-sign scanner were removed, so no camera access is requested for any feature.</li>
-            </ul>
+            <p class="doc-label">04 / CACHE AND DELETION</p>
+            <h2>Clear Cache removes the cached layers.</h2>
+            <p class="doc-lead">After confirmation, Settings → Clear Cache deletes downloaded city packs, in-memory pack copies, in-flight downloads, stored station-information snapshots, and URL caches.</p>
+            <div class="doc-callout"><strong>What Clear Cache keeps</strong><p>Your Quick Tags, trips, records, preferences, and settings are not deleted by this action. Bundled cities continue to work from the app bundle.</p></div>
+            <p>Deleting the app removes its local container under the normal iOS deletion behavior. Device backups and operating-system services remain governed by Apple.</p>
           </section>
 
           <section class="doc-section" id="external">
-            <p class="doc-label">06 / EXTERNAL LINKS</p>
-            <h2>Nothing opens until the rider asks.</h2>
-            <p class="doc-lead">Round 36’s official-resource directory contains 770 hyperlink records—275 Maps, 447 Travel, 6 Accessibility, and 42 Help—across 698 unique targets.</p>
-            <ul>
-              <li>Operator pages and files open only after the rider taps a link.</li>
-              <li>Just-Go does not bundle, prefetch, or redistribute those destinations. Pages open in a non-persistent session; documents open in memory-only viewers.</li>
-              <li>The destinations are not counted as included or offline content.</li>
-              <li>Hong Kong’s map targets are 1 MTR System Map, 98 Location Maps, 98 Station Layouts, and 14 Light Rail Street Maps; each remains external.</li>
-              <li>After a rider taps a link, the browser or system web view connects to the destination. The provider may receive the requested URL, IP address, request time, browser information, and any data the rider chooses to submit there.</li>
-              <li>The destination’s privacy policy and terms govern that visit.</li>
-            </ul>
+            <p class="doc-label">05 / EXTERNAL LINKS</p>
+            <h2>A reviewed link is still external.</h2>
+            <p>Just-Go stores reviewed URL metadata for transit resources. It does not make a destination page, PDF, image, or map part of the app merely by linking to it. Opening a destination is a rider action and places that request under the destination provider’s privacy policy.</p>
           </section>
 
           <section class="doc-section" id="website">
-            <p class="doc-label">07 / THIS WEBSITE</p>
-            <h2>One preference is remembered.</h2>
-            <p>The language switcher stores the selected display language as <code>erail-language</code> in browser local storage and as the first-party <code>erail_language</code> cookie. The cookie is limited to the site path, uses <code>SameSite=Lax</code>, and is marked <code>Secure</code> when the page is served over HTTPS. If no choice is saved, the page uses the browser’s preferred language.</p>
-            <p>The site is hosted with GitHub Pages and loads font resources from Google Fonts. Those providers may receive ordinary web-request metadata under their own policies. The Just-Go pages do not use the language preference to build a transit profile.</p>
-          </section>
-
-          <section class="doc-section" id="retention">
-            <p class="doc-label">08 / RETENTION &amp; DELETION</p>
-            <h2>Controls live where the record lives.</h2>
-            <ul>
-              <li>Delete saved trips, trip records, place tags, and related records through their app controls where available.</li>
-              <li>Delete cached station-information snapshots and downloaded city packs with Settings → Clear Cache. Your tags, trips, records, and settings are not affected.</li>
-              <li>Delete the app and its data to remove the app container, subject to iOS backup and restore settings.</li>
-              <li>Revoke location or notification permission in iOS Settings to stop future use of those permissions.</li>
-              <li>A live-arrival response is provider data; provider-side request logs are controlled by DATA.GOV.HK and its infrastructure, not by Just-Go.</li>
-              <li>Clear this site’s cookie and local storage in browser settings to remove the saved language preference.</li>
+            <p class="doc-label">06 / THIS WEBSITE</p>
+            <h2>A static site with one preference.</h2>
+            <ul class="detail-list">
+              <li><strong>Language preference</strong><span>The site may store the selected language locally and in a short-lived cookie so navigation remains consistent.</span></li>
+              <li><strong>System fonts</strong><span>The site does not contact a third-party font service.</span></li>
+              <li><strong>Hosting metadata</strong><span>GitHub Pages and ordinary network infrastructure may receive standard request metadata such as IP address, browser headers, requested path, and time.</span></li>
+              <li><strong>No website account</strong><span>The site has no sign-in, form submission, analytics SDK, advertising tracker, or payment system.</span></li>
             </ul>
           </section>
 
-          <section class="doc-section" id="security">
-            <p class="doc-label">09 / SECURITY &amp; CHILDREN</p>
-            <h2>Device protections still matter.</h2>
-            <p>On-device records rely on the normal iOS app sandbox and device protections. Network requests use the operating system’s networking facilities. No method can eliminate every risk, especially on a compromised device, browser, or network.</p>
-            <p>Just-Go is a general transit utility. It does not ask a rider to create a public Just-Go profile for the features described in this policy. Third-party services may apply their own age requirements and privacy rules.</p>
-          </section>
-
           <section class="doc-section" id="changes">
-            <p class="doc-label">10 / CHANGES &amp; CONTACT</p>
-            <h2>A changed data flow requires a changed policy.</h2>
-            <p>If Just-Go adds account sync, uploads, analytics, advertising, another live provider, or a new permission, this policy will be revised and the effective date will change.</p>
-            <p>Privacy questions: <a href="mailto:songyf_ethan@hotmail.com">songyf_ethan@hotmail.com</a>.</p>
-            <div class="doc-actions">
-              <a class="doc-button" href="/just-go/docs/services/">Inspect runtime services →</a>
-              <a class="doc-button secondary" href="/just-go/docs/terms/">Read service terms →</a>
-            </div>
+            <p class="doc-label">07 / CHANGES</p>
+            <h2>The policy changes when the product changes.</h2>
+            <p>If Just-Go adds account sync, uploads, analytics, advertising, a community backend, another live provider, or a materially different use of local records, this policy will be revised and the effective date will change.</p>
+            <div class="doc-actions"><a class="doc-button" href="https://github.com/E-Rail/Just-Go/issues" target="_blank" rel="noreferrer">Ask a privacy question ↗</a><a class="doc-button secondary" href="/just-go/docs/terms/">Read the terms →</a></div>
           </section>
         </article>
       </div>
     </main>
 
     <footer class="jg-footer">
-      <a class="jg-brand" href="/just-go"><span class="logo-mark"><i></i><i></i><i></i></span><span>Just-Go</span></a>
-      <p class="footer-links"><a href="/just-go/docs/">Docs</a><a href="/just-go/docs/services/">Services</a><a href="/just-go/docs/data-sources/">Data sources</a><a href="/just-go/download/">Downloads</a><a href="/just-go/docs/privacy/">Privacy</a><a href="/just-go/docs/terms/">Terms</a><a href="/just-go/docs/attribution/">Attribution</a></p>
-      <p class="mono">PRIVACY · EFFECTIVE 2026-08-06</p>
+      <a class="jg-brand" href="/just-go/"><img class="app-icon-mark" src="/just-go/assets/justgo-icon.png" alt="" width="36" height="36" /><span>Just-Go</span></a>
+      <p class="footer-links"><a href="/just-go/docs/">Docs</a><a href="/just-go/docs/services/">API Service</a><a href="/just-go/docs/privacy/">Privacy</a><a href="/just-go/docs/terms/">Terms</a><a href="/just-go/docs/attribution/">Attribution</a></p>
+      <p class="label">PRIVACY · EFFECTIVE 2026-08-06</p>
     </footer>
   </body>
 </html>

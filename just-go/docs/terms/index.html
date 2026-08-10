@@ -3,197 +3,163 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Just-Go service terms covering included transit data, operator station-information requests, external references, Hong Kong live arrivals, safety limits, licenses, and availability." />
-    <meta name="theme-color" content="#f8faf4" />
+    <meta name="description" content="Terms for using the Just-Go transit app and documentation, including accuracy, safety, third-party services, licenses, and availability limits." />
+    <meta name="theme-color" content="#c45100" />
     <meta name="color-scheme" content="light" />
-    <title>Just-Go Service Terms</title>
+    <title>Just-Go Terms</title>
     <script src="/language.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Noto+Sans+SC:wght@400;500;600;700;800&amp;family=Source+Sans+3:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/base.css" />
+    <link rel="stylesheet" href="/just-go/base.css" />
     <link rel="stylesheet" href="/just-go/just-go.css" />
     <link rel="stylesheet" href="/just-go/docs/docs.css" />
     <link rel="stylesheet" href="/language.css" />
+    <link rel="icon" href="/just-go/assets/justgo-icon.png" />
+    <link rel="apple-touch-icon" href="/just-go/assets/justgo-icon.png" />
   </head>
   <body class="docs-body">
     <a class="skip-link" href="#main">Skip to content</a>
-    <header class="jg-nav docs-nav">
-      <a class="jg-brand" href="/just-go"><span class="logo-mark"><i></i><i></i><i></i></span><span>Just-Go</span></a>
-      <nav aria-label="Documentation navigation">
-        <a href="/just-go/">Product</a>
-        <a href="/just-go/docs/">Docs</a>
-        <a href="/just-go/docs/data-sources/">Data sources</a>
-        <a href="/just-go/docs/privacy/">Privacy</a>
-      </nav>
-      <div class="nav-actions">
-        <a class="back-link" href="/">Ethan’s site</a>
-        <a class="github-button" href="https://github.com/E-Rail/Just-Go" target="_blank" rel="noreferrer">Source <span>↗</span></a>
-      </div>
+    <header class="jg-nav global-nav">
+      <a class="jg-brand" href="/just-go/"><img class="app-icon-mark" src="/just-go/assets/justgo-icon.png" alt="" width="36" height="36" /><span>Just-Go</span></a>
+      <nav aria-label="Primary navigation"><a href="/just-go/">Home</a><a href="/just-go/docs/" aria-current="page">Docs</a></nav>
+      <div class="nav-actions"><a class="site-link" href="/">Ethan’s site</a>
+        <a class="github-button" href="https://github.com/E-Rail/Just-Go" target="_blank" rel="noreferrer">Source <span>↗</span></a></div>
     </header>
+    <nav class="sub-nav docs-sub-nav" aria-label="Just-Go documentation pages">
+      <a class="sub-nav-title" href="/just-go/docs/">Documentation</a>
+      <div class="sub-nav-links">
+        <a href="/just-go/docs/">Docs</a>
+        <a href="/just-go/docs/services/">API Service</a>
+        <a href="/just-go/docs/privacy/">Privacy</a>
+        <a href="/just-go/docs/terms/" aria-current="page">Terms</a>
+        <a href="/just-go/docs/attribution/">Attribution</a>
+      </div>
+    </nav>
 
     <main id="main">
       <section class="docs-hero">
         <div class="docs-hero-copy">
-          <p class="docs-breadcrumb"><a href="/just-go/docs/">Docs</a> / Service terms</p>
-          <h1>Useful guidance,<br /><em>clear boundaries.</em></h1>
-          <p>These terms describe the current open-source Just-Go app and hosted documentation. Verify safety-critical, accessibility, and time-sensitive details with the transit operator and station staff.</p>
+          <p class="docs-breadcrumb"><a href="/just-go/docs/">Docs</a> / Terms</p>
+          <h1>Useful guidance.<br /><em>Clear limits.</em></h1>
+          <p>These terms apply to the Just-Go app and this documentation. Use operator information, station signage, and staff instructions for safety-critical or time-sensitive decisions.</p>
         </div>
-        <aside class="docs-status" aria-label="Service terms status">
-          <span class="status-label">TERMS STATUS</span>
-          <div class="status-row"><span>Effective</span><strong>2026-08-06</strong></div>
-          <div class="status-row"><span>Product stage</span><strong>Open-source development</strong></div>
+        <aside class="docs-status" aria-label="Terms status">
+          <span class="status-label">EFFECTIVE 2026-08-06</span>
           <div class="status-row"><span>Source snapshot</span><strong>main · fc4bce3</strong></div>
           <div class="status-row"><span>Transit operator</span><strong>No</strong></div>
-          <div class="status-row"><span>Verified indoor transfers</span><strong>0</strong></div>
+          <div class="status-row"><span>Emergency service</span><strong>No</strong></div>
+          <div class="status-row"><span>Software license</span><strong>MIT</strong></div>
         </aside>
       </section>
-
-      <nav class="docs-tabs" aria-label="Just-Go documentation pages">
-        <div class="docs-tabs-inner">
-          <a href="/just-go/docs/">Overview</a>
-          <a href="/just-go/docs/services/">Service catalog</a>
-          <a href="/just-go/docs/data-sources/">Data sources</a>
-          <a href="/just-go/download/">Downloads</a>
-          <a href="/just-go/docs/privacy/">Privacy</a>
-          <a href="/just-go/docs/terms/" aria-current="page">Service terms</a>
-          <a href="/just-go/docs/attribution/">Attribution</a>
-        </div>
-      </nav>
 
       <div class="docs-shell">
         <aside class="docs-sidebar" aria-label="On this page">
           <span>ON THIS PAGE</span>
-          <a href="#agreement">Agreement &amp; scope</a>
+          <a href="#scope">Scope</a>
           <a href="#service">The service</a>
           <a href="#data">Data classes</a>
-          <a href="#safety">Safety &amp; accuracy</a>
+          <a href="#safety">Safety</a>
           <a href="#third-party">Third parties</a>
           <a href="#use">Acceptable use</a>
-          <a href="#rights">Licenses &amp; attribution</a>
+          <a href="#licenses">Licenses</a>
           <a href="#availability">Availability</a>
           <a href="#disclaimer">Disclaimers</a>
-          <a href="#privacy">Privacy</a>
-          <a href="#changes">Changes &amp; contact</a>
+          <a href="#changes">Changes</a>
         </aside>
 
         <article class="docs-content">
-          <section class="doc-section" id="agreement">
-            <p class="doc-label">01 / AGREEMENT &amp; SCOPE</p>
+          <section class="doc-section" id="scope">
+            <p class="doc-label">01 / SCOPE</p>
             <h2>Terms for using Just-Go.</h2>
-            <p class="doc-lead">By downloading, building, or using the Just-Go app, or by relying on its hosted documentation, you agree to these service terms. If you do not agree, do not use the service.</p>
-            <p>These terms cover the app, its included data and media, and the Just-Go documentation hosted on e-rail.github.io. The MIT License separately governs permissions for the Just-Go source code. Third-party data, media, services, names, and trademarks may have separate terms.</p>
+            <p class="doc-lead">By downloading, building, using, or relying on Just-Go or its hosted documentation, you agree to these terms. If you do not agree, do not use the service.</p>
+            <p>The MIT License separately governs Just-Go’s original source code. Third-party data, services, names, trademarks, and media retain their own terms.</p>
           </section>
 
           <section class="doc-section" id="service">
             <p class="doc-label">02 / THE SERVICE</p>
             <h2>Informational transit tools.</h2>
-            <p>Just-Go provides informational tools for city and station discovery, metro route planning where network data exists, track-shaped route previews, map-first trip guidance, walking approaches, route comparison, accessibility context, official station information read from transit operators, live Hong Kong arrival lookups, place tags, local trip memory, and trip-step cards.</p>
-            <p>Just-Go is an independent open-source project. It is not a transit operator, emergency service, accessibility certification body, or official indoor-navigation system. Attribution to a provider does not imply that provider sponsors, certifies, or endorses Just-Go.</p>
+            <p>Just-Go provides map-first place discovery, metro route planning across supported networks, walking and other first/last-mile legs, route comparison, station details, accessibility context, Quick Tags, local trip records, operator information, and Hong Kong live-arrival lookups.</p>
+            <p>Just-Go is an independent open-source project. It is not a transit operator, emergency service, accessibility certification body, official navigation product, or ticketing service.</p>
           </section>
 
           <section class="doc-section" id="data">
             <p class="doc-label">03 / DATA CLASSES</p>
-            <h2>Different classes carry different promises.</h2>
+            <h2>Different layers carry different promises.</h2>
             <div class="table-wrap">
               <table class="doc-table">
-                <thead><tr><th>Class</th><th>Current scope</th><th>Service meaning</th></tr></thead>
+                <thead><tr><th>Class</th><th>Current scope</th><th>Meaning</th></tr></thead>
                 <tbody>
-                  <tr><td><strong>Included catalog</strong></td><td>58 cities.</td><td>Catalog presence supports discovery only. Five cities are catalog-only.</td></tr>
-                  <tr><td><strong>Route-picker baselines</strong></td><td>53 OpenStreetMap-derived city networks.</td><td>Prepared network geometry; it does not establish indoor paths, platforms, doors, or transfers.</td></tr>
-                  <tr><td><strong>Included offline city packs</strong></td><td>14 cities; 2,849 matched station records and 582 accessibility records.</td><td>Only the listed fields are included. Missing fields remain unavailable or source-pending.</td></tr>
-                  <tr><td><strong>Station information</strong></td><td>1,598 reviewed stations; 1,436 of them read from four mainland operators.</td><td>Fetched from the operator by your own device when you open a station, then kept as a device-only snapshot. Not a Just-Go dataset and not redistributed.</td></tr>
-                  <tr><td><strong>Official-resource directory</strong></td><td>770 hyperlink records: 275 Maps, 447 Travel, 6 Accessibility, and 42 Help, resolving to 698 unique targets.</td><td>Tap-to-open URL metadata only. Destination pages and files are not included or offline content.</td></tr>
-                  <tr><td><strong>Live API results</strong></td><td>Hong Kong live-arrival references for 162 matched stations.</td><td>Current results require a request to the DATA.GOV.HK government transport API.</td></tr>
+                  <tr><td><strong>City catalog</strong></td><td>58 cities.</td><td>Catalog presence is not a promise that every feature exists for that city.</td></tr>
+                  <tr><td><strong>Metro networks</strong></td><td>53 cities.</td><td>Bundled graph and geometry for route planning; not indoor paths, doors, or platform guidance.</td></tr>
+                  <tr><td><strong>Station packs</strong></td><td>14 cities · 2,849 matched records.</td><td>Only present, attributed fields are claimed. Missing information remains unknown.</td></tr>
+                  <tr><td><strong>Station Information API</strong></td><td>5 sources · 1,598 station references.</td><td>A static developer contract. Mainland operator content is fetched on the end user’s device, not re-hosted.</td></tr>
+                  <tr><td><strong>Official-resource links</strong></td><td>770 records · 698 unique targets.</td><td>Reviewed URL metadata. The destination content is external.</td></tr>
+                  <tr><td><strong>Device cache</strong></td><td>Downloaded packs, URLs, and eligible operator snapshots.</td><td>Local, clearable support data—not a promise that a cached response is live.</td></tr>
                 </tbody>
               </table>
             </div>
-            <p>The current catalog has zero verified indoor transfers, and no city pack includes a static schedule, a station layout, or licensed media. Accessibility coverage is uneven: 582 records across 2,849 matched stations, concentrated in Xi’an, Taipei, and Hong Kong. Hong Kong’s external MTR map targets are 1 System Map, 98 Location Maps, 98 Station Layouts, and 14 Light Rail Street Maps.</p>
           </section>
 
           <section class="doc-section" id="safety">
-            <p class="doc-label">04 / SAFETY &amp; ACCURACY</p>
-            <h2>Never treat an estimate as an instruction from staff.</h2>
-            <div class="doc-callout warning">
-              <strong>Verify before and during travel</strong>
-              <p>Check official operator notices, station signage, platform displays, announcements, barriers, and staff instructions. In an emergency or evacuation, follow authorities and station personnel—not Just-Go.</p>
-            </div>
-            <ul>
-              <li>Routes, durations, fares, walking times, service states, live arrivals, accessibility facts, external resources, reminders, and confidence labels may be delayed, incomplete, unavailable, stale, or wrong.</li>
-              <li>An accessibility record can describe a known facility without proving that it works now or that every indoor segment is step-free.</li>
-              <li>Verified indoor transfer coverage is zero, and the app performs no indoor navigation. Route-picker geometry and external maps do not prove an indoor path, platform, door, or transfer.</li>
-              <li>Station information read from an operator can be stale, incomplete, or served from a saved snapshot taken earlier. The app labels a snapshot and its age; treat platform displays and station signage as authoritative.</li>
-              <li>A high-confidence label is a comparison aid, not a probability, safety certification, accessibility guarantee, or operator instruction.</li>
-              <li>Do not use Just-Go as the sole source for last-train decisions, emergency movement, medical transport, or any journey where delay or error could cause serious harm.</li>
+            <p class="doc-label">04 / SAFETY</p>
+            <h2>Verify before and during travel.</h2>
+            <div class="doc-callout warning"><strong>Follow the source closest to the railway</strong><p>Operator notices, station signage, platform displays, announcements, barriers, staff, and emergency authorities take priority over Just-Go.</p></div>
+            <ul class="detail-list">
+              <li><strong>Time-sensitive trips</strong><span>Do not use Just-Go as the sole source for last-train, disruption, evacuation, medical, or other high-consequence decisions.</span></li>
+              <li><strong>Accessibility</strong><span>An absent record is not proof that a facility is unavailable; a present record can still change or be out of service.</span></li>
+              <li><strong>Walking, cycling, and driving</strong><span>Apple-provided routes and estimates can be incomplete, unavailable, or unsuitable for local conditions.</span></li>
+              <li><strong>Indoor movement</strong><span>Just-Go ships no indoor-navigation runtime and provides no verified transfer-path, boarding-zone, or door guidance.</span></li>
             </ul>
           </section>
 
           <section class="doc-section" id="third-party">
-            <p class="doc-label">05 / THIRD-PARTY SERVICES</p>
-            <h2>External services remain external.</h2>
-            <p>Apple services, OpenStreetMap, MTR Corporation Limited, DATA.GOV.HK, GitHub, Google Fonts, transit-operator websites, and linked resource providers are governed by their own terms, licenses, availability, and privacy practices. Just-Go does not control their content, logging, uptime, changes, or decisions.</p>
-            <p>Operator pages and files open only after the rider taps a link. Just-Go does not bundle, fetch, preview, cache, prefetch, or redistribute them. Hong Kong live arrivals are different: asking for current arrivals sends a request to the government transport API. See the <a href="/just-go/docs/privacy/">privacy policy</a> for the associated data flows.</p>
+            <p class="doc-label">05 / THIRD PARTIES</p>
+            <h2>Providers control their own services.</h2>
+            <p>Apple, OpenStreetMap contributors, MTR Corporation Limited, DATA.GOV.HK, mainland transit operators, GitHub, and linked resource providers govern their own content, logging, uptime, changes, terms, and privacy practices.</p>
+            <p>Attribution does not mean a provider sponsors, certifies, or endorses Just-Go. A reviewed link does not make its destination part of Just-Go.</p>
           </section>
 
           <section class="doc-section" id="use">
             <p class="doc-label">06 / ACCEPTABLE USE</p>
-            <h2>Use the service responsibly.</h2>
-            <p>You may use Just-Go for lawful personal, educational, research, and development purposes consistent with these terms. You must not:</p>
-            <ul>
-              <li>interfere with, overload, probe, scrape, or bypass security or access controls on project-hosted or third-party services;</li>
-              <li>send automated traffic to DATA.GOV.HK, operator sites, or linked providers in a way that violates their terms or degrades service, or modify the app to bulk-collect, republish, or redistribute operator station content;</li>
-              <li>misrepresent Just-Go as an official operator product or present estimates and source-pending fields as certified operational data;</li>
-              <li>remove legally required attribution when redistributing source code, prepared OpenStreetMap-derived data, MTR/DATA.GOV.HK data, or Taipei open data, whose attribution is mandatory;</li>
-              <li>use the app or its data to violate privacy, intellectual-property, access-control, or other applicable rights;</li>
-              <li>use the service in violation of applicable law.</li>
+            <h2>Use the service lawfully and honestly.</h2>
+            <p>You must not:</p>
+            <ul class="detail-list">
+              <li><strong>Misrepresent the project</strong><span>Do not present Just-Go as an official operator product or its estimates as certified operational data.</span></li>
+              <li><strong>Abuse providers</strong><span>Do not use the published source recipes for excessive, automated, evasive, or prohibited traffic.</span></li>
+              <li><strong>Remove attribution</strong><span>Keep legally required credits and license notices when redistributing covered data or source.</span></li>
+              <li><strong>Invent coverage</strong><span>Do not present missing station, accessibility, schedule, transfer, or layout data as verified.</span></li>
             </ul>
           </section>
 
-          <section class="doc-section" id="rights">
-            <p class="doc-label">07 / LICENSES &amp; ATTRIBUTION</p>
-            <h2>Each layer keeps its own rights.</h2>
-            <p>The Just-Go source repository is available under the <a href="https://github.com/E-Rail/Just-Go/blob/main/LICENSE" target="_blank" rel="noreferrer">MIT License</a>. OpenStreetMap-derived data remains subject to OpenStreetMap attribution and applicable database terms.</p>
-            <p>Hong Kong data and live arrivals are attributed to MTR Corporation Limited and DATA.GOV.HK under the <a href="https://data.gov.hk/en/terms-and-conditions" target="_blank" rel="noreferrer">DATA.GOV.HK Terms of Use</a>. Taipei station and exit data is used under the Open Government Data License, Taiwan 1.0, where attribution is mandatory. Beijing, Shanghai, Guangzhou, and Hangzhou station content is not licensed for redistribution and is therefore never bundled or republished. See the <a href="/just-go/docs/attribution/">complete attribution page</a>.</p>
+          <section class="doc-section" id="licenses">
+            <p class="doc-label">07 / LICENSES</p>
+            <h2>Source code and transit data are separate.</h2>
+            <p>Just-Go’s original software source is available under the <a href="https://github.com/E-Rail/Just-Go/blob/main/LICENSE" target="_blank" rel="noreferrer">MIT License</a>. OpenStreetMap-derived data remains subject to ODbL attribution and share-alike obligations. Hong Kong and Taipei data retain their government data terms. Mainland operator content remains link-only or on-device fetched under the operator’s terms.</p>
           </section>
 
           <section class="doc-section" id="availability">
-            <p class="doc-label">08 / AVAILABILITY &amp; CHANGES</p>
-            <h2>An active project can change.</h2>
-            <p>Features, supported cities, route-picker baselines, city-pack fields, station-information sources, official-resource links, live providers, system requirements, labels, and documentation may be corrected, added, limited, suspended, or removed. The project does not promise continuous availability, a release schedule, backward compatibility, or support for a particular city or source.</p>
-            <p>Live arrivals depend on DATA.GOV.HK and connectivity. Station information depends on the operator’s own site remaining reachable and unchanged. Official-resource hyperlinks depend on their destination providers. A provider outage, changed URL, rate limit, altered page structure, or withdrawn permission may make a feature temporarily or permanently unavailable.</p>
+            <p class="doc-label">08 / AVAILABILITY</p>
+            <h2>Features may change or stop working.</h2>
+            <p>The app, website, external services, operator endpoints, source pages, links, and data can change, become unavailable, rate-limit requests, or stop working. A local cache may reduce a temporary outage but does not guarantee freshness or continued availability.</p>
           </section>
 
           <section class="doc-section" id="disclaimer">
-            <p class="doc-label">09 / DISCLAIMERS &amp; LIABILITY</p>
-            <h2>Provided as available.</h2>
-            <p>To the maximum extent permitted by applicable law, Just-Go and its hosted documentation are provided “as is” and “as available,” without warranties of accuracy, availability, merchantability, fitness for a particular purpose, non-infringement, accessibility, or uninterrupted operation.</p>
-            <p>To the maximum extent permitted by applicable law, the project maintainers will not be liable for indirect, incidental, special, consequential, exemplary, or punitive losses, or for missed trains, fares, delays, route errors, data loss, device use, personal injury, or reliance on incomplete transit or accessibility information. Nothing in these terms excludes liability that applicable law does not allow to be excluded.</p>
-          </section>
-
-          <section class="doc-section" id="privacy">
-            <p class="doc-label">10 / PRIVACY</p>
-            <h2>Privacy is part of the service boundary.</h2>
-            <p>Use of Just-Go is also governed by the <a href="/just-go/docs/privacy/">Just-Go Privacy Policy</a>, which explains on-device records, operator station-information requests and their device-only cache, Apple-service requests, Hong Kong live-arrival requests, external-link behavior, website language preferences, retention, and deletion.</p>
+            <p class="doc-label">09 / DISCLAIMERS</p>
+            <h2>Provided as is and as available.</h2>
+            <p>To the maximum extent permitted by applicable law, Just-Go and this documentation are provided without warranties of accuracy, availability, merchantability, fitness for a particular purpose, non-infringement, accessibility, or uninterrupted operation.</p>
           </section>
 
           <section class="doc-section" id="changes">
-            <p class="doc-label">11 / CHANGES &amp; CONTACT</p>
-            <h2>The effective date identifies this version.</h2>
-            <p>These terms may be updated as the project changes. The revised effective date will be shown at the top. Continuing to use the service after an update means the updated terms apply from that date, to the extent permitted by law.</p>
-            <p>Questions: <a href="mailto:songyf_ethan@hotmail.com">songyf_ethan@hotmail.com</a>.</p>
-            <div class="doc-actions">
-              <a class="doc-button" href="/just-go/docs/privacy/">Read the privacy policy →</a>
-              <a class="doc-button secondary" href="/just-go/docs/data-sources/">Review the data sources →</a>
-            </div>
+            <p class="doc-label">10 / CHANGES</p>
+            <h2>Material changes update these terms.</h2>
+            <p>When product capabilities, data handling, or legal obligations materially change, these terms will be revised and the effective date will change. The <a href="/just-go/docs/privacy/">privacy policy</a> explains current data handling.</p>
           </section>
         </article>
       </div>
     </main>
 
     <footer class="jg-footer">
-      <a class="jg-brand" href="/just-go"><span class="logo-mark"><i></i><i></i><i></i></span><span>Just-Go</span></a>
-      <p class="footer-links"><a href="/just-go/docs/">Docs</a><a href="/just-go/docs/services/">Services</a><a href="/just-go/docs/data-sources/">Data sources</a><a href="/just-go/download/">Downloads</a><a href="/just-go/docs/privacy/">Privacy</a><a href="/just-go/docs/terms/">Terms</a><a href="/just-go/docs/attribution/">Attribution</a></p>
-      <p class="mono">TERMS · MAIN fc4bce3 · EFFECTIVE 2026-08-06</p>
+      <a class="jg-brand" href="/just-go/"><img class="app-icon-mark" src="/just-go/assets/justgo-icon.png" alt="" width="36" height="36" /><span>Just-Go</span></a>
+      <p class="footer-links"><a href="/just-go/docs/">Docs</a><a href="/just-go/docs/services/">API Service</a><a href="/just-go/docs/privacy/">Privacy</a><a href="/just-go/docs/terms/">Terms</a><a href="/just-go/docs/attribution/">Attribution</a></p>
+      <p class="label">TERMS · EFFECTIVE 2026-08-06</p>
     </footer>
   </body>
 </html>

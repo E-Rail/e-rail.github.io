@@ -1,0 +1,221 @@
+:root {
+  color-scheme: light;
+
+  /* Signage type is set condensed; Hanzi falls through to PingFang and stays
+     upright, which is how bilingual metro signage is actually set. */
+  --font-sign: "Helvetica Neue", Helvetica, "Arial Narrow", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-text: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-data: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+
+  /* Kept as aliases so the docs stylesheet keeps resolving. */
+  --font-display: var(--font-sign);
+  --font-mono: var(--font-data);
+
+  /* Ink is blue-black, the color of enamel station signage — not neutral grey. */
+  --ink: #12161c;
+  --ink-panel: #1a212a;
+  --ink-raised: #222b36;
+
+  /* Cool platform grey. Deliberately not cream. */
+  --paper: #e7eaec;
+  --paper-deep: #dbe0e3;
+  --white: #ffffff;
+
+  /* The app icon's own orange, sampled from assets/justgo-icon.png. */
+  --signal: #e58224;
+  --accent: #9a5410;        /* text-safe orange on light grounds */
+  --accent-strong: #7d430b;
+  --accent-on-dark: #f2a04a;
+  --accent-soft: #f7ece1;
+
+  --slate: #545d68;
+  --slate-soft: #8b949e;
+  --slate-on-dark: #9aa5b1;
+
+  --rule: #c6ccd1;
+  --rule-soft: #d6dbdf;
+  --rule-on-dark: rgba(255, 255, 255, 0.15);
+
+  /* Line colors encode a real metro line and are used nowhere else. */
+  --line-1: #c8382e;
+  --line-2: #1c63a8;
+
+  /* Aliases the docs stylesheet still references. */
+  --parchment: var(--paper);
+  --pearl: #f2f4f5;
+  --tile-1: var(--ink);
+  --tile-2: var(--ink-panel);
+  --tile-3: var(--ink);
+  --hairline: var(--rule);
+  --divider: var(--rule-soft);
+  --muted: var(--slate);
+  --canvas: var(--paper);
+
+  --content: 72rem;
+  --measure: 64ch;
+  --gutter: clamp(1.25rem, 4vw, 2.5rem);
+
+  --step: 0.35s;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 7rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: var(--font-text);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+video,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Signage voice: condensed grotesque, uppercase, set tight. -------------- */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-family: var(--font-sign);
+  font-stretch: condensed;
+  font-weight: 700;
+  line-height: 0.96;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+}
+
+p,
+blockquote,
+figure,
+dl {
+  margin-top: 0;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+code,
+kbd,
+samp,
+pre,
+.mono {
+  font-family: var(--font-data);
+}
+
+/* The utility layer: machine type. Every label, count and timestamp. ------ */
+
+.label {
+  display: block;
+  margin: 0;
+  color: var(--slate);
+  font-family: var(--font-data);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Ink on the light grounds; dark sections override to the signal orange. */
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+::selection {
+  color: var(--ink);
+  background: var(--signal);
+}
+
+.wrap {
+  width: min(var(--content), calc(100% - (var(--gutter) * 2)));
+  margin-inline: auto;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 1000;
+  top: 0.5rem;
+  left: 0.5rem;
+  padding: 0.65rem 1rem;
+  color: var(--ink);
+  background: var(--signal);
+  font-family: var(--font-data);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transform: translateY(-200%);
+  transition: transform 160ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    /* Without this, a staggered `backwards` fill keeps elements hidden for the
+       length of their delay even though the animation itself is neutralised. */
+    animation-delay: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

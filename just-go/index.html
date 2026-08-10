@@ -3,219 +3,247 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Round 36 catalogs 58 cities with 53 bundled metro networks, 14 included offline packs containing 2,849 station records, native station information for 1,598 stations, and 770 official-resource hyperlinks." />
-    <meta name="theme-color" content="#eef2e8" />
+    <meta name="description" content="Just-Go is an open-source iPhone and iPad transit companion with metro routing for 53 Chinese cities, honest data boundaries, unlimited Quick Tags, and device-only official-data caching." />
+    <meta name="theme-color" content="#12161c" />
     <meta name="color-scheme" content="light" />
-    <title>Just-Go — Subway confidence for China</title>
+    <title>Just-Go — A clearer way through the city</title>
     <script src="/language.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Noto+Sans+SC:wght@400;500;600;700;800&amp;family=Source+Sans+3:wght@400;500;600;700;800&amp;display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="/base.css" />
+    <link rel="stylesheet" href="/just-go/base.css" />
     <link rel="stylesheet" href="/just-go/just-go.css" />
     <link rel="stylesheet" href="/language.css" />
+    <link rel="icon" href="/just-go/assets/justgo-icon.png" />
+    <link rel="apple-touch-icon" href="/just-go/assets/justgo-icon.png" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <header class="jg-nav">
-      <a class="jg-brand" href="/just-go">
-        <span class="logo-mark"><i></i><i></i><i></i></span>
+    <header class="jg-nav global-nav">
+      <a class="jg-brand" href="/just-go/">
+        <img class="app-icon-mark" src="/just-go/assets/justgo-icon.png" alt="" width="36" height="36" />
         <span>Just-Go</span>
       </a>
-      <nav aria-label="Just-Go navigation">
-        <a href="#why">Why Just-Go</a>
-        <a href="#features">What’s new</a>
-        <a href="#coverage">Coverage</a>
+      <nav aria-label="Primary navigation">
+        <a href="/just-go/" aria-current="page">Home</a>
         <a href="/just-go/docs/">Docs</a>
       </nav>
       <div class="nav-actions">
-        <a class="back-link" href="/">Ethan’s site</a>
+        <a class="site-link" href="/">Ethan’s site</a>
         <a class="github-button" href="https://github.com/E-Rail/Just-Go" target="_blank" rel="noreferrer">
-          View on GitHub <span>↗</span>
+          GitHub <span>↗</span>
         </a>
       </div>
     </header>
+    <div class="sub-nav">
+      <a class="sub-nav-title" href="/just-go/">Just-Go</a>
+      <nav aria-label="Just-Go sections">
+        <a href="#round-36">What’s New</a>
+        <a href="#coverage">Coverage</a>
+        <a class="sub-nav-cta" href="/just-go/docs/">Learn more</a>
+      </nav>
+    </div>
 
     <main id="main">
       <section class="jg-hero">
+        <p class="label availability"><i></i>ROUND 36 · MAIN fc4bce3 · iOS &amp; iPadOS 18+</p>
+        <h1>Nothing on this map is <em>guessed.</em></h1>
+
         <div class="hero-copy">
-          <div class="availability"><i></i> OPEN SOURCE · MAIN fc4bce3 · iOS &amp; iPadOS 18+</div>
-          <h1>Maps find a route.<br /><em>Just-Go finds confidence.</em></h1>
-          <p>
-            Explore the latest main branch with track-shaped route previews and
-            map-first Live Go, backed by Round 36’s 58-city catalog and guidance
-            that separates included facts, tap-only links, and live requests.
+          <p class="lead">
+            Just-Go plans metro journeys across 53 Chinese cities. Every field it shows
+            carries the source it came from — bundled with the app, saved on your device,
+            or fetched from the operator just now. The fields it has no source for stay empty.
           </p>
           <div class="hero-actions">
-            <a class="big-button" href="/just-go/docs/">
-              Read the documentation <span>→</span>
-            </a>
-            <a class="watch-link" href="https://github.com/E-Rail/Just-Go" target="_blank" rel="noreferrer"><span class="play-icon">↗</span> View the source</a>
+            <a class="big-button" href="/just-go/docs/">Read the documentation <span>→</span></a>
+            <a class="ghost-button" href="https://github.com/E-Rail/Just-Go" target="_blank" rel="noreferrer">View the source <span>↗</span></a>
           </div>
-          <div class="built-for">
-            <span>CURRENT BUILD</span>
-            <div>58 cataloged cities</div><i></i><div>14 included packs</div><i></i><div>2,849 station records</div>
-          </div>
+          <dl class="build-strip">
+            <div><dt class="label">Catalog</dt><dd>58 cities</dd></div>
+            <div><dt class="label">Routed</dt><dd>53 networks</dd></div>
+            <div><dt class="label">Station packs</dt><dd>14 cities</dd></div>
+          </dl>
         </div>
 
-        <div class="phone-stage" role="img" aria-label="Illustrative Just-Go route-confidence interface">
-          <div class="orbit orbit-one"></div>
-          <div class="orbit orbit-two"></div>
-          <div class="city-label city-beijing" data-i18n-ignore>BEIJING <span>北京</span></div>
-          <div class="city-label city-shanghai" data-i18n-ignore>SHANGHAI <span>上海</span></div>
-          <div class="phone">
-            <div class="dynamic-island"></div>
-            <div class="phone-screen">
-              <div class="phone-status"><span>9:41</span><span>● ◒ ▰</span></div>
-              <div class="app-head">
-                <div>
-                  <small>ROUTE PLANNER</small>
-                  <strong>Where are you going?</strong>
-                </div>
-                <div class="avatar-dot">E</div>
+        <figure class="panel" aria-label="Illustrative station information panel showing which fields have a source and which do not">
+          <div class="panel-flag"><i></i>Illustration · not live data</div>
+          <div class="panel-head">
+            <span class="bullet" data-line="1" aria-hidden="true">1</span>
+            <div class="panel-name">
+              <strong>Wangfujing</strong>
+              <span class="hanzi" lang="zh-CN" data-i18n-ignore>王府井</span>
+            </div>
+            <span class="panel-net">Beijing Subway<i>Line 1</i></span>
+          </div>
+          <dl class="fields">
+            <div class="field" style="--i: 1">
+              <dt>Position on line</dt>
+              <dd><span class="val">Dongdan — Tiananmen East</span><span class="chip" data-src="bundled">Bundled</span></dd>
+            </div>
+            <div class="field" style="--i: 2">
+              <dt>Track geometry</dt>
+              <dd><span class="val">Real alignment, 1.8 km to Xidan</span><span class="chip" data-src="bundled">Bundled</span></dd>
+            </div>
+            <div class="field" style="--i: 3">
+              <dt>Exits</dt>
+              <dd><span class="val">A · B · C · D</span><span class="chip" data-src="pack">Station pack</span></dd>
+            </div>
+            <div class="field" style="--i: 4">
+              <dt>First and last train</dt>
+              <dd><span class="val">05:05 · 23:00</span><span class="chip" data-src="pack">Station pack</span></dd>
+            </div>
+            <div class="field" style="--i: 5">
+              <dt>Next arrivals</dt>
+              <dd><span class="val">2 min · 6 min</span><span class="chip" data-src="live">Operator · live</span></dd>
+            </div>
+            <div class="field" style="--i: 6">
+              <dt>Operator notice</dt>
+              <dd><span class="val">Saved copy, 4 hours old</span><span class="chip" data-src="device">On this device</span></dd>
+            </div>
+            <div class="field is-absent" style="--i: 7">
+              <dt>Step-free transfer route</dt>
+              <dd><span class="val">Not available</span><span class="chip" data-src="none">No source</span></dd>
+            </div>
+            <div class="field is-absent" style="--i: 8">
+              <dt>Indoor walking path</dt>
+              <dd><span class="val">Not available</span><span class="chip" data-src="none">No source</span></dd>
+            </div>
+          </dl>
+          <figcaption>Two of these eight fields have no reviewed source. Just-Go leaves them empty rather than filling them in.</figcaption>
+        </figure>
+      </section>
+
+      <section class="rule" id="rule">
+        <div class="rule-inner">
+          <div class="rule-top">
+            <div>
+              <p class="label">The rule</p>
+              <blockquote>Missing data should look missing — not <em>plausible.</em></blockquote>
+            </div>
+            <p class="rule-note">
+              Just-Go combines bundled network graphs, Apple Maps place search and walking legs,
+              reviewed station packs, and narrowly scoped operator requests. Every layer keeps its
+              own label, so a link never masquerades as offline content and a cached result never
+              masquerades as live.
+            </p>
+          </div>
+          <div class="rule-body">
+            <dl class="layers">
+              <div>
+                <dt><span class="chip" data-src="bundled">Bundled</span></dt>
+                <dd><strong>53 city graphs and track geometry.</strong> Ships with the app. No request is needed to read the network.</dd>
               </div>
-              <div class="route-input">
-                <div class="input-row"><span class="route-dot origin"></span><div><small>FROM</small><strong>Wangfujing · 王府井</strong></div></div>
-                <div class="input-line"></div>
-                <div class="input-row"><span class="route-dot destination"></span><div><small>TO</small><strong>Xidan · 西单</strong></div></div>
+              <div>
+                <dt><span class="chip" data-src="pack">Station pack</span></dt>
+                <dd><strong>14 cities, 2,849 matched records.</strong> Only fields that exist are claimed. Coverage is counted field by field.</dd>
               </div>
-              <div class="mode-row">
-                <span class="selected">Transit first</span><span>Least walking</span><span>Fewest transfers</span>
+              <div>
+                <dt><span class="chip" data-src="live">Operator · live</span></dt>
+                <dd><strong>Five reviewed sources, 1,598 station references.</strong> Fetched by your device when you ask. Just-Go re-hosts nothing.</dd>
               </div>
-              <div class="confidence-card">
-                <div class="confidence-top">
-                  <div class="score-ring"><strong>72</strong><small>/100</small></div>
-                  <div><small>TRIP CONFIDENCE</small><strong>Worth checking</strong><p>Direct ride · Static schedule unavailable</p></div>
-                </div>
-                <div class="route-summary">
-                  <span class="line-badge">1</span>
-                  <div><strong>Line 1 · 3 stops</strong><small>8 min · ¥3 · 1.8 km</small></div>
-                  <span class="chevron">›</span>
-                </div>
-                <div class="timeline">
-                  <span class="time">09:46</span><i></i><span class="stop-node"></span><i></i><span class="stop-node"></span><i></i><span class="stop-node end"></span><span class="time">09:54</span>
-                </div>
+              <div>
+                <dt><span class="chip" data-src="device">On this device</span></dt>
+                <dd><strong>Backup-excluded, clearable in Settings.</strong> A saved answer shows its age and never poses as live.</dd>
               </div>
-              <div class="insight-card">
-                <span class="insight-icon">!</span>
-                <div><strong>Check before you go</strong><p>Step-free arrival access is not confirmed in the current city pack.</p></div>
+              <div>
+                <dt><span class="chip" data-src="none">No source</span></dt>
+                <dd><strong>Left empty on purpose.</strong> No invented indoor paths, no guessed transfers, no filler.</dd>
               </div>
-              <div class="app-tabs"><span>◇<small>Map</small></span><span class="active">⌁<small>Route</small></span><span>⌕<small>Search</small></span><span>○<small>Profile</small></span></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="changes" id="round-36">
+        <div class="sec-head">
+          <div>
+            <p class="label">Round 36 · six changes</p>
+            <h2>Built for the<br />journey itself.</h2>
+          </div>
+          <p class="lead">PR #21 makes the everyday experience faster, more personal, and clearer about data.</p>
+        </div>
+        <dl class="change-list">
+          <div>
+            <dt><span class="label">Routing</span><strong>Map-first routing</strong></dt>
+            <dd>Plan across 53 metro networks, start from any searched place, and see walking, cycling, driving, and rail legs as distinct parts of one journey.</dd>
+          </div>
+          <div>
+            <dt><span class="label">Quick Tags</span><strong>Unlimited Quick Tags</strong></dt>
+            <dd>Keep one Home and one Work, then add as many custom tags as you need — for stations or arbitrary map places — and manage them from Settings.</dd>
+          </div>
+          <div>
+            <dt><span class="label">Offline</span><strong>Official data, cached locally</strong></dt>
+            <dd>Beijing’s last good operator response can work offline from a backup-excluded device cache, visibly labeled with its saved time.</dd>
+          </div>
+          <div>
+            <dt><span class="label">Cache</span><strong>Clear Cache means clear</strong></dt>
+            <dd>One confirmed action removes downloaded city packs, station-information snapshots, URL caches, memory copies, and in-flight downloads — without deleting tags, trips, or settings.</dd>
+          </div>
+          <div>
+            <dt><span class="label">API</span><strong>One station-information contract</strong></dt>
+            <dd>A developer-facing schema, directory, and source registry describe 1,598 stations across five official sources. It is a contract, not a hosted proxy.</dd>
+          </div>
+          <div>
+            <dt><span class="label">Data</span><strong>Universal city data</strong></dt>
+            <dd>Every catalog city now has a versioned, integrity-indexed JSON document for developers, while the app bundles only the data it actually uses.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="coverage" id="coverage">
+        <div class="sec-head">
+          <div>
+            <p class="label">Coverage · 58 cities</p>
+            <h2>58 cities.<br />Clear boundaries.</h2>
+          </div>
+          <p class="lead">
+            Coverage is not uniform, so the site draws it the way the app reports it. Each
+            square below is one catalog city.
+          </p>
+        </div>
+
+        <div class="band" role="img" aria-label="58 catalog cities: 14 have a reviewed station pack, a further 39 have a routed network only, and 5 are catalogued without routing.">
+          <span data-tier="pack"></span><span data-tier="pack"></span><span data-tier="pack"></span><span data-tier="pack"></span><span data-tier="pack"></span><span data-tier="pack"></span><span data-tier="pack"></span><span data-tier="pack"></span><span data-tier="pack"></span><span data-tier="pack"></span><span data-tier="pack"></span><span data-tier="pack"></span><span data-tier="pack"></span><span data-tier="pack"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="routed"></span><span data-tier="catalog"></span><span data-tier="catalog"></span><span data-tier="catalog"></span><span data-tier="catalog"></span><span data-tier="catalog"></span>
+        </div>
+        <div class="band-ticks" aria-hidden="true">
+          <span data-tier="pack"><strong>14</strong></span>
+          <span data-tier="routed"><strong>39</strong></span>
+          <span data-tier="catalog"><strong>5</strong></span>
+        </div>
+        <dl class="band-key">
+          <div><dt data-tier="pack">Station pack</dt><dd>Routed, plus reviewed station records — 2,849 of them.</dd></div>
+          <div><dt data-tier="routed">Routed only</dt><dd>A full metro graph you can plan on. No station records yet.</dd></div>
+          <div><dt data-tier="catalog">Catalogued</dt><dd>In the universal data format, not yet routable in the app.</dd></div>
+        </dl>
+
+        <dl class="counts">
+          <div><dt class="label">Official source recipes</dt><dd>5</dd></div>
+          <div><dt class="label">Station references</dt><dd>1,598</dd></div>
+          <div><dt class="label">Reviewed links</dt><dd>770</dd></div>
+          <div><dt class="label">Invented transfer paths</dt><dd>0</dd></div>
+        </dl>
+        <p class="coverage-more"><a href="/just-go/docs/">Read how the layers fit together <span>→</span></a></p>
+      </section>
+
+      <section class="end">
+        <div class="sec-head">
+          <div>
+            <p class="label">Read the details</p>
+            <h2>Every feature.<br />Every boundary.</h2>
+          </div>
+          <div>
+            <p class="lead">Read the product guide, API contract, privacy policy, terms, and complete attribution record.</p>
+            <div class="hero-actions">
+              <a class="big-button" href="/just-go/docs/">Open the docs <span>→</span></a>
+              <a class="ghost-button" href="https://github.com/E-Rail/Just-Go" target="_blank" rel="noreferrer">View source on GitHub <span>↗</span></a>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section class="statement" id="why">
-        <p class="section-code">01 / THE IDEA</p>
-        <blockquote>
-          “A route can be technically possible<br />
-          and still be <em>practically impossible.</em>”
-        </blockquote>
-        <div class="statement-copy">
-          <p>
-            Just-Go uses route-picker baselines where available, asks Apple Maps
-            for place search and walking legs, and labels each station field by its
-            actual source. The result is guidance with reasons, caveats, and visible
-            data boundaries—not a mysterious green score.
-          </p>
-          <div class="confidence-legend">
-            <div><i class="high"></i><span><strong>High confidence · 80–100</strong>Fewer concerns in the available data</span></div>
-            <div><i class="medium"></i><span><strong>Worth checking · 60–79</strong>One or more details need attention</span></div>
-            <div><i class="low"></i><span><strong>Plan carefully · 0–59</strong>Complex, risky, or data-limited</span></div>
-          </div>
-        </div>
-      </section>
-
-      <section class="features" id="features">
-        <div class="section-head">
-          <p class="section-code">02 / MAIN fc4bce3 · AUGUST 2026</p>
-          <h2>More than<br />A to B.</h2>
-          <p>The current app has grown far beyond the original six-city concept.</p>
-        </div>
-        <div class="feature-grid">
-          <article class="feature-card route-feature">
-            <span class="feature-number">01</span>
-            <div class="mini-map" aria-hidden="true">
-              <i class="yellow-line"></i><i class="blue-line"></i>
-              <span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span>
-            </div>
-            <h3>Track-shaped route previews</h3>
-            <p>Bundled routes project station endpoints onto the selected OpenStreetMap-derived track path, then draw only the traveled segment.</p>
-          </article>
-          <article class="feature-card">
-            <span class="feature-number">02</span>
-            <div class="feature-icon station-icon"><span></span><i></i><span></span></div>
-            <h3>Map-first Live Go</h3>
-            <p>A full-screen interactive map shows the route and user position. Repeated off-route readings during a walking step can trigger replanning.</p>
-          </article>
-          <article class="feature-card">
-            <span class="feature-number">03</span>
-            <div class="feature-icon source-icon">◎<small>ONE TAP</small></div>
-            <h3>Unlimited place tags</h3>
-            <p>Home and Work stay single-slot; custom tags are unlimited and now work on any map place, not just stations. Add and manage them from Settings.</p>
-          </article>
-          <article class="feature-card">
-            <span class="feature-number">04</span>
-            <div class="feature-icon data-icon">✣</div>
-            <h3>14 included city packs</h3>
-            <p>Fourteen cities ship offline station packs holding 2,849 matched station records and 582 accessibility records, led by Beijing at 444.</p>
-          </article>
-          <article class="feature-card">
-            <span class="feature-number">05</span>
-            <div class="feature-icon go-icon"><span>GO</span><i></i></div>
-            <h3>Live only where stated</h3>
-            <p>Hong Kong has live-arrival references for all 162 matched stations. Viewing live results contacts the government transport API; those results are not offline content.</p>
-          </article>
-          <article class="feature-card">
-            <span class="feature-number">06</span>
-            <div class="feature-icon local-icon"><span>LOCAL</span><i>⌂</i></div>
-            <h3>Operator data, cached locally</h3>
-            <p>Fetched station pages are stored device-only, excluded from backup, labeled as saved snapshots when served offline, and wiped by Clear Cache.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="cities" id="coverage">
-        <div class="city-copy">
-          <p class="section-code">03 / ROUND 36 · VERIFIED 2026-07-15</p>
-          <h2>58 cities.<br />14 included packs.</h2>
-          <p>
-            The catalog contains 53 cities with bundled metro networks and 5
-            catalog-only cities. Fourteen cities have included station packs; the
-            remaining 44 are source-pending—39 geometry-only and 5 catalog-only.
-          </p>
-          <a href="/just-go/docs/data-sources/">See the complete data-source record <span>→</span></a>
-        </div>
-        <div class="city-list">
-          <div class="new-pack"><span>2,849</span><strong>北京</strong><p>Matched station records<small>Across 14 included packs · Beijing 444 · Shanghai 369 · Guangzhou 329 · Shenzhen 321 · Hangzhou 262</small></p><i></i></div>
-          <div class="new-pack"><span>1,598</span><strong>站</strong><p>Native station information<small>Beijing 416 · Shanghai 415 · Guangzhou 346 · Hangzhou 259 fetched on-device · Hong Kong 162 from the included pack</small></p><i></i></div>
-          <div><span>44</span><strong>待补充</strong><p>Source-pending cities<small>39 geometry-only · 5 catalog-only</small></p><i></i></div>
-          <div><span>770</span><strong>↗</strong><p>Official-resource hyperlinks<small>275 Maps · 447 Travel · 6 Accessibility · 42 Help · 698 unique targets</small></p><i></i></div>
-          <div><span>TAP</span><strong>↗</strong><p>Operator files stay external<small>Not bundled, prefetched, or redistributed; fetched pages cache device-only</small></p><i></i></div>
-          <div><span>ZERO</span><strong>0</strong><p>Verified indoor transfers<small>No verified indoor transfer records are included</small></p><i></i></div>
-        </div>
-      </section>
-
-      <section class="cta">
-        <div class="cta-line" aria-hidden="true"><span></span><i></i><span></span><i></i><span></span></div>
-        <p class="section-code">READ THE DETAILS</p>
-        <h2>Confidence should<br />be inspectable.</h2>
-        <p>Read the route math, service boundaries, data labels, and known limitations.</p>
-        <div class="cta-actions">
-          <a class="big-button light" href="/just-go/docs/">Open the docs <span>→</span></a>
-          <a class="cta-source" href="https://github.com/E-Rail/Just-Go" target="_blank" rel="noreferrer">View source on GitHub ↗</a>
         </div>
       </section>
     </main>
 
     <footer class="jg-footer">
-      <a class="jg-brand" href="/just-go"><span class="logo-mark"><i></i><i></i><i></i></span><span>Just-Go</span></a>
-      <p class="footer-links"><a href="/just-go/docs/">Docs</a><a href="/just-go/docs/data-sources/">Data sources</a><a href="/just-go/download/">Downloads</a><a href="/just-go/docs/privacy/">Privacy</a><a href="/just-go/docs/terms/">Terms</a><a href="/just-go/docs/attribution/">Attribution</a></p>
-      <p class="mono">SWIFTUI · MAPKIT · OPEN SOURCE</p>
+      <a class="jg-brand" href="/just-go/"><img class="app-icon-mark" src="/just-go/assets/justgo-icon.png" alt="" width="36" height="36" /><span>Just-Go</span></a>
+      <p class="footer-links"><a href="/just-go/docs/">Docs</a><a href="/just-go/docs/services/">API Service</a><a href="/just-go/docs/privacy/">Privacy</a><a href="/just-go/docs/terms/">Terms</a><a href="/just-go/docs/attribution/">Attribution</a></p>
+      <p class="label">SwiftUI · MapKit · Open source</p>
     </footer>
   </body>
 </html>
