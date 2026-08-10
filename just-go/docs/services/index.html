@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Just-Go service catalog explaining included data, on-device station-information fetching and caching, user-opened external references, live Hong Kong API requests, and failure behavior." />
+    <meta name="theme-color" content="#f8faf4" />
+    <meta name="color-scheme" content="light" />
+    <title>Just-Go Services — Data and runtime boundaries</title>
+    <script src="/language.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Noto+Sans+SC:wght@400;500;600;700;800&amp;family=Source+Sans+3:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/base.css" />
+    <link rel="stylesheet" href="/just-go/just-go.css" />
+    <link rel="stylesheet" href="/just-go/docs/docs.css" />
+    <link rel="stylesheet" href="/language.css" />
+  </head>
+  <body class="docs-body">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="jg-nav docs-nav">
+      <a class="jg-brand" href="/just-go"><span class="logo-mark"><i></i><i></i><i></i></span><span>Just-Go</span></a>
+      <nav aria-label="Documentation navigation">
+        <a href="/just-go/">Product</a>
+        <a href="/just-go/docs/">Docs</a>
+        <a href="/just-go/docs/data-sources/">Data sources</a>
+        <a href="/just-go/docs/privacy/">Privacy</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="back-link" href="/">Ethan’s site</a>
+        <a class="github-button" href="https://github.com/E-Rail/Just-Go" target="_blank" rel="noreferrer">Source <span>↗</span></a>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="docs-hero">
+        <div class="docs-hero-copy">
+          <p class="docs-breadcrumb"><a href="/just-go/docs/">Docs</a> / Services</p>
+          <h1>Four boundaries<br /><em>behind one trip.</em></h1>
+          <p>Just-Go separates included files, station information fetched on the rider’s device, tap-to-open external links, and live API responses. This catalog explains exactly when each class is used.</p>
+        </div>
+        <aside class="docs-status" aria-label="Service snapshot">
+          <span class="status-label">MAIN fc4bce3 · SERVICE SNAPSHOT</span>
+          <div class="status-row"><span>Route-picker baselines</span><strong>53 cities</strong></div>
+          <div class="status-row"><span>Included station packs</span><strong>14 · 2,849 records</strong></div>
+          <div class="status-row"><span>Station information</span><strong>1,598 stations</strong></div>
+          <div class="status-row"><span>Official-resource links</span><strong>770 records</strong></div>
+          <div class="status-row"><span>Live-arrival coverage</span><strong>Hong Kong · 162</strong></div>
+        </aside>
+      </section>
+
+      <nav class="docs-tabs" aria-label="Just-Go documentation pages">
+        <div class="docs-tabs-inner">
+          <a href="/just-go/docs/">Overview</a>
+          <a href="/just-go/docs/services/" aria-current="page">Service catalog</a>
+          <a href="/just-go/docs/data-sources/">Data sources</a>
+          <a href="/just-go/download/">Downloads</a>
+          <a href="/just-go/docs/privacy/">Privacy</a>
+          <a href="/just-go/docs/terms/">Service terms</a>
+          <a href="/just-go/docs/attribution/">Attribution</a>
+        </div>
+      </nav>
+
+      <div class="docs-shell">
+        <aside class="docs-sidebar" aria-label="On this page">
+          <span>ON THIS PAGE</span>
+          <a href="#model">Service model</a>
+          <a href="#included">Included data</a>
+          <a href="#station-information">Station information</a>
+          <a href="#external">External references</a>
+          <a href="#live">Live arrivals</a>
+          <a href="#tags">Place tags</a>
+          <a href="#routing">Maps &amp; routing</a>
+          <a href="#failures">Failures &amp; labels</a>
+        </aside>
+
+        <article class="docs-content">
+          <section class="doc-section" id="model">
+            <p class="doc-label">01 / SERVICE MODEL</p>
+            <h2>The label determines the behavior.</h2>
+            <p class="doc-lead">A station field is not simply “available.” It belongs to one of four classes, and the app must preserve that class from display through network behavior.</p>
+
+            <div class="service-grid">
+              <a class="service-card" href="#included"><span class="mini-label">APP CONTENT</span><strong>Included data</strong><p>Catalog metadata, 53 route-picker baselines, and 14 offline city packs shipped with the build.</p></a>
+              <a class="service-card" href="#station-information"><span class="mini-label">ON-DEVICE FETCH</span><strong>Station information</strong><p>1,598 reviewed stations. Four operators are read from the rider’s own device and cached device-only.</p></a>
+              <a class="service-card" href="#external"><span class="mini-label">USER ACTION</span><strong>Official-resource links</strong><p>770 operator hyperlinks across 698 unique targets that open only when the rider taps them.</p></a>
+              <a class="service-card" href="#live"><span class="mini-label">ONLINE REQUEST</span><strong>Live Hong Kong arrivals</strong><p>Current results requested from the government transport API for referenced stations.</p></a>
+            </div>
+
+            <div class="doc-callout warning">
+              <strong>No category promotion</strong>
+              <p>An official-resource URL is not an included page or file. A fetched station snapshot is operator content on one device, not a Just-Go dataset. A live-arrival reference is not an offline timetable. Missing data remains missing.</p>
+            </div>
+          </section>
+
+          <section class="doc-section" id="included">
+            <p class="doc-label">02 / INCLUDED DATA</p>
+            <h2>Files available as app content.</h2>
+            <p class="doc-lead">Included means the data or media is delivered with the app build and may be counted as offline content. It does not require opening a provider webpage.</p>
+
+            <div class="table-wrap">
+              <table class="doc-table">
+                <thead><tr><th>Included layer</th><th>Coverage</th><th>What it provides</th><th>What it does not imply</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>City catalog</strong></td><td>58 cities</td><td>City identity and discovery metadata.</td><td>Five entries are catalog-only; catalog presence does not imply geometry or station records.</td></tr>
+                  <tr><td><strong>Route-picker baselines</strong></td><td>53 cities</td><td>Prepared OpenStreetMap-derived network geometry.</td><td>It does not establish indoor paths, platforms, doors, transfers, or station facilities.</td></tr>
+                  <tr><td><strong>Mainland city packs</strong></td><td>12 cities · 2,569 matched</td><td>Matched station identities and, where an open-data source exists, station entrances and accessibility records.</td><td>No static schedule, included layout, licensed media, or verified-transfer dataset in any pack.</td></tr>
+                  <tr><td><strong>Hong Kong city pack</strong></td><td>162 stations</td><td>Station records, 98 accessibility records, and 162 live-arrival references.</td><td>Live values and all operator map destinations remain external to the included pack.</td></tr>
+                  <tr><td><strong>Taipei city pack</strong></td><td>118 matched</td><td>Station records and 118 accessibility records from Taipei open data.</td><td>Attribution is mandatory; omitting it voids the license grant retroactively.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>In aggregate, the 14 included city packs contain 2,849 matched station records against 4,177 network stations. The remaining 44 cities are source-pending: 39 have geometry only and 5 are catalog-only.</p>
+          </section>
+
+          <section class="doc-section" id="station-information">
+            <p class="doc-label">03 / STATION INFORMATION</p>
+            <h2>Read from the operator, kept on one device.</h2>
+            <p class="doc-lead">Station Detail shows three categories for 1,598 reviewed stations. Beijing, Shanghai, Guangzhou, and Hangzhou content is licensed for external linking only, so the rider’s device fetches it directly and Just-Go redistributes it to nobody.</p>
+
+            <div class="detail-list">
+              <div><strong>TRIGGER</strong><span>The rider opens a station’s detail page. Nothing is requested in the background.</span></div>
+              <div><strong>REQUEST</strong><span>The station’s reviewed opaque operator identifier, over an ephemeral session with a 1 MB response cap.</span></div>
+              <div><strong>VALIDATION</strong><span>The returned station identity is checked against the requested one before any row is rendered.</span></div>
+              <div><strong>STORAGE</strong><span>The last good snapshot is written to a schema-versioned, backup-excluded cache directory on that device only.</span></div>
+              <div><strong>OFFLINE</strong><span>An availability failure—offline, 429, 5xx, or timeout—serves the stored snapshot labeled “saved on this device · updated X ago.”</span></div>
+              <div><strong>NEVER CACHED</strong><span>A contract or identity violation is never served from the cache. A wrong answer does not become a durable one.</span></div>
+              <div><strong>DELETION</strong><span>Settings → Clear Cache wipes every snapshot, as does the data-rights epoch cleanup.</span></div>
+            </div>
+
+            <div class="doc-callout warning">
+              <strong>Fetched data never reaches route feasibility</strong>
+              <p>Online station information informs the station page and route card only. A validator guard keeps it out of route feasibility, planning, and confidence scoring, so a route’s viability never depends on whether an operator answered.</p>
+            </div>
+          </section>
+
+          <section class="doc-section" id="external">
+            <p class="doc-label">04 / EXTERNAL REFERENCES</p>
+            <h2>A link is not a local asset.</h2>
+            <p class="doc-lead">The separate directory contains 770 hyperlink records: 275 Maps, 447 Travel, 6 Accessibility, and 42 Help, resolving to 698 unique targets.</p>
+            <ul>
+              <li>Just-Go opens an operator page or file only after the rider taps its link.</li>
+              <li>Just-Go does not bundle, prefetch, or redistribute those destinations. Pages open in a non-persistent WebKit session; documents use memory-only native viewers capped at 50 MB.</li>
+              <li>External pages and files are not counted as offline content.</li>
+              <li>Hong Kong links to 1 MTR System Map, 98 Location Maps, 98 Station Layouts, and 14 Light Rail Street Maps.</li>
+              <li>After opening, the destination provider and the rider’s browser or system web view handle the connection under their own terms and privacy practices.</li>
+              <li>A broken or changed external page does not become an included fallback copy.</li>
+            </ul>
+          </section>
+
+          <section class="doc-section" id="live">
+            <p class="doc-label">05 / LIVE ARRIVALS</p>
+            <h2>Hong Kong requires a live request.</h2>
+            <p class="doc-lead">All 162 matched Hong Kong stations have live-arrival references. When the rider asks to view current arrivals, Just-Go contacts the DATA.GOV.HK government transport API.</p>
+
+            <div class="detail-list">
+              <div><strong>PROVIDER</strong><span>MTR Corporation Limited through DATA.GOV.HK.</span></div>
+              <div><strong>TRIGGER</strong><span>A rider opens or refreshes a Hong Kong live-arrival view.</span></div>
+              <div><strong>REQUEST</strong><span>The referenced station and line context plus ordinary network metadata needed for the API connection.</span></div>
+              <div><strong>OFFLINE STATUS</strong><span>Live responses are online service output and are not counted as included or offline station data.</span></div>
+              <div><strong>STATIC SCHEDULES</strong><span>None are included for Hong Kong in this snapshot.</span></div>
+              <div><strong>TERMS</strong><span>MTR Corporation Limited and DATA.GOV.HK are credited under the DATA.GOV.HK Terms of Use.</span></div>
+            </div>
+
+            <div class="doc-actions">
+              <a class="doc-button" href="https://data.gov.hk/en-data/dataset/mtr-data2-nexttrain-data" target="_blank" rel="noreferrer">Official live-arrival dataset ↗</a>
+              <a class="doc-button secondary" href="https://data.gov.hk/en/terms-and-conditions" target="_blank" rel="noreferrer">DATA.GOV.HK Terms of Use ↗</a>
+            </div>
+          </section>
+
+          <section class="doc-section" id="tags">
+            <p class="doc-label">06 / PLACE TAGS</p>
+            <h2>Tags for stations and for anywhere else.</h2>
+            <p class="doc-lead">Tags fill the active planner field in one tap. Home and Work are single-slot special tags—saving a new Home takes over the slot, matching the iOS convention—and custom tags are unlimited.</p>
+            <ul>
+              <li>Any map place can be tagged, not only a station. A place tag stores its address and fills the planner exactly as a station tag does.</li>
+              <li>Tags are added and managed from the station page, the map card, or Settings → Tags, which includes a search sheet covering both network stations and map places.</li>
+              <li>Records are stored locally. No account or synchronization service receives them.</li>
+              <li>Place tags are skipped by the station-repair pass, so a tagged café is never rewritten into a nearby station.</li>
+            </ul>
+          </section>
+
+          <section class="doc-section" id="routing">
+            <p class="doc-label">07 / MAPS &amp; ROUTING</p>
+            <h2>Surface routing is not indoor routing.</h2>
+            <p>Place search, device location, walking approaches, and walking-step rerouting may use Apple frameworks and therefore may require a network connection. Route-picker baselines are included for 53 cities; 5 catalog-only cities do not have one. Transit previews draw the traveled segment of the selected OpenStreetMap-derived track geometry.</p>
+            <div class="doc-callout warning">
+              <strong>Current indoor boundary</strong>
+              <p>Indoor navigation was removed rather than left dormant, and verified indoor transfer coverage is zero. Route-picker geometry and external maps do not establish an indoor path, platform, door, transfer, or verified step-free route. On a transfer, Go names the station and defers to station signs.</p>
+            </div>
+          </section>
+
+          <section class="doc-section" id="failures">
+            <p class="doc-label">08 / FAILURES &amp; LABELS</p>
+            <h2>Failure does not change provenance.</h2>
+            <div class="table-wrap">
+              <table class="doc-table">
+                <thead><tr><th>Condition</th><th>Required behavior</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Source-pending city</strong></td><td>Show the layer as pending or unavailable; do not infer station fields from catalog presence.</td></tr>
+                  <tr><td><strong>Live API unavailable</strong></td><td>Explain that current arrivals could not be loaded; do not substitute an invented live value or call it a static schedule.</td></tr>
+                  <tr><td><strong>Station operator unreachable</strong></td><td>Serve the device-only snapshot, labeled as saved and dated. If no snapshot exists, show the category as unavailable.</td></tr>
+                  <tr><td><strong>Station response fails validation</strong></td><td>Discard it and do not fall back to the cache. A contract or identity violation must not be answered from stored data.</td></tr>
+                  <tr><td><strong>External page unavailable</strong></td><td>Report that the provider page could not be opened; do not claim a local copy exists.</td></tr>
+                  <tr><td><strong>Accessibility record absent</strong></td><td>Display unknown, not inaccessible and not step-free.</td></tr>
+                  <tr><td><strong>Indoor transfer requested</strong></td><td>State that verified indoor transfer data is unavailable; do not promote geometry into indoor guidance.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="doc-actions">
+              <a class="doc-button" href="/just-go/docs/data-sources/">Read the data-source record →</a>
+              <a class="doc-button secondary" href="/just-go/docs/privacy/">Read the privacy policy →</a>
+            </div>
+          </section>
+        </article>
+      </div>
+    </main>
+
+    <footer class="jg-footer">
+      <a class="jg-brand" href="/just-go"><span class="logo-mark"><i></i><i></i><i></i></span><span>Just-Go</span></a>
+      <p class="footer-links"><a href="/just-go/docs/">Docs</a><a href="/just-go/docs/services/">Services</a><a href="/just-go/docs/data-sources/">Data sources</a><a href="/just-go/download/">Downloads</a><a href="/just-go/docs/privacy/">Privacy</a><a href="/just-go/docs/terms/">Terms</a><a href="/just-go/docs/attribution/">Attribution</a></p>
+      <p class="mono">SERVICES · MAIN fc4bce3 · DATA 2026-07-15</p>
+    </footer>
+  </body>
+</html>

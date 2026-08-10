@@ -652,7 +652,7 @@ h2 {
   margin: auto calc(var(--s-5) * -1);
 }
 
-.justgo-visual {
+.just-go-visual {
   overflow: hidden;
   background:
     linear-gradient(30deg, transparent 45%, rgba(255, 255, 255, .035) 46%, rgba(255, 255, 255, .035) 48%, transparent 49%),

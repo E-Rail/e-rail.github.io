@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Round 36 Just-Go data-source record: 58 cities, 53 route-picker baselines, 14 included offline packs with 2,849 stations, 1,598 reviewed station-information entries, and 770 official-resource hyperlinks across 698 unique targets." />
+    <meta name="theme-color" content="#f8faf4" />
+    <meta name="color-scheme" content="light" />
+    <title>Just-Go Data Sources — Included, external, and live</title>
+    <script src="/language.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Noto+Sans+SC:wght@400;500;600;700;800&amp;family=Source+Sans+3:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/base.css" />
+    <link rel="stylesheet" href="/just-go/just-go.css" />
+    <link rel="stylesheet" href="/just-go/docs/docs.css" />
+    <link rel="stylesheet" href="/language.css" />
+  </head>
+  <body class="docs-body">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="jg-nav docs-nav">
+      <a class="jg-brand" href="/just-go"><span class="logo-mark"><i></i><i></i><i></i></span><span>Just-Go</span></a>
+      <nav aria-label="Documentation navigation">
+        <a href="/just-go/">Product</a>
+        <a href="/just-go/docs/">Docs</a>
+        <a href="/just-go/docs/data-sources/" aria-current="page">Data sources</a>
+        <a href="/just-go/docs/privacy/">Privacy</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="back-link" href="/">Ethan’s site</a>
+        <a class="github-button" href="https://github.com/E-Rail/Just-Go" target="_blank" rel="noreferrer">Source <span>↗</span></a>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="docs-hero">
+        <div class="docs-hero-copy">
+          <p class="docs-breadcrumb"><a href="/just-go/docs/">Docs</a> / Data sources</p>
+          <h1>Every count,<br /><em>with its boundary.</em></h1>
+          <p>This record states exactly what Round 36 includes, what remains source-pending, what is fetched on the rider’s device, what is only a tap-to-open hyperlink, and what requires a live service.</p>
+        </div>
+        <aside class="docs-status" aria-label="Data-source snapshot">
+          <span class="status-label">ROUND 36 · MAIN fc4bce3 · VERIFIED 2026-07-15</span>
+          <div class="status-row"><span>Catalog</span><strong>58 cities</strong></div>
+          <div class="status-row"><span>Route-picker baselines</span><strong>53 cities</strong></div>
+          <div class="status-row"><span>Included offline packs</span><strong>14 · 2,849 stations</strong></div>
+          <div class="status-row"><span>Official-resource directory</span><strong>770 links</strong></div>
+        </aside>
+      </section>
+
+      <nav class="docs-tabs" aria-label="Just-Go documentation pages">
+        <div class="docs-tabs-inner">
+          <a href="/just-go/docs/">Overview</a>
+          <a href="/just-go/docs/services/">Service catalog</a>
+          <a href="/just-go/docs/data-sources/" aria-current="page">Data sources</a>
+          <a href="/just-go/download/">Downloads</a>
+          <a href="/just-go/docs/privacy/">Privacy</a>
+          <a href="/just-go/docs/terms/">Service terms</a>
+          <a href="/just-go/docs/attribution/">Attribution</a>
+        </div>
+      </nav>
+
+      <div class="docs-shell">
+        <aside class="docs-sidebar" aria-label="On this page">
+          <span>ON THIS PAGE</span>
+          <a href="#snapshot">Verified snapshot</a>
+          <a href="#definitions">Counting rules</a>
+          <a href="#directory">Official-resource directory</a>
+          <a href="#packs">Included city packs</a>
+          <a href="#station-information">Station information</a>
+          <a href="#hong-kong">Hong Kong</a>
+          <a href="#pending">Source-pending cities</a>
+          <a href="#external">External &amp; live</a>
+          <a href="#universal">Universal city data</a>
+          <a href="#maintenance">Maintenance rules</a>
+        </aside>
+
+        <article class="docs-content">
+          <section class="doc-section" id="snapshot">
+            <p class="doc-label">01 / VERIFIED SNAPSHOT</p>
+            <h2>The totals reconcile.</h2>
+            <p class="doc-lead">Round 36 catalogs 58 cities: 53 have route-picker baselines and 5 are catalog-only. Fourteen baseline cities also have included offline station packs.</p>
+
+            <div class="score-formula"><strong>58 cataloged cities</strong>
+= 53 with route-picker baselines
+  + 5 catalog-only
+
+53 route-picker cities
+= 14 with included offline city packs
+  + 39 geometry-only, source-pending
+
+14 included offline city packs
+= 2,849 matched station records
+  of 4,177 network stations
+
+44 source-pending cities
+= 39 geometry-only
+  + 5 catalog-only
+
+1,598 reviewed station-information entries
+= 1,436 fetched on-device
+  (Beijing 416, Shanghai 415,
+   Guangzhou 346, Hangzhou 259)
+  + 162 from the Hong Kong pack</div>
+
+            <div class="doc-callout">
+              <strong>What “source-pending” means</strong>
+              <p>The project has not included a supported station-enrichment pack for that city. It does not mean the city or its operator has no public information; it means that information is not included in this build as a supported Just-Go dataset.</p>
+            </div>
+          </section>
+
+          <section class="doc-section" id="definitions">
+            <p class="doc-label">02 / COUNTING RULES</p>
+            <h2>Four labels prevent double-counting.</h2>
+            <div class="table-wrap">
+              <table class="doc-table">
+                <thead><tr><th>Label</th><th>Exact meaning</th><th>Counts as offline app content?</th><th>Can trigger a network request?</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Included</strong></td><td>Data or media delivered as part of the app build.</td><td><span class="status-pill">YES</span></td><td>Not merely to read the included item.</td></tr>
+                  <tr><td><strong>Station-information reference</strong></td><td>A reviewed operator station identifier. Only the identifier, aliases, and review date are in the repository; the content is not.</td><td><span class="status-pill pending">THE REFERENCE ONLY</span></td><td>Yes, when the rider opens that station’s detail page.</td></tr>
+                  <tr><td><strong>Official-resource hyperlink</strong></td><td>Reviewed URL metadata for a provider-controlled page or file. The destination content is not included.</td><td><span class="status-pill pending">NO</span></td><td>Only after the rider taps the link.</td></tr>
+                  <tr><td><strong>Live API reference</strong></td><td>A station or line reference that can request a current value from an online provider.</td><td><span class="status-pill pending">THE REFERENCE ONLY</span></td><td>Yes, when current results are requested.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>A hyperlink record can ship in the directory without making its destination an included asset. Likewise, a live-arrival reference can be included while the current arrival result remains online-only, and a station-information reference can be included while the operator’s text is never committed to the repository.</p>
+
+            <div class="doc-callout warning">
+              <strong>Device-only caching is not redistribution</strong>
+              <p>Beijing, Shanghai, Guangzhou, and Hangzhou station content is licensed for external linking only, so it must not be committed. The rider’s own device fetches it and stores the last good snapshot under a backup-excluded cache directory, capped at 1 MB per entry and clearable from Settings. That copy never leaves the device and is never republished as a Just-Go dataset.</p>
+            </div>
+          </section>
+
+          <section class="doc-section" id="directory">
+            <p class="doc-label">03 / OFFICIAL-RESOURCE DIRECTORY</p>
+            <h2>770 records, 698 unique targets.</h2>
+            <p class="doc-lead">The directory is separate from the 14 offline city packs. It stores reviewed factual URL metadata; it does not add station data or offline map coverage to a city. Forty-three cities have at least one verified official resource, and 15 carry an explicit dated no-resource review.</p>
+            <div class="table-wrap">
+              <table class="doc-table">
+                <thead><tr><th>Directory category</th><th>Hyperlink records</th><th>What the count means</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Maps</strong></td><td>275</td><td>System, location, station-layout, and street-map link records.</td></tr>
+                  <tr><td><strong>Travel</strong></td><td>447</td><td>Station-information, journey-planning, timetable, fare, and service-status links.</td></tr>
+                  <tr><td><strong>Accessibility</strong></td><td>6</td><td>Accessibility and station-facility links.</td></tr>
+                  <tr><td><strong>Help</strong></td><td>42</td><td>Operator information and customer-service links.</td></tr>
+                  <tr><td><strong>Total</strong></td><td>770</td><td>These records resolve to 698 unique target URLs because one target may be associated with more than one station.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="doc-callout warning">
+              <strong>URL metadata is not operator content</strong>
+              <p>Operator pages and files open only after the rider taps a link. Just-Go does not bundle, fetch, preview, cache, prefetch, or redistribute them.</p>
+            </div>
+          </section>
+
+          <section class="doc-section" id="packs">
+            <p class="doc-label">04 / INCLUDED CITY PACKS</p>
+            <h2>Fourteen packs, city by city.</h2>
+            <p class="doc-lead">Matched counts the network stations carrying a pack record. Every pack in this snapshot has zero static schedules, zero included station layouts, zero licensed media, and zero verified indoor transfers, so those columns are stated once here rather than repeated per city.</p>
+            <div class="table-wrap">
+              <table class="doc-table">
+                <thead><tr><th>City</th><th>Network stations</th><th>Matched</th><th>Accessibility</th><th>Live arrivals</th><th>Rights basis</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Beijing</strong> · 北京</td><td>444</td><td>444</td><td>43</td><td>0</td><td>OSM network; operator content external only</td></tr>
+                  <tr><td><strong>Shanghai</strong> · 上海</td><td>471</td><td>369</td><td>56</td><td>0</td><td>OSM network; operator content external only</td></tr>
+                  <tr><td><strong>Guangzhou</strong> · 广州</td><td>414</td><td>329</td><td>37</td><td>0</td><td>OSM network; operator content external only</td></tr>
+                  <tr><td><strong>Shenzhen</strong> · 深圳</td><td>372</td><td>321</td><td>19</td><td>0</td><td>OSM network and entrances</td></tr>
+                  <tr><td><strong>Hangzhou</strong> · 杭州</td><td>270</td><td>262</td><td>10</td><td>0</td><td>OSM network; operator content external only</td></tr>
+                  <tr><td><strong>Xi’an</strong> · 西安</td><td>247</td><td>227</td><td>164</td><td>0</td><td>OSM network and entrances</td></tr>
+                  <tr><td><strong>Chengdu</strong> · 成都</td><td>396</td><td>184</td><td>9</td><td>0</td><td>OSM network and entrances</td></tr>
+                  <tr><td><strong>Hong Kong</strong> · 香港</td><td>162</td><td>162</td><td>98</td><td><span class="status-pill partial">162</span></td><td>DATA.GOV.HK reuse terms</td></tr>
+                  <tr><td><strong>Taipei</strong> · 臺北</td><td>151</td><td>118</td><td>118</td><td>0</td><td>OGDL Taiwan 1.0 · attribution mandatory</td></tr>
+                  <tr><td><strong>Tianjin</strong> · 天津</td><td>239</td><td>108</td><td>5</td><td>0</td><td>OSM network and entrances</td></tr>
+                  <tr><td><strong>Nanjing</strong> · 南京</td><td>210</td><td>100</td><td>11</td><td>0</td><td>OSM network and entrances</td></tr>
+                  <tr><td><strong>Wuhan</strong> · 武汉</td><td>293</td><td>89</td><td>7</td><td>0</td><td>OSM network and entrances</td></tr>
+                  <tr><td><strong>Chongqing</strong> · 重庆</td><td>273</td><td>83</td><td>3</td><td>0</td><td>OSM network and entrances</td></tr>
+                  <tr><td><strong>Suzhou</strong> · 苏州</td><td>235</td><td>53</td><td>2</td><td>0</td><td>OSM network and entrances</td></tr>
+                  <tr><td><strong>Total</strong></td><td>4,177</td><td>2,849</td><td>582</td><td>162</td><td>—</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>A low matched count means station enrichment is still incomplete for that city, not that its network is smaller. Suzhou routes across all 235 network stations while only 53 currently carry a pack record.</p>
+          </section>
+
+          <section class="doc-section" id="station-information">
+            <p class="doc-label">05 / STATION INFORMATION</p>
+            <h2>1,598 stations, fetched not bundled.</h2>
+            <p class="doc-lead">Station Detail shows exactly three categories. Four mainland operators are read live from the rider’s device because their content is licensed for external linking only; Hong Kong is served from its included pack.</p>
+            <div class="table-wrap">
+              <table class="doc-table">
+                <thead><tr><th>Source</th><th>Stations</th><th>Access</th><th>Categories</th><th>Redistributable</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Beijing Subway</strong></td><td>416</td><td><span class="status-pill partial">ON-DEVICE FETCH</span></td><td>First / Last, Exits, Facilities</td><td><span class="status-pill pending">NO</span></td></tr>
+                  <tr><td><strong>Shanghai Metro</strong></td><td>415</td><td><span class="status-pill partial">ON-DEVICE FETCH</span></td><td>First / Last, Exits, Facilities</td><td><span class="status-pill pending">NO</span></td></tr>
+                  <tr><td><strong>Guangzhou Metro</strong></td><td>346</td><td><span class="status-pill partial">ON-DEVICE FETCH</span></td><td>First / Last, Exits, Facilities</td><td><span class="status-pill pending">NO</span></td></tr>
+                  <tr><td><strong>Hangzhou Metro</strong></td><td>259</td><td><span class="status-pill partial">ON-DEVICE FETCH</span></td><td>First / Last, Exits, Facilities</td><td><span class="status-pill pending">NO</span></td></tr>
+                  <tr><td><strong>MTR / DATA.GOV.HK</strong></td><td>162</td><td><span class="status-pill">INCLUDED PACK</span></td><td>Live Trains, Exits, Facilities</td><td><span class="status-pill">YES</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Only station identifiers, operator keys, aliases, and verification dates live in the repository. Responses use an ephemeral session with a 1 MB cap, are validated against the requested station identity, and are stored as a device-only snapshot. A snapshot is served—clearly labeled as saved and dated—only when the operator is unreachable; a contract or identity violation never falls back to it.</p>
+            <div class="doc-callout warning">
+              <strong>Production still requires operator review</strong>
+              <p>These endpoints are not published public APIs and no compatible content-reuse license was found. The current posture is fetch-on-device and redistribute-to-nobody; shipping to a store still requires operator or legal review.</p>
+            </div>
+            <div class="doc-actions">
+              <a class="doc-button" href="https://github.com/E-Rail/Just-Go/blob/main/StationInfoAPI/API.md" target="_blank" rel="noreferrer">Read the station-information API contract ↗</a>
+            </div>
+          </section>
+
+          <section class="doc-section" id="hong-kong">
+            <p class="doc-label">06 / HONG KONG</p>
+            <h2>Included facts, linked maps, live arrivals.</h2>
+            <p class="doc-lead">Hong Kong is the one city whose station content is redistributable, so it is the one city served from an included pack rather than fetched.</p>
+            <div class="table-wrap">
+              <table class="doc-table">
+                <thead><tr><th>Field</th><th>Verified count</th><th>Classification</th><th>Explanation</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Included station records</strong></td><td>162</td><td><span class="status-pill">INCLUDED</span></td><td>Station identities matched into the Hong Kong offline pack.</td></tr>
+                  <tr><td><strong>Accessibility records</strong></td><td>98</td><td><span class="status-pill">INCLUDED</span></td><td>Included accessibility facts; absence at another station remains unknown.</td></tr>
+                  <tr><td><strong>Static schedules</strong></td><td>0</td><td><span class="status-pill pending">NO DATASET</span></td><td>No included static schedule or timetable dataset.</td></tr>
+                  <tr><td><strong>Live-arrival references</strong></td><td>162</td><td><span class="status-pill partial">LIVE API</span></td><td>Every matched station has a reference; current values require the government transport API.</td></tr>
+                  <tr><td><strong>MTR System Map</strong></td><td>1</td><td><span class="status-pill partial">EXTERNAL LINK</span></td><td>One distinct target from the official MTR System Map index.</td></tr>
+                  <tr><td><strong>MTR Location Maps</strong></td><td>98</td><td><span class="status-pill partial">EXTERNAL LINK</span></td><td>Distinct targets from the official MTR index; none is included in the pack.</td></tr>
+                  <tr><td><strong>MTR Station Layouts</strong></td><td>98</td><td><span class="status-pill partial">EXTERNAL LINK</span></td><td>Distinct targets from the official MTR index; none establishes an indoor path.</td></tr>
+                  <tr><td><strong>Light Rail Street Maps</strong></td><td>14</td><td><span class="status-pill partial">EXTERNAL LINK</span></td><td>Fourteen distinct targets from the official MTR Light Rail index.</td></tr>
+                  <tr><td><strong>Verified indoor transfers</strong></td><td>0</td><td><span class="status-pill pending">NO DATASET</span></td><td>Layout availability does not establish a verified transfer path, door, or indoor route.</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="doc-callout">
+              <strong>Hong Kong attribution</strong>
+              <p>The included Hong Kong data is reusable under the DATA.GOV.HK government reuse terms and is attributed, together with live arrivals, to MTR Corporation Limited and DATA.GOV.HK.</p>
+            </div>
+            <div class="doc-actions">
+              <a class="doc-button" href="https://data.gov.hk/en-data/dataset/mtr-data2-nexttrain-data" target="_blank" rel="noreferrer">MTR real-time dataset ↗</a>
+              <a class="doc-button secondary" href="https://data.gov.hk/en/terms-and-conditions" target="_blank" rel="noreferrer">DATA.GOV.HK Terms of Use ↗</a>
+              <a class="doc-button secondary" href="https://www.mtr.com.hk/en/customer/services/system_map.html" target="_blank" rel="noreferrer">Official MTR map index ↗</a>
+              <a class="doc-button secondary" href="https://www.mtr.com.hk/en/customer/services/stmap_index.html" target="_blank" rel="noreferrer">Official Light Rail map index ↗</a>
+            </div>
+          </section>
+
+          <section class="doc-section" id="pending">
+            <p class="doc-label">07 / SOURCE-PENDING CITIES</p>
+            <h2>Forty-four cities do not have a station pack.</h2>
+            <div class="table-wrap">
+              <table class="doc-table">
+                <thead><tr><th>Source-pending group</th><th>City count</th><th>Included now</th><th>Not included now</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Geometry-only</strong></td><td>39</td><td>Catalog entry and route-picker baseline.</td><td>Supported station-enrichment pack.</td></tr>
+                  <tr><td><strong>Catalog-only</strong></td><td>5</td><td>Catalog entry.</td><td>Route-picker baseline and supported station-enrichment pack.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Source-pending fields must not be described as inaccessible, closed, schedule-free, or unsupported by the operator. The accurate statement is narrower: Just-Go does not include that dataset for the city in this build.</p>
+          </section>
+
+          <section class="doc-section" id="external">
+            <p class="doc-label">08 / EXTERNAL &amp; LIVE BEHAVIOR</p>
+            <h2>User action and network behavior are explicit.</h2>
+            <div class="pipeline">
+              <div class="pipeline-step"><span>01</span><strong>Included station view</strong><p>Read the included city-pack record locally. No operator webpage is contacted merely because a reference exists.</p></div>
+              <div class="pipeline-step"><span>02</span><strong>Station Detail opens</strong><p>For a station backed by a live-fetch source, request the operator’s own page for that station identifier, validate the returned identity, and render selected text as native rows. Store the result device-only.</p></div>
+              <div class="pipeline-step"><span>03</span><strong>Official-resource link</strong><p>Open the provider destination only after the rider taps it. Just-Go does not bundle, prefetch, or redistribute the page or file.</p></div>
+              <div class="pipeline-step"><span>04</span><strong>Live arrivals</strong><p>When the rider requests current Hong Kong arrivals, contact the DATA.GOV.HK government transport API using the referenced station and line context.</p></div>
+            </div>
+          </section>
+
+          <section class="doc-section" id="universal">
+            <p class="doc-label">09 / UNIVERSAL CITY DATA</p>
+            <h2>All 58 cities in one published format.</h2>
+            <p class="doc-lead">The Universal City Data Format republishes each catalog city as a single versioned JSON document—network graph without path geometry, reviewed station details, official resources, coverage, and rights declarations—alongside an integrity index carrying a sha256 and byte size per file.</p>
+            <p>These files are published for developers and are not bundled into the app. Each declares the full union of its source rights, so an ODbL or DATA.GOV.HK obligation travels with the data rather than being stripped by the reformatting. The generator is deterministic and CI runs it twice and diffs the output.</p>
+            <div class="doc-actions">
+              <a class="doc-button" href="https://github.com/E-Rail/Just-Go/blob/main/DataPacks/UNIVERSAL_FORMAT.md" target="_blank" rel="noreferrer">Read the format specification ↗</a>
+              <a class="doc-button secondary" href="https://github.com/E-Rail/Just-Go/tree/main/DataPacks/universal" target="_blank" rel="noreferrer">Browse the published files ↗</a>
+            </div>
+          </section>
+
+          <section class="doc-section" id="maintenance">
+            <p class="doc-label">10 / MAINTENANCE RULES</p>
+            <h2>Future updates must preserve the distinctions.</h2>
+            <ul>
+              <li>Increase an included count only when the corresponding data ships as part of the app content.</li>
+              <li>Count directory records separately from unique targets and from included files.</li>
+              <li>Count an operator map as external unless a licensed map file itself is included.</li>
+              <li>Count a live reference separately from a static schedule and from a live response.</li>
+              <li>Count a fetched-and-cached station snapshot as operator content on the rider’s device, never as an included dataset or a redistributable file.</li>
+              <li>Do not count a transfer as verified without a source-backed indoor path that establishes the transfer.</li>
+              <li>Update the privacy, terms, attribution, services, download, product, and documentation pages together when a data boundary changes.</li>
+            </ul>
+          </section>
+        </article>
+      </div>
+    </main>
+
+    <footer class="jg-footer">
+      <a class="jg-brand" href="/just-go"><span class="logo-mark"><i></i><i></i><i></i></span><span>Just-Go</span></a>
+      <p class="footer-links"><a href="/just-go/docs/">Docs</a><a href="/just-go/docs/services/">Services</a><a href="/just-go/docs/data-sources/">Data sources</a><a href="/just-go/download/">Downloads</a><a href="/just-go/docs/privacy/">Privacy</a><a href="/just-go/docs/terms/">Terms</a><a href="/just-go/docs/attribution/">Attribution</a></p>
+      <p class="mono">DATA SOURCES · ROUND 36 · MAIN fc4bce3 · VERIFIED 2026-07-15</p>
+    </footer>
+  </body>
+</html>

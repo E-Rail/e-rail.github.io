@@ -5,25 +5,26 @@ Personal website for Ethan Song, hosted with GitHub Pages.
 - `/` — introduction, GitHub projects, and Bilibili videos
 - `/ccmgr` — product page, install options, internals, and keybindings for [ccmgr](https://github.com/E-Rail/ccmgr)
 - `/ccmgr/install.sh` — first-party mirror of the upstream ccmgr installer
-- `/justgo` — current product page for [JustGo](https://github.com/E-Rail/JustGo)
-- `/justgo/docs` — implementation-level routing, confidence, coverage, and accessibility documentation
-- `/justgo/docs/services` — runtime service catalog and network boundaries
-- `/justgo/docs/data-sources` — verified included, external-reference, live-API, and source-pending data record
-- `/justgo/download` — downloads and offline-content boundary
-- `/justgo/docs/privacy` — privacy policy and field-level data handling
-- `/justgo/docs/terms` — service terms and transit-data limitations
-- `/justgo/docs/attribution` — OpenStreetMap, MTR/DATA.GOV.HK, media, and software credits
+- `/just-go` — current product page for [Just-Go](https://github.com/E-Rail/Just-Go)
+- `/just-go/docs` — implementation-level routing, confidence, coverage, and accessibility documentation
+- `/just-go/docs/services` — runtime service catalog and network boundaries
+- `/just-go/docs/data-sources` — verified included, external-reference, live-API, and source-pending data record
+- `/just-go/download` — downloads and offline-content boundary
+- `/just-go/docs/privacy` — privacy policy and field-level data handling
+- `/just-go/docs/terms` — service terms and transit-data limitations
+- `/just-go/docs/attribution` — OpenStreetMap, MTR/DATA.GOV.HK, media, and software credits
 
-The JustGo pages use the verified Round 35 snapshot dated 2026-07-15: 58
-cataloged cities, 46 route-picker baselines, 12 catalog-only cities, two
-included offline city packs with 606 station records, and zero verified indoor
-transfers. A separate official-resource directory contains 330 hyperlink
-records across 275 unique targets.
+The Just-Go pages use the verified Round 36 snapshot dated 2026-07-15: 58
+cataloged cities, 53 route-picker baselines, 5 catalog-only cities, 14 included
+offline city packs with 2,849 matched station records and 582 accessibility
+records, and zero verified indoor transfers. A separate official-resource
+directory contains 770 hyperlink records across 698 unique targets, and a
+station-information layer covers 1,598 stations — 1,436 of them fetched from
+four mainland operators on the rider's own device rather than bundled.
 
-Current source snapshots are JustGo `main` at `f35e624` (the merged Round
-26–35 tree, with the data snapshot above unchanged) and ccmgr v0.1.3 at
-`c3de597`. The public ccmgr installer mirrors the current upstream `install.sh`
-byte-for-byte.
+Current source snapshots are Just-Go `main` at `fc4bce3` (the merged Round 36
+tree) and ccmgr v0.1.3 at `c3de597`. The public ccmgr installer mirrors the
+current upstream `install.sh` byte-for-byte.
 
 The site is plain HTML, CSS, and JavaScript with no build step.
 
