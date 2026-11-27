@@ -1,39 +1,39 @@
-const tabs = [...document.querySelectorAll("[data-tab]")];
-const panels = [...document.querySelectorAll("[data-panel]")];
+const links = [...document.querySelectorAll(".site-nav a")];
+const sections = links
+  .map((link) => document.querySelector(link.getAttribute("href")))
+  .filter(Boolean);
 
-function selectTab(name, updateHash = true) {
-  const selected = tabs.find((tab) => tab.dataset.tab === name) || tabs[0];
+const motion = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
 
-  tabs.forEach((tab) => {
-    const active = tab === selected;
-    tab.classList.toggle("active", active);
-    tab.setAttribute("aria-selected", String(active));
-    tab.tabIndex = active ? 0 : -1;
-  });
-
-  panels.forEach((panel) => {
-    const active = panel.dataset.panel === selected.dataset.tab;
-    panel.classList.toggle("active", active);
-    panel.hidden = !active;
-  });
-
-  if (updateHash) history.replaceState(null, "", `#${selected.dataset.tab}`);
-}
-
-tabs.forEach((tab, index) => {
-  tab.addEventListener("click", () => selectTab(tab.dataset.tab));
-  tab.addEventListener("keydown", (event) => {
-    if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+links.forEach((link) => {
+  link.addEventListener("click", (event) => {
+    const target = document.querySelector(link.getAttribute("href"));
+    if (!target) return;
+    if (link.hash !== location.hash) return;
     event.preventDefault();
-    let nextIndex = index;
-    if (event.key === "ArrowRight") nextIndex = (index + 1) % tabs.length;
-    if (event.key === "ArrowLeft") nextIndex = (index - 1 + tabs.length) % tabs.length;
-    if (event.key === "Home") nextIndex = 0;
-    if (event.key === "End") nextIndex = tabs.length - 1;
-    tabs[nextIndex].focus();
-    selectTab(tabs[nextIndex].dataset.tab);
+    target.scrollIntoView({ behavior: motion, block: "start" });
   });
 });
 
-const initialTab = location.hash.replace("#", "");
-selectTab(["intro", "projects", "videos"].includes(initialTab) ? initialTab : "intro", false);
+if (sections.length && "IntersectionObserver" in window) {
+  const visible = new Map();
+
+  const mark = () => {
+    const current = sections.find((section) => visible.get(section));
+    links.forEach((link) => {
+      const active = current && link.hash === `#${current.id}`;
+      if (active) link.setAttribute("aria-current", "true");
+      else link.removeAttribute("aria-current");
+    });
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => visible.set(entry.target, entry.isIntersecting));
+      mark();
+    },
+    { rootMargin: "-42% 0px -48% 0px", threshold: 0 }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+}

@@ -1878,7 +1878,14 @@
   });
 
   Object.assign(pageTranslations.home, {
-    "A fast Rust TUI for finding, maintaining, and resuming Claude Code sessions—with branch, age, and log-size context from local JSONL.": "一款快速的 Rust 终端界面，可直接从本地 JSONL 获取分支、时间和日志大小信息，用于查找、维护和继续 Claude Code 会话。"
+    "A fast Rust TUI for finding, maintaining, and resuming Claude Code sessions—with branch, age, and log-size context from local JSONL.": "一款快速的 Rust 终端界面，可直接从本地 JSONL 获取分支、时间和日志大小信息，用于查找、维护和继续 Claude Code 会话。",
+    "About": "关于",
+    "Work": "作品",
+    "Videos": "视频",
+    "Visit just-go.com.cn": "访问 just-go.com.cn",
+    "High-speed train at a station platform": "停靠在站台上的高速列车",
+    "iOS 18+": "iOS 18 及以上",
+    "Footer": "页脚"
   });
 
   Object.assign(pageTranslations.ccmgr, {
