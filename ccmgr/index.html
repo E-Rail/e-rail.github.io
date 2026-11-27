@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="ccmgr v0.1.3 is a fast Rust terminal UI for browsing, filtering, renaming, deleting, and resuming Claude Code sessions with branch, age, and log-size context." />
-    <meta name="theme-color" content="#102b24" />
+    <meta name="description" content="ccmgr v0.1.12 is a fast Rust terminal UI for browsing, previewing, moving, and resuming Claude Code sessions with branch, age, and log-size context." />
+    <meta name="theme-color" content="#f3efe6" />
     <meta name="color-scheme" content="light" />
     <title>ccmgr — Claude Code session manager</title>
     <script src="/language.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Noto+Sans+SC:wght@400;500;600;700;800&amp;family=Source+Sans+3:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Fraunces:ital,opsz,wght@0,9..144,560;1,9..144,560&amp;family=Noto+Sans+SC:wght@400;500;600;700;800&amp;family=Source+Sans+3:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/base.css" />
     <link rel="stylesheet" href="/ccmgr/ccmgr.css" />
     <link rel="stylesheet" href="/language.css" />
@@ -37,7 +37,7 @@
     <main id="main">
       <section class="hero">
         <div class="hero-copy">
-          <div class="release-line"><span>v0.1.3</span><i></i><span>RUST TUI</span><i></i><span>macOS / Linux</span></div>
+          <div class="release-line"><span>v0.1.12</span><i></i><span>RUST TUI</span><i></i><span>macOS / Linux</span></div>
           <p class="eyebrow">CLAUDE CODE SESSION MANAGER</p>
           <h1>Your sessions,<br /><em>without the archaeology.</em></h1>
           <p class="hero-lead">Browse, live-filter, rename, delete, and resume Claude Code sessions with age, Git branch, and log-size context. No account, no indexer, no background service.</p>
@@ -58,7 +58,7 @@
             <div class="terminal-bar">
               <div class="window-dots" aria-hidden="true"><i></i><i></i><i></i></div>
               <span>ccmgr — current project</span>
-              <span class="terminal-version">v0.1.3</span>
+              <span class="terminal-version">v0.1.12</span>
             </div>
             <div class="terminal-command"><span>~/Projects/rail</span><b>$</b> ccmgr<span class="cursor">_</span></div>
             <div class="tui-rule" aria-hidden="true"></div>
@@ -80,9 +80,9 @@
                 <div><strong>Review session metadata</strong><span>3d ago · release/npm · 64.2KB</span></div>
               </div>
             </div>
-            <div class="terminal-help">Type to search · ↑/↓ move · Enter resume · Ctrl+R rename · Ctrl+D delete · Tab scope · Ctrl+C quit</div>
+            <div class="terminal-help">Space preview · Enter resume · Ctrl+O move · Ctrl+R rename · Esc quit</div>
           </div>
-          <div class="terminal-note"><span>01</span><p>v0.1.3 reads age, Git branch, and log size directly from each session.</p></div>
+          <div class="terminal-note"><span>01</span><p>v0.1.12 can preview a session or move it to another folder, without a second copy of the log.</p></div>
         </div>
       </section>
 
@@ -147,11 +147,11 @@
 
         <div class="feature-grid">
           <article><span class="feature-index">01</span><div class="feature-glyph">⌕</div><h3>Filter with context</h3><p>Start typing to filter by title. Each row shows relative age, Git branch when present, and JSONL log size.</p></article>
-          <article><span class="feature-index">02</span><div class="feature-glyph">↵</div><h3>Resume in context</h3><p>Press Enter to run <code>claude --resume &lt;id&gt;</code> from the session’s original working directory.</p></article>
-          <article><span class="feature-index">03</span><div class="feature-glyph">Aa</div><h3>Rename append-only</h3><p>Renaming appends a new <code>ai-title</code> event to the JSONL log, matching Claude Code’s own convention.</p></article>
-          <article><span class="feature-index">04</span><div class="feature-glyph">⇥</div><h3>Switch scope</h3><p>Use Tab to move between the current project and every project; all-project rows also show the recorded working directory.</p></article>
-          <article><span class="feature-index">05</span><div class="feature-glyph">⌫</div><h3>Delete with confirmation</h3><p>Ctrl+D asks first, then removes the session log and its file-history sidecar directory. Rename, delete, and resume statuses clear after three seconds.</p></article>
-          <article><span class="feature-index">06</span><div class="feature-glyph">↻</div><h3>Update in place</h3><p>Run <code>ccmgr update</code> to fetch the latest matching release and atomically replace the current non-npm binary.</p></article>
+          <article><span class="feature-index">02</span><div class="feature-glyph">▤</div><h3>Preview before you resume</h3><p>Press Space to open the transcript. Arrow keys and Page Up or Page Down scroll it. Enter resumes, and Esc returns to the list.</p></article>
+          <article><span class="feature-index">03</span><div class="feature-glyph">↵</div><h3>Resume in context</h3><p>Press Enter to run <code>claude --resume &lt;id&gt;</code> from the session’s original working directory.</p></article>
+          <article><span class="feature-index">04</span><div class="feature-glyph">↗</div><h3>Move to another folder</h3><p>Ctrl+O re-files the session under a folder that already exists, rewriting paths inside the log before the original is removed.</p></article>
+          <article><span class="feature-index">05</span><div class="feature-glyph">Aa</div><h3>Rename append-only</h3><p>Renaming appends a new <code>ai-title</code> event to the JSONL log, matching Claude Code’s own convention.</p></article>
+          <article><span class="feature-index">06</span><div class="feature-glyph">◐</div><h3>Your terminal’s colors</h3><p>Titles keep the accent. Everything else recedes, and ccmgr never paints its own background, so light, dark, and transparent terminals all come through.</p></article>
         </div>
       </section>
 
@@ -177,6 +177,8 @@
           <div><span>NO REINDEX</span><strong>Claude Code remains the source.</strong><p>ccmgr reads the existing JSONL logs instead of maintaining a second session database.</p></div>
           <div><span>NO PATH GUESSING</span><strong>Resume from the recorded cwd.</strong><p>The original working directory is used when handing a session back to the CLI.</p></div>
           <div><span>SMALL RELEASE</span><strong>Optimized as a native binary.</strong><p>The Rust release profile enables size optimization, LTO, stripping, and one codegen unit.</p></div>
+          <div><span>YOUR PALETTE</span><strong>Color comes from the terminal.</strong><p>An optional TOML config can name palette entries or pin exact colors. Defaults follow the terminal theme.</p></div>
+          <div><span>SAFE MOVE</span><strong>The original stays until the rewrite lands.</strong><p>A moved session is written into place before the old file is removed. A path that only shares a prefix is left alone.</p></div>
         </div>
       </section>
 
@@ -194,11 +196,13 @@
             <div class="key-row key-header" role="row"><span role="columnheader">KEY</span><span role="columnheader">ACTION</span></div>
             <div class="key-row" role="row"><span role="cell"><kbd>↑</kbd> <kbd>↓</kbd></span><span role="cell">Move selection</span></div>
             <div class="key-row" role="row"><span role="cell"><kbd>type</kbd></span><span role="cell">Live-filter by title</span></div>
+            <div class="key-row" role="row"><span role="cell"><kbd>Space</kbd></span><span role="cell">Preview the selected session</span></div>
             <div class="key-row" role="row"><span role="cell"><kbd>Enter</kbd></span><span role="cell">Resume selected session</span></div>
             <div class="key-row" role="row"><span role="cell"><kbd>Ctrl</kbd> + <kbd>R</kbd></span><span role="cell">Rename selected session</span></div>
+            <div class="key-row" role="row"><span role="cell"><kbd>Ctrl</kbd> + <kbd>O</kbd></span><span role="cell">Move the session to another folder</span></div>
             <div class="key-row" role="row"><span role="cell"><kbd>Ctrl</kbd> + <kbd>D</kbd></span><span role="cell">Delete after confirmation</span></div>
             <div class="key-row" role="row"><span role="cell"><kbd>Tab</kbd></span><span role="cell">Toggle current / all projects</span></div>
-            <div class="key-row" role="row"><span role="cell"><kbd>Ctrl</kbd> + <kbd>C</kbd></span><span role="cell">Quit</span></div>
+            <div class="key-row" role="row"><span role="cell"><kbd>Esc</kbd></span><span role="cell">Quit, or leave a preview</span></div>
           </div>
 
           <aside class="command-reference">

@@ -3,28 +3,13 @@
 Personal website for Ethan Song, hosted with GitHub Pages.
 
 - `/` — introduction, GitHub projects, and Bilibili videos. Just-Go links to [just-go.com.cn](https://just-go.com.cn)
-- `/ccmgr` — product page, install options, internals, and keybindings for [ccmgr](https://github.com/E-Rail/ccmgr)
+- `/ccmgr` — product page, install options, internals, and keybindings for [ccmgr](https://github.com/E-Rail/ccmgr) v0.1.12
 - `/ccmgr/install.sh` — first-party mirror of the upstream ccmgr installer
-- `/just-go` — product page for [Just-Go](https://github.com/E-Rail/Just-Go)
-- `/just-go/docs` — routing, Quick Tags, data layers, coverage, and known limits
-- `/just-go/docs/services` — the Station Information API contract
-- `/just-go/docs/privacy` — privacy policy and field-level data handling
-- `/just-go/docs/terms` — service terms and transit-data limitations
-- `/just-go/docs/attribution` — OpenStreetMap, MTR/DATA.GOV.HK, Taipei, and operator credits
 
-The `/just-go` section is imported from [E-Rail/just-go-site](https://github.com/E-Rail/just-go-site),
-which is also deployed standalone at just-go.com.cn. It carries its own design
-system: `just-go/base.css` rather than the site-wide `base.css`, system fonts
-only, and no external requests. Re-importing means copying that repository's
-files in and rewriting its root-relative paths to `/just-go/`.
+Just-Go’s own site lives at just-go.com.cn and is not hosted in this repository.
 
-It tracks the verified Round 36 snapshot at `fc4bce3`: 58 cataloged cities, 53
-routed metro networks, 14 station packs holding 2,849 matched records, a
-station-information directory of 1,598 stations across 5 reviewed sources, and
-770 official-resource links across 698 unique targets.
-
-ccmgr is v0.1.3 at `c3de597`. The public ccmgr installer mirrors the current
-upstream `install.sh` byte-for-byte.
+ccmgr is v0.1.12. The public installer matches the upstream `install.sh` at that tag
+byte-for-byte, and always downloads the latest GitHub release.
 
 The site is plain HTML, CSS, and JavaScript with no build step.
 
