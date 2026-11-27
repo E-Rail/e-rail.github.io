@@ -2,7 +2,7 @@
 
 Personal website for Ethan Song, hosted with GitHub Pages.
 
-- `/` — introduction, GitHub projects, and Bilibili videos
+- `/` — introduction, GitHub projects, and Bilibili videos. Just-Go links to [just-go.com.cn](https://just-go.com.cn)
 - `/ccmgr` — product page, install options, internals, and keybindings for [ccmgr](https://github.com/E-Rail/ccmgr)
 - `/ccmgr/install.sh` — first-party mirror of the upstream ccmgr installer
 - `/just-go` — product page for [Just-Go](https://github.com/E-Rail/Just-Go)
